@@ -1,0 +1,38 @@
+:root {
+  --primary-color: linear-gradient(135deg, #96a6ea 0%,  #210eee 100%); /* blue */
+  --secondary-color: #2ecc71; /* green */
+  --text-color:  #fff; /* dark text */
+  --background-color:  rgba(0,0, 20, 0.6); /* semi-transparent background */
+  --background: url("Beneath_the_blue\static\photo\bg.jpg") no-repeat center center fixed; /* background image */
+  --background-size: cover; /* cover the entire background */
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --box-bg: rgba(0, 0, 0, 0.1); /* semi-transparent black for box background */
+}
+body {
+  font-family: Arial, sans-serif; /* clean font */
+  margin: 0%;
+  padding: 20px;
+  overflow: hidden;
+}
+.modal{
+  background-image: url("Beneath_the_blue\static\photo\bg.jpg"); /* relative to CSS file */
+}
+#bg-video, .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* For video */
+        z-index: -1; /* Behind content */
+        border: none; /* Explicitly remove any border */
+        outline: none; /* Remove outline */
+    }
+         
+
+        @media (max-width: 768px) {
+            #bg-video {
+                object-fit: cover; /* Optimize for mobile */
+            }
+        }
+

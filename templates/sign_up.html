@@ -1,0 +1,56 @@
+{%  extends "base.html" %}
+{% load static %}
+
+{% block  content %}
+    <link rel="stylesheet" href="{% static 'css/sing_in_up.css' %}">
+    <title>Beneath the blue</title>
+</head>
+<body >
+        <video autoplay muted loop id="bg-video" playsinline>
+        <!-- Use static file or CDN URL -->
+        <source src="{% static 'videos/ocean.mp4' %}" type="video/mp4">
+        <!-- Fallback for older browsers -->
+        Your browser does not support the video tag.
+    </video>
+        <div class="modal" id="loginModal">
+       
+        <div class="modal-content">
+             <form  method="POST">
+                    {% csrf_token %}
+            <div class="modal-header">
+                <h3>Welcome</h3>
+                 <a href="{% url 'sign_up' %}" class="close-btn" id="closeLogin" style=" text-decoration: none !important; color: inherit !important">×</a>
+            </div>
+            <div class="modal-body">
+                    {% if error %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+                    <div class="modal-field">
+                        <label for="email">Email</label>
+                        <input type="email" id=" email" required name="email" placeholder="Enter your email">
+                    </div>
+                    <div class="modal-field">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required name="password" placeholder="Enter your password">
+                    </div>
+                     <div class="modal-field">
+                        <label for="password">Confirm Password</label>
+                        <input type="password" id="password" required name="password2" placeholder="Enter your password">
+                    </div>
+                    <a href="{% url 'sign_in' %}" class="btn btn-secondary">Don't have an account? Sign In</a>
+                    <div class="modal-content-btn" ><button type="submit" class="btn btn-primary">Sing Up<i class="fa-solid fa-fish-fins" style="margin-left: .75rem;"></i></button></div>
+            </div>
+              </form>
+
+              {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+                    </div>
+      
+    </div>
+
+</body>
+
+    {% endblock %} 
