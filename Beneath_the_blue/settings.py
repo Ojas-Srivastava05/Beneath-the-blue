@@ -38,11 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',  # Your app name
-<<<<<<< HEAD
-=======
     'community',  # Community app
     # Add other apps here as needed
->>>>>>> Community
+ 
 ]
 
 MIDDLEWARE = [
