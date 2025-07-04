@@ -1,0 +1,19 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code settings
+.vscode/
+
+# Environment folders
+env/
+venv/
+
+# OS junk files
+.DS_Store
+Thumbs.db
+
+# Ignore everything outside this directory
+../
+../../
