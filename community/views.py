@@ -5,21 +5,19 @@ from .models import Community, Category
 
 # This view renders the community page where users can learn about the Beneath The Blue community and its mission.
 def community_page(request):
-    Community_data = Community.objects.all()
     Category_data = Category.objects.all()
-    id =  Category_data.first().id  # default to the first category if no query parameter is provided
-    if request.method == 'GET':
-        id = request.GET.get('category')  # get the query parameter
+    # Try to get category id from GET, else use first category's id
+    id = request.GET.get('category') or (Category_data.first().id if Category_data.exists() else None)
     try:
         Category_selected = Category.objects.get(id=id)
+        Community_data = Community.objects.filter(category=Category_selected)
     except (Category.DoesNotExist, TypeError, ValueError):
-        Category_selected = Category.objects.first()
+        Category_selected = None
+        Community_data = Community.objects.none()
 
-    Community_data = Community.objects.filter(category=Category_selected)
     data = {
         'Community_data': Community_data,
         'Category_data': Category_data,
         'Category_selected': Category_selected
     }
     return render(request, 'community.html', data)
-

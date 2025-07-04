@@ -4,16 +4,12 @@
   justify-content: center;   /* horizontal center */
   align-items: center;       /* vertical center */
   height: 100vh;             /* full viewport height */
-<<<<<<< HEAD
-  background-color:  var(--background); /* or whatever your background is */
 }
 .modal-content {
     background-color: rgba(0,0, 20, 0.6); /* Semi-transparent background */;
-=======
 }
 .modal-content {
     background-color: rgba(0,0, 20, 0.65); /* Semi-transparent background */;
->>>>>>> Community
     padding: 2rem;
     border-radius: 5%;
     box-shadow:  0 4px 8px rgba(0, 0, 0, 0.2);
@@ -33,10 +29,6 @@
     font-weight: 700;
     font-size: 1.5rem;   
 }
-<<<<<<< HEAD
-/*Modal field section */
-.modal-field{
-=======
 
 /*Modal field section */
 .modal-field{
@@ -55,11 +47,7 @@
     color: #fff;
 }
  .modal-field input {
-<<<<<<< HEAD
     width: 100%;
-=======
-    width: 5rem;
->>>>>>> Community
     padding: 0.3rem;
     margin: 0.5rem; /* Margin for spacing */
     border: 1px solid black; /* White border for contrast */
