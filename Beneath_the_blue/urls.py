@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home.views import *
+from community.views import *
 # from . import views
 
 urlpatterns = [
@@ -25,5 +26,5 @@ urlpatterns = [
     ,path('sign_in/',sign_in, name="sign_in")
     ,path('sign_up/',sign_up, name="sign_up")
     ,path('logout/',logout, name="logout")
-
+    ,path('community/',community_page, name="community_page")
 ]

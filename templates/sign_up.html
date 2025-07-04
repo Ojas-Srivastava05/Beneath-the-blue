@@ -3,7 +3,7 @@
 
 {% block  content %}
     <link rel="stylesheet" href="{% static 'css/sing_in_up.css' %}">
-    <title>Beneath the blue</title>
+    <title>Beneath the blue Sing Up</title>
 </head>
 <body >
         <video autoplay muted loop id="bg-video" playsinline>
@@ -37,7 +37,7 @@
                         <label for="password">Confirm Password</label>
                         <input type="password" id="password" required name="password2" placeholder="Enter your password">
                     </div>
-                    <a href="{% url 'sign_in' %}" class="btn btn-secondary">Don't have an account? Sign In</a>
+                    <a href="{% url 'sign_in' %}" class="btn btn-secondary">Already have an account? Sign In</a>
                     <div class="modal-content-btn" ><button type="submit" class="btn btn-primary">Sing Up<i class="fa-solid fa-fish-fins" style="margin-left: .75rem;"></i></button></div>
             </div>
               </form>
