@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
   --primary-color: linear-gradient(135deg, #96a6ea 0%,  #210eee 100%); /* blue */
   --secondary-color: #2ecc71; /* green */
@@ -13,6 +14,13 @@ body {
   margin: 0%;
   padding: 20px;
   overflow: hidden;
+=======
+
+body {
+  font-family: Arial, sans-serif; /* clean font */
+  margin: 0%; 
+  overflow: scroll; 
+>>>>>>> Community
 }
 .modal{
   background-image: url("Beneath_the_blue\static\photo\bg.jpg"); /* relative to CSS file */
