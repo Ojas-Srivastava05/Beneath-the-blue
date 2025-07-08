@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login | Beneath The Blue</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="quiz-container">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-btn">Login</button>
+    </form>
+    <p>Don't have an account? <a href="/signup/">Sign Up</a></p>
+</div>
+</body>
+</html>

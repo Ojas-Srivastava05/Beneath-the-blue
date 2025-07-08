@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Take Quiz | Beneath The Blue</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background: #e0f7fa;
+            padding: 30px;
+            border-radius: 16px;
+        }
+        .question {
+            margin-bottom: 25px;
+        }
+        .submit-btn {
+            background-color: #0077b6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header class="ocean-nav">
+    <div class="nav-container">
+        <div class="logo">
+            <img src="/static/image/logo.png" alt="logo">
+            <span>Beneath The Blue</span>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/threats-solutions.html">Threats & Solutions</a></li>
+                <li><a href="/quiz/" class="active">Quiz</a></li>
+                <li><a href="/summary/">Summary</a></li>
+            </ul>
+        </nav>
+        <div class="nav-actions">
+            <form method="post" action="/logout/">{% csrf_token %}
+                <button class="nav-btn login-btn">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<div class="quiz-container">
+    <h2>Ocean & Marine Exploration Quiz</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div class="question">
+                <h3>{{ forloop.counter }}. {{ question.text }}</h3>
+                {% for option in question.options.all %}
+                    <label>
+                        <input type="radio" name="question_{{ question.id }}" value="{{ option.id }}" required>
+                        {{ option.text }}
+                    </label><br>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+</div>
+
+<footer>
+    <p>© 2025 Web Wonder | Ocean Exploration Team</p>
+</footer>
+</body>
+</html>

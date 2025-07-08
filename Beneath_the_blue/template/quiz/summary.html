@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Summary</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<header class="ocean-nav">
+    <div class="nav-container">
+        <div class="logo">
+            <img src="/static/image/logo.png" alt="logo">
+            <span>Beneath The Blue</span>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/threats-solutions.html">Threats & Solutions</a></li>
+                <li><a href="/quiz/">Quiz</a></li>
+                <li><a href="/summary/" class="active">Summary</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="quiz-container">
+    <h2>Your Quiz History</h2>
+    {% if results %}
+        <ul>
+        {% for result in results %}
+            <li>{{ result.timestamp|date:"Y-m-d H:i" }} - Score: {{ result.score }}/{{ result.total_questions }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No quiz attempts yet.</p>
+    {% endif %}
+</div>
+
+<footer>
+    <p>© 2025 Web Wonder | Ocean Exploration Team</p>
+</footer>
+</body>
+</html>
