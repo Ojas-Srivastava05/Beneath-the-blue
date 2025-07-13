@@ -2,75 +2,494 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Take Quiz | Beneath The Blue</title>
-    <link rel="stylesheet" href="/static/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Ocean Exploration Quiz | Beneath The Blue</title>
+    <link rel="stylesheet" href="/Beneath_the_blue/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         .quiz-container {
             max-width: 800px;
             margin: 100px auto;
-            background: #e0f7fa;
-            padding: 30px;
+            background: rgba(224, 247, 250, 0.95);
+            padding: 40px;
             border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 119, 182, 0.4);
+            border: 2px solid #0077b6;
+        }
+        .quiz-container h2 {
+            color: #005f73;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            padding-bottom: 15px;
+            border-bottom: 2px solid #90e0ef;
         }
         .question {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #0077b6;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .question h3 {
+            color: #023e8a;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .question label {
+            display: block;
+            padding: 12px 20px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: #005f73;
+            border: 1px solid #caf0f8;
+        }
+        .question label:hover {
+            background: #caf0f8;
+            transform: translateX(5px);
+        }
+        .question input[type="radio"] {
+            margin-right: 12px;
         }
         .submit-btn {
             background-color: #0077b6;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 35px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: block;
+            margin: 40px auto 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .submit-btn:hover {
+            background-color: #023e8a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            image-rendering: crisp-edges;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+        footer {
+            background-color: #006994;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            min-height: 100px;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .page-wrapper {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            flex: 1;
+        }
+        
+        /* New Summary Styles */
+        .summary-btn {
+            background-color: #0096c7;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: none; /* Hidden by default */
+            margin: 20px auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .summary-btn:hover {
+            background-color: #0077b6;
+            transform: translateY(-2px);
+        }
+        .summary-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .summary-content {
+            background-color: #e0f7fa;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .summary-content h3 {
+            color: #005f73;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .summary-stats {
+            margin-bottom: 20px;
+        }
+        .summary-stats p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+            color: #023e8a;
+        }
+        .close-summary {
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
+    <div class="page-wrapper">
+        <div class="content">
+            <header class="ocean-nav">
+                <div class="nav-container">
+                    <div class="logo">
+                        <img src="/Beneath_the_blue/static/image/logo.png" alt="Beneath The Blue Logo">
+                        <span>Beneath The Blue</span>
+                    </div>
+                    <nav class="main-nav">
+                        <ul>
+                            <li><a href="/index.html" class="nav-link">Home</a></li>
+                            <li><a href="/threats-solutions.html" class="nav-link">Threats & Solutions</a></li>
+                            <li><a href="/quiz/" class="nav-link active">Quiz</a></li>
+                        </ul>
+                    </nav>
+                    <div class="nav-actions">
+                        <button class="nav-btn login-btn">Login</button>
+                        <button class="nav-btn signup-btn">Sign Up</button>
+                    </div>
+                </div>
+            </header>
 
-<header class="ocean-nav">
-    <div class="nav-container">
-        <div class="logo">
-            <img src="/static/image/logo.png" alt="logo">
-            <span>Beneath The Blue</span>
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/threats-solutions.html">Threats & Solutions</a></li>
-                <li><a href="/quiz/" class="active">Quiz</a></li>
-                <li><a href="/summary/">Summary</a></li>
-            </ul>
-        </nav>
-        <div class="nav-actions">
-            <form method="post" action="/logout/">{% csrf_token %}
-                <button class="nav-btn login-btn">Logout</button>
-            </form>
-        </div>
-    </div>
-</header>
+            <section class="hero">
+                <video autoplay muted loop playsinline class="video-background">
+                    <source src="/Beneath_the_blue/static/videos/quiz_video.mp4" type="video/mp4">
+                    <img src="/Beneath_the_blue/static/images/ocean-fallback.jpg" alt="Ocean waves">
+                </video>
+                
+                <div class="video-overlay"></div>
 
-<div class="quiz-container">
-    <h2>Ocean & Marine Exploration Quiz</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {% for question in questions %}
+                <div class="quiz-container">
+                    <h2>Ocean & Marine Exploration Quiz</h2>
+                    <form method="POST" id="quizForm">
+                        <input type="hidden" name="csrf_token" value="YOUR_CSRF_TOKEN_HERE">
+                        
+                        <!-- All your 10 questions here (keep exactly as they were) -->
+                          <!-- Question 1 -->
             <div class="question">
-                <h3>{{ forloop.counter }}. {{ question.text }}</h3>
-                {% for option in question.options.all %}
-                    <label>
-                        <input type="radio" name="question_{{ question.id }}" value="{{ option.id }}" required>
-                        {{ option.text }}
-                    </label><br>
-                {% endfor %}
+                <h3>1. What is the average depth of the world's oceans?</h3>
+                <label>
+                    <input type="radio" name="question_1" value="1" required>
+                    1,200 meters (3,937 feet)
+                </label>
+                <label>
+                    <input type="radio" name="question_1" value="2" required>
+                    3,688 meters (12,100 feet)
+                </label>
+                <label>
+                    <input type="radio" name="question_1" value="3" required>
+                    5,280 meters (17,322 feet)
+                </label>
             </div>
-        {% endfor %}
-        <button type="submit" class="submit-btn">Submit</button>
-    </form>
-</div>
+            
+            <!-- Question 2 -->
+            <div class="question">
+                <h3>2. Which marine creature has the largest brain of any invertebrate?</h3>
+                <label>
+                    <input type="radio" name="question_2" value="1" required>
+                    Giant squid
+                </label>
+                <label>
+                    <input type="radio" name="question_2" value="2" required>
+                    Blue whale
+                </label>
+                <label>
+                    <input type="radio" name="question_2" value="3" required>
+                    Octopus
+                </label>
+            </div>
+            
+            <!-- Question 3 -->
+            <div class="question">
+                <h3>3. What percentage of the ocean floor has been mapped in high resolution?</h3>
+                <label>
+                    <input type="radio" name="question_3" value="1" required>
+                    About 5%
+                </label>
+                <label>
+                    <input type="radio" name="question_3" value="2" required>
+                    About 20%
+                </label>
+                <label>
+                    <input type="radio" name="question_3" value="3" required>
+                    About 50%
+                </label>
+            </div>
+            
+            <!-- Question 4 -->
+            <div class="question">
+                <h3>4. Which technology is primarily used to explore the deepest parts of the ocean?</h3>
+                <label>
+                    <input type="radio" name="question_4" value="1" required>
+                    Sonar
+                </label>
+                <label>
+                    <input type="radio" name="question_4" value="2" required>
+                    Submersibles
+                </label>
+                <label>
+                    <input type="radio" name="question_4" value="3" required>
+                    Satellite imaging
+                </label>
+            </div>
+            
+            <!-- Question 5 -->
+            <div class="question">
+                <h3>5. The Mariana Trench is the deepest known part of the ocean. Approximately how deep is it?</h3>
+                <label>
+                    <input type="radio" name="question_5" value="1" required>
+                    6,000 meters (19,685 feet)
+                </label>
+                <label>
+                    <input type="radio" name="question_5" value="2" required>
+                    8,000 meters (26,247 feet)
+                </label>
+                <label>
+                    <input type="radio" name="question_5" value="3" required>
+                    11,000 meters (36,000 feet)
+                </label>
+            </div>
+            
+            <!-- Question 6 -->
+            <div class="question">
+                <h3>6. What is the name of the phenomenon where deep-sea creatures produce their own light?</h3>
+                <label>
+                    <input type="radio" name="question_6" value="1" required>
+                    Phosphorescence
+                </label>
+                <label>
+                    <input type="radio" name="question_6" value="2" required>
+                    Bioluminescence
+                </label>
+                <label>
+                    <input type="radio" name="question_6" value="3" required>
+                    Fluorescence
+                </label>
+            </div>
+            
+            <!-- Question 7 -->
+            <div class="question">
+                <h3>7. Which of these is NOT a major ocean current?</h3>
+                <label>
+                    <input type="radio" name="question_7" value="1" required>
+                    Gulf Stream
+                </label>
+                <label>
+                    <input type="radio" name="question_7" value="2" required>
+                    Kuroshio Current
+                </label>
+                <label>
+                    <input type="radio" name="question_7" value="3" required>
+                    Amazon Current
+                </label>
+            </div>
+            
+            <!-- Question 8 -->
+            <div class="question">
+                <h3>8. Coral reefs cover less than 1% of the ocean floor but are home to what percentage of marine species?</h3>
+                <label>
+                    <input type="radio" name="question_8" value="1" required>
+                    About 10%
+                </label>
+                <label>
+                    <input type="radio" name="question_8" value="2" required>
+                    About 25%
+                </label>
+                <label>
+                    <input type="radio" name="question_8" value="3" required>
+                    About 50%
+                </label>
+            </div>
+            
+            <!-- Question 9 -->
+            <div class="question">
+                <h3>9. What is the largest living structure on Earth?</h3>
+                <label>
+                    <input type="radio" name="question_9" value="1" required>
+                    The Amazon Rainforest
+                </label>
+                <label>
+                    <input type="radio" name="question_9" value="2" required>
+                    The Great Barrier Reef
+                </label>
+                <label>
+                    <input type="radio" name="question_9" value="3" required>
+                    The Antarctic Ice Sheet
+                </label>
+            </div>
+            
+            <!-- Question 10 -->
+            <div class="question">
+                <h3>10. Which of these discoveries was made by the deep-sea submersible Alvin?</h3>
+                <label>
+                    <input type="radio" name="question_10" value="1" required>
+                    Hydrothermal vents
+                </label>
+                <label>
+                    <input type="radio" name="question_10" value="2" required>
+                    The Titanic wreck
+                </label>
+                <label>
+                    <input type="radio" name="question_10" value="3" required>
+                    Both of the above
+                </label>
+            </div>
+                        <button type="submit" class="submit-btn">Submit Answers</button>
+                        <button class="summary-btn" id="summaryBtn">View Summary</button>
+                    </form>
+                </div>
+            </section>
+        </div>
 
-<footer>
-    <p>© 2025 Web Wonder | Ocean Exploration Team</p>
-</footer>
+        <!-- Summary Modal -->
+        <div class="summary-modal" id="summaryModal">
+            <div class="summary-content">
+                <h3>Quiz Summary</h3>
+                <div class="summary-stats">
+                    <p>Total Questions: <span id="totalQuestions">10</span></p>
+                    <p>Attempted: <span id="questionsAttempted">0</span></p>
+                    <p>Correct Answers: <span id="correctAnswers">0</span></p>
+                    <p>Wrong Answers: <span id="wrongAnswers">0</span></p>
+                    <p>Score: <span id="totalScore">0</span>/10</p>
+                </div>
+                <button class="close-summary" id="closeSummary">Close</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Web Wonder | Ocean Exploration Team</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-background');
+            video.play().catch(e => {
+                video.muted = true;
+                video.play();
+            });
+
+            const quizForm = document.getElementById('quizForm');
+            const summaryBtn = document.getElementById('summaryBtn');
+            const summaryModal = document.getElementById('summaryModal');
+            const closeSummary = document.getElementById('closeSummary');
+            
+            // Initially hide summary button
+            summaryBtn.style.display = 'none';
+            
+            quizForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show summary button
+                summaryBtn.style.display = 'block';
+                summaryBtn.scrollIntoView({ behavior: 'smooth' });
+                
+                // Calculate results (replace with your actual scoring logic)
+                const totalQuestions = 10;
+                let correctAnswers = 0;
+                let attempted = 0;
+                
+                // Check each question (this is simplified - adapt to your needs)
+                for (let i = 1; i <= totalQuestions; i++) {
+                    const selectedOption = document.querySelector(`input[name="question_${i}"]:checked`);
+                    if (selectedOption) {
+                        attempted++;
+                        // This assumes correct answers have value="2" - adjust based on your actual correct answers
+                        if (selectedOption.value === "2") {
+                            correctAnswers++;
+                        }
+                    }
+                }
+                
+                // Update summary
+                document.getElementById('totalQuestions').textContent = totalQuestions;
+                document.getElementById('questionsAttempted').textContent = attempted;
+                document.getElementById('correctAnswers').textContent = correctAnswers;
+                document.getElementById('wrongAnswers').textContent = attempted - correctAnswers;
+                document.getElementById('totalScore').textContent = correctAnswers;
+            });
+            
+            summaryBtn.addEventListener('click', function() {
+                summaryModal.style.display = 'flex';
+            });
+            
+            closeSummary.addEventListener('click', function() {
+                summaryModal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === summaryModal) {
+                    summaryModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
