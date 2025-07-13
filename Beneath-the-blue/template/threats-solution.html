@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Threats & Solutions | Web Wonder</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Add to <head> -->
+    <link rel="preload" href="../static/videos/ocean-waves.mp4" as="video">
+    <style>
+        /* Add these styles to your existing CSS */
+        .hero {
+            position: relative;
+            height: 70vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 60, 100, 0.4);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="ocean-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="../static/image/logo.png" alt="logo">
+                <span>Beneath The Blue</span>
+            </div>
+            
+            <nav class="main-nav">
+                <div class="nav-wave"></div>
+                <ul>
+                    <li><a href="index.html" class="nav-link"><span>Home</span></a></li>
+                    <li><a href="threats-solutions.html" class="nav-link active"><span>Threats & Solutions</span></a></li>
+                    <li><a href="quiz.html" class="nav-link"><span>Quiz</span></a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="nav-btn login-btn">Login</button>
+                <button class="nav-btn signup-btn">Sign Up</button>
+            </div>
+            
+        </div>
+    </header>
+
+
+    <section class="hero">
+         <!-- Video Background -->
+        <video autoplay muted loop playsinline class="video-background">
+            <source src="../static/videos/ocean_waves.mp4" type="video/mp4">
+            <!-- Fallback image if video doesn't load -->
+            <img src="images/ocean-fallback.jpg" alt="Ocean waves">
+        </video>
+        
+        <!-- Dark overlay for better text visibility -->
+        <div class="video-overlay"></div>
+        
+        <!-- Hero content -->
+        <div class="hero-content">
+            <h1>SAVING OUR OCEANS</h1>
+            <p>Threats & Sustainable Solutions</p>
+        </div>
+    </section>
+
+    <section class="threats">
+        <h2>Major Threats to Marine Life</h2>
+        <div class="threats-grid">
+            <!-- Threat 1 -->
+            <div class="threat-card">
+                <img src="../static/image/polluton.jpg" alt="Plastic Pollution">
+                <h3>Plastic Pollution</h3>
+                <p>Over 8 million tons of plastic enter the ocean yearly, harming marine life.</p>
+            </div>
+            <!-- Threat 2 -->
+            <div class="threat-card">
+                <img src="../static/image/overfishing.jpg" alt="Overfishing">
+                <h3>Overfishing</h3>
+                <p>90% of global fish stocks are overexploited, leading to ecosystem collapse.</p>
+            </div>
+            <!-- Threat 3 -->
+            <div class="threat-card">
+                <img src="../static/image/coralBleaching.jpg" alt="climate change">
+                <h3>Coral Bleaching</h3>
+                <p>corals lose their vibrant colors and turn white due to the expulsion of symbiotic algae called zooxanthellae. </p>
+            </div>
+            <!-- Threat 4 -->
+            <div class="threat-card">
+                <img src="../static/image/climateChange.jpg" alt="Climate Change">
+                <h3>Climate Change</h3>
+                <p>Rising ocean temperatures kill coral reefs, affecting 25% of marine species.</p>
+            </div>
+            <!-- Threat 5 -->
+             <div class="threat-card">
+                <img src="../static/image/OilSpill.jpg" alt="Oil Spill">
+                <h3>Oil Spill</h3>
+                <p>Oil can suffocate or poison marine animals, damage their habitat, and disrupt their feeding and breeding patterns. </p>
+            </div>
+            <!-- Threat 6 -->
+             <div class="threat-card">
+                <img src="../static/image/noisePollution.jpg" alt="Noice Pollution">
+                <h3>Noise Pollution</h3>
+                <p>Oil can suffocate or poison marine animals, damage their habitat, and disrupt their feeding and breeding patterns. </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="solutions">
+        <h2>What Can We Do?</h2>
+        <div class="solutions-grid">
+            <!-- Solution 1 -->
+            <div class="solution-card">
+                <img src="../static/image/reducePlastic.jpg" alt="Reduce Plastic">
+                <h3>Reduce Plastic Use</h3>
+                <p>Switch to reusable bags, bottles, and straws.</p>
+            </div>
+            <!-- Solution 2 -->
+            <div class="solution-card">
+                <img src="../static/image/seafood.jpg" alt="Sustainable Fishing">
+                <h3>Support Sustainable Seafood</h3>
+                <p>Check labels for MSC-certified fish.</p>
+            </div>
+            <!-- Solution 3 -->
+            <div class="solution-card">
+                <img src="../static/image/beachCleanup.jpg" alt="Beach Cleanup">
+                <h3>Join Beach Cleanups</h3>
+                <p>Volunteer to remove trash from coastlines.</p>
+            </div>
+            <!-- Solution 4 -->
+            <div class="solution-card">
+                <img src="../static/image/renewable.jpg" alt="Renewable Energy">
+                <h3>Renewable Energy</h3>
+                <p>shift towards the energy derived from natural sources that are replenished at a faster rate than they are consumed.</p>
+            </div>
+            <!-- Solution 5 -->
+            <div class="solution-card">
+                <img src="../static/image/globalAgreement.jpg" alt="Global Agreement">
+                <h3>Global Agreement</h3>
+                <p>"Promoting global cooperation through international ocean agreements and marine conservation treaties."</p>
+            </div>
+            <!-- Solution 6 -->
+            <div class="solution-card">
+                <img src="../static/image/coralRestoration.jpg" alt="Coral coralRestoration">
+                <h3>Coral Restoration</h3>
+                <p>"Reviving ocean life through coral restoration — rebuilding reefs, restoring balance."</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Web Wonder | Ocean Exploration Team</p>
+    </footer>
+</body>
+</html>
