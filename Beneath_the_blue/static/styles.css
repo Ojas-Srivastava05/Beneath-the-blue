@@ -3,7 +3,7 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(0, 51, 102, 0.85); /* deep ocean blue */
+  background-color:  #033b6b; /* deep ocean blue */
   backdrop-filter: blur(6px);               /* subtle blur over background */
   border-radius: 0 0 30px 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* lift the navbar */
@@ -191,7 +191,7 @@ header {
 
 .threats h2, .solutions h2 {
     text-align: center;
-    color: #006994;
+    color: white;
     margin-bottom: 2rem;
 }
 
