@@ -9,12 +9,12 @@
 </video>
 <div id="video-overlay"></div>
 
-<div class="content-wrapper">
+<div class="content-wrapper" style="margin-top: 90px;">
     <!-- Header -->
-    <header>
+    <header style="position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(0,0,0,0.7);">
         <div class="container header-container">
             <div class="logo">
-                <img src="{% static 'ocean/images/whale.png' %}" alt="Whale Logo" width="48">
+                <img src="{% static 'ocean/images/whale.jpg' %}" alt="Whale Logo" width="48">
                 <h1>Beneath the Blue</h1>
             </div>
             <nav>
@@ -66,44 +66,50 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h3 class="section-title">Explore the Depths</h3>
-            
-            <div class="feature" id="explore">
-                <div class="feature-text">
-                    <h4>Deep Sea Explorer</h4>
-                    <p>Navigate through marine ecosystems from sunlit surfaces to the mysterious midnight zone. Our interactive 3D maps reveal underwater mountains, trenches, and coral cities.</p>
-                    <a href="#" class="btn">Begin Exploration</a>
-                </div>
-                <div class="feature-image">
-                    <img src="{% static 'ocean/images/ocean-map.jpg' %}" alt="Ocean Map Preview">
-                </div>
+  <section class="features">
+    <div class="container">
+        <h3 class="section-title">Explore the Depths</h3>
+        
+        <!-- 1. OCEAN DEPTH EXPLORATION -->
+        <div class="feature" id="explore">
+            <div class="feature-text">
+                <h4>Deep Sea Explorer</h4>
+                <p>Navigate through marine ecosystems from sunlit surfaces to the mysterious midnight zone.</p>
+                <a href="#" class="btn">Begin Exploration</a>
             </div>
-            
-            <div class="feature" id="threats">
-                <div class="feature-image">
-                    <img src="{% static 'ocean/images/ocean-threats.jpg' %}" alt="Ocean Threats">
-                </div>
-                <div class="feature-text">
-                    <h4>Threats Below Surface</h4>
-                    <p>Understand the invisible dangers - from microplastics to acidification. Our real-time trackers show pollution currents, warming patterns, and endangered species habitats.</p>
-                    <a href="#" class="btn">View Threats</a>
-                </div>
-            </div>
-            
-            <div class="feature" id="solutions">
-                <div class="feature-text">
-                    <h4>Hope From the Deep</h4>
-                    <p>Discover how marine protected areas, sustainable tech, and community action are making waves in conservation. Learn how you can contribute to solutions.</p>
-                    <a href="#" class="btn">Learn Solutions</a>
-                </div>
-                <div class="feature-image">
-                    <img src="{% static 'ocean/images/conservation.jpg' %}" alt="Conservation Solutions">
-                </div>
+            <div class="feature-image">
+                <img src="{% static 'ocean/images/deep.avif' %}" 
+                     alt="Deep ocean with submarine lights">
             </div>
         </div>
-    </section>
+        
+        <!-- 2. OCEAN POLLUTION THREAT -->
+        <div class="feature" id="threats">
+            <div class="feature-image">
+                 <img src="{% static 'ocean/images/threats.webp' %}" 
+                     alt="Plastic waste covering ocean surface">
+            </div>
+            <div class="feature-text">
+                <h4>Threats Below Surface</h4>
+                <p>See how pollution is destroying marine ecosystems worldwide.</p>
+                <a href="#" class="btn">View Threats</a>
+            </div>
+        </div>
+        
+        <!-- 3. OCEAN SOLUTION -->
+        <div class="feature" id="solutions">
+            <div class="feature-text">
+                <h4>Hope From the Deep</h4>
+                <p>Discover innovative solutions restoring our oceans.</p>
+                <a href="#" class="btn">Learn Solutions</a>
+            </div>
+            <div class="feature-image">
+                 <img src="{% static 'ocean/images/solutions.jpeg' %}" 
+                 alt="Team cleaning ocean pollution">
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Take Action Section -->
     <section class="take-action" id="take-action">
@@ -239,7 +245,7 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
+    {% comment %} <!-- Newsletter Section -->
     <section class="newsletter">
         <div class="container">
             <h3 class="section-title">Join Our Tide</h3>
@@ -250,7 +256,7 @@
                 <button type="submit">Subscribe</button>
             </form>
         </div>
-    </section>
+    </section> {% endcomment %}
 
     <!-- Footer -->
     <footer id="community">
