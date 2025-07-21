@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <title>Ocean Exploration Quiz | Beneath The Blue</title>
+    <link rel="stylesheet" href="{% static 'css/quiz.css' %}">   
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="content">
+            <header>
+                <div class="container header-container">
+                    <div class="logo">
+                        <img src="{% static 'image/logo.png' %}" alt="Beneath The Blue Logo" width="48">
+                        <h1>Beneath The Blue</h1>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="{% url 'home' %}" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="{% url 'threats' %}" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Threats & Solutions</a></li>
+                            <li><a href="{% url 'quiz' %}" class="nav-link active"><i class="fas fa-question-circle"></i> Quiz</a></li>
+                            <li><a href="{% url 'sign_in' %}" class="nav-btn sign-in-btn"><i class="fas fa-user"></i> Sign In</a></li>
+                            <li><a href="{% url 'sign_up' %}" class="nav-btn sign-up-btn"><i class="fas fa-user-plus"></i> Sign Up</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        
+            <section class="hero">
+                <video autoplay muted loop playsinline class="video-background">
+                    <source src= "{% static 'videos/quiz_video.mp4'%}" type="video/mp4">
+                    <img src="{% static 'images/ocean-fallback.jpg'%}" alt="Ocean waves">
+                </video>
+            
+                <div class="video-overlay"></div>
+
+                <div class="quiz-container">
+                    <h2>Ocean & Marine Exploration Quiz</h2>
+                    <form method="POST" id="quizForm">
+                        {% csrf_token %}
+                        <input type="hidden" name="quiz_id" value="{{ quiz_id }}">
+                        <input type="hidden" name="csrf_token" value="YOUR_CSRF_TOKEN_HERE">
+                        <div class="quiz-intro">
+                            <p>Test your knowledge about the ocean and marine life with our quiz!</p>
+                        </div>
+                            {% for questions in questions_data %}
+                                <div class="question">  
+                                <h3>{{questions.id}}. {{questions.question}}</h3>
+                                <label>
+                                    <input type="radio" name="question_2" value="1" required>
+                                    a. {{questions.op1}}
+                                </label>
+                                <label>
+                                    <input type="radio" name="question_2" value="2" required>
+                                    b. {{questions.op2}}
+                                </label>
+                                <label>
+                                    <input type="radio" name="question_2" value="3" required>
+                                    c. {{questions.op3}}
+                                </label>
+                                <label>
+                                    <input type="radio" name="question_2" value="4" required>
+                                    d. {{questions.op4}}
+                            </div>
+                            {% endfor %}
+                        <div class="quiz-instructions">
+                            <p>Choose the correct answer for each question. You can only select one answer per question.</p>    
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Answers</button>
+                        <button class="summary-btn" id="summaryBtn">View Summary</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <!-- Summary Modal -->
+        <div class="summary-modal" id="summaryModal">
+            <div class="summary-content">
+                <h3>Quiz Summary</h3>
+                <div class="summary-stats">
+                    <p>Total questions: <span id="totalquestions">10</span></p>
+                    <p>Attempted: <span id="questionsAttempted">0</span></p>
+                    <p>Correct Answers: <span id="correctAnswers">0</span></p>
+                    <p>Wrong Answers: <span id="wrongAnswers">0</span></p>
+                    <p>Score: <span id="totalScore">0</span>/10</p>
+                </div>
+                <button class="close-summary" id="closeSummary">Close</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Web Wonder | Ocean Exploration Team</p>
+        </footer>
+    </div>
+
+    {% comment %} <script src=""{% static 'js/quiz.js' %}""></script> {% endcomment %}
+</body>
+{% endblock %}

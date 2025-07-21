@@ -10,24 +10,35 @@
   <video autoplay muted loop id="bg-video">
     <source src="{% static 'videos/community__bg.mp4' %}" type="video/mp4">
   </video>
-  <div class="video-overlay"></div>
+  <div class="video-overlay" ></div>
 </div>
-<div style="background-color: rgba(0,0, 20, 0.6) ;">
-  <div class="main_community">
-    <h1 class="community_heading">Ocean & Marine Knowledge Communities</h1>
-    <div class="search-bar">
-      <form method="get">
-        {% csrf_token %}
-        <select id="category_select" onchange="location = this.value;" aria-placeholder="Select a category">
-          <option value="{% url 'community_page' %}">Select a category</option>
-          {% for category in Category_data %}
-          <option value="{% url 'community_page' %}?category={{ category.id }}">{{ category.name }}</option>
-          {% endfor %}
-        </select>
-      </form>
-      <a href="{% url 'community_page' %}" id="back_button" >back</a>
+<div>
+  <header style="position: sticky; top: 0; left: 0; right: 0; z-index: 1000; margin-bottom: 20px;">
+    <div class="container header-container">
+        <div class="logo">
+            <img src="{% static 'image/logo.png' %}" alt="Whale Logo" width="48">
+            <h1>Beneath the Blue</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}"><i class="fas fa-map-marked-alt"></i> Home</a></li>
+                <li><a href="{% url 'threats' %}"><i class="fas fa-exclamation-triangle"></i> Threats</a></li>
+                <li><a href="{% url 'endangered_species' %}"><i class="fas fa-fish"></i> Species</a></li>
+                <li><a href="{% url 'community_page' %}"><i class="fas fa-users"></i> Community</a>
+                <li><form method="get" class="search-bar">
+                  {% csrf_token %}
+                  <select id="category_select" onchange="location = this.value;" aria-placeholder="Select a category">
+                    <option value="{% url 'community_page' %}">Select a category</option>
+                    {% for category in Category_data %}
+                    <option value="{% url 'community_page' %}?category={{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                  </select>
+                </form></li>
+            </ul>
+        </nav>
     </div>
-  </div>
+</header>
+
 <div class="intro">
   <div class="section">
     <h2>{{Category_selected.name}}</h2>

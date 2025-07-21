@@ -1,0 +1,368 @@
+{% extends "ocean/base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>Beneath the Blue - Endangered Marine Species</title>
+<!-- Full Page Video Background -->
+<video id="fullpage-video-bg" autoplay muted loop>
+    <source src="{% static 'videos/home.mp4' %}" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+<div id="video-overlay"></div>
+
+<div class="content-wrapper">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="{% static 'image/logo.png' %}" alt="Whale Logo" width="48">
+                <h1>Beneath the Blue</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'explore_map' %}"><i class="fas fa-map-marked-alt"></i> Explore</a></li>
+                    <li><a href="{% url 'threats' %}"><i class="fas fa-exclamation-triangle"></i> Threats</a></li>
+                    <li><a href="{% url 'endangered_species' %}"><i class="fas fa-fish"></i> Species</a></li>
+                    <li><a href="{% url 'community_page' %}"><i class="fas fa-users"></i> Community</a></li>
+                    <li><a href="{% url 'quiz' %}"><i class="fas fa-question-circle"></i> Quiz</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                {% with hero_title="Discover the Mysteries Below" hero_desc="Journey into the depths of our planet's last frontier and join the movement to protect our oceans." %}
+                <h2>{{ hero_title }}</h2>
+                <p>{{ hero_desc }}</p>
+                <div class="hero-buttons">
+                    <a href="{% url 'explore_map' %}" class="btn"><i class="fas fa-compass"></i> Explore Ocean</a>
+                    <a href="{% url 'endangered_species' %}" class="btn btn-secondary"><i class="fas fa-heart"></i> Meet Species</a>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Facts Section -->
+    <section class="quick-facts">
+        <div class="container">
+            <h3 class="section-title">Ocean Wonders</h3>
+            <div class="facts-grid">
+                {% with fact1="71%" fact1_text="of Earth's surface is ocean" fact2="80%" fact2_text="of ocean life is undiscovered" fact3="50-80%" fact3_text="of our oxygen comes from the sea" fact4="10%" fact4_text="of oceans have been explored" %}
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <span class="fact-number">{{ fact1 }}</span>
+                    <p class="fact-text">{{ fact1_text }}</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <span class="fact-number">{{ fact2 }}</span>
+                    <p class="fact-text">{{ fact2_text }}</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <span class="fact-number">{{ fact3 }}</span>
+                    <p class="fact-text">{{ fact3_text }}</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-icon">
+                        <i class="fas fa-subway"></i>
+                    </div>
+                    <span class="fact-number">{{ fact4 }}</span>
+                    <p class="fact-text">{{ fact4_text }}</p>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h3 class="section-title"><i class="fas fa-compass"></i> Explore the Depths</h3>
+            <div class="feature" id="explore">
+                <div class="feature-text">
+                    {% with explore_title="Deep Sea Explorer" explore_desc="Navigate through marine ecosystems from sunlit surfaces to the mysterious midnight zone. Our interactive 3D maps reveal underwater mountains, trenches, and coral cities." %}
+                    <h4><i class="fas fa-map-marked-alt"></i> {{ explore_title }}</h4>
+                    <p>{{ explore_desc }}</p>
+                    <a href="{% url 'explore_map' %}" class="btn"><i class="fas fa-rocket"></i> Begin Exploration</a>
+                    {% endwith %}
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'image/Coral Reefs.jpeg' %}" alt="Ocean Map Preview">
+                </div>
+            </div>
+            <div class="feature" id="threats">
+                <div class="feature-image">
+                    <img src="{% static 'image/polluton.jpg' %}" alt="Ocean Threats">
+                </div>
+                <div class="feature-text">
+                    {% with threats_title="Threats Below Surface" threats_desc="Understand the invisible dangers - from microplastics to acidification. Our real-time trackers show pollution currents, warming patterns, and endangered species habitats." %}
+                    <h4><i class="fas fa-exclamation-triangle"></i> {{ threats_title }}</h4>
+                    <p>{{ threats_desc }}</p>
+                    <a href="{% url 'threats' %}" class="btn"><i class="fas fa-shield-alt"></i> View Threats</a>
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="feature" id="solutions">
+                <div class="feature-text">
+                    {% with solutions_title="Hope From the Deep" solutions_desc="Discover how marine protected areas, sustainable tech, and community action are making waves in conservation. Learn how you can contribute to solutions." %}
+                    <h4><i class="fas fa-heart"></i> {{ solutions_title }}</h4>
+                    <p>{{ solutions_desc }}</p>
+                    <a href="{% url 'endangered_species' %}" class="btn"><i class="fas fa-lightbulb"></i> Learn Solutions</a>
+                    {% endwith %}
+                </div>
+                <div class="feature-image">
+                    <img src="{% static 'image/coralRestoration.jpg' %}" alt="Conservation Solutions">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Navigation Cards -->
+    <section class="quick-nav">
+        <div class="container">
+            <h3 class="section-title"><i class="fas fa-th-large"></i> Quick Access</h3>
+            <div class="nav-cards">
+                <a href="{% url 'explore_map' %}" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h4>Ocean Explorer</h4>
+                    <p>Interactive 3D ocean maps and marine life discovery</p>
+                </a>
+                <a href="{% url 'endangered_species' %}" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h4>Endangered Species</h4>
+                    <p>Meet the incredible marine creatures fighting for survival</p>
+                </a>
+                <a href="{% url 'threats' %}" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h4>Ocean Threats</h4>
+                    <p>Learn about the challenges facing our oceans today</p>
+                </a>
+                <a href="{% url 'quiz' %}" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h4>Ocean Quiz</h4>
+                    <p>Test your knowledge about marine life and conservation</p>
+                </a>
+                <a href="{% url 'community_page' %}" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Community</h4>
+                    <p>Join the global community of ocean advocates</p>
+                </a>
+                <a href="{% url 'sign_up' %}" class="nav-card">
+                    <div class="nav-card-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h4>Join Us</h4>
+                    <p>Create an account and start your ocean journey</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Take Action Section -->
+    <section class="take-action" id="take-action">
+        <div class="container">
+            <h3 class="section-title"><i class="fas fa-hands-helping"></i> Make Waves</h3>
+            <div class="action-tabs">
+                <button class="tab-button active" data-tab="pledge"><i class="fas fa-handshake"></i> Take the Pledge</button>
+                <button class="tab-button" data-tab="idea"><i class="fas fa-lightbulb"></i> Share Your Idea</button>
+                <button class="tab-button" data-tab="opinion"><i class="fas fa-comment"></i> Give Feedback</button>
+            </div>
+            <div class="tab-content active" id="pledge">
+                <form class="action-form" id="pledge-form" data-submit-url="{% url 'submit_pledge' %}">
+                    {% csrf_token %}
+                    <h4><i class="fas fa-handshake"></i> Deep Blue Pledge</h4>
+                    <p>Commit to protecting our oceans. Your actions create ripples of change!</p>
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <p><i class="fas fa-check-circle"></i> I pledge to:</p>
+                        <label><input type="checkbox" name="eliminate_plastics"> <i class="fas fa-ban"></i> Eliminate single-use plastics</label>
+                        <label><input type="checkbox" name="sustainable_seafood"> <i class="fas fa-fish"></i> Choose sustainable seafood</label>
+                        <label><input type="checkbox" name="join_cleanups"> <i class="fas fa-broom"></i> Join coastal cleanups</label>
+                        <label><input type="checkbox" name="reduce_footprint"> <i class="fas fa-leaf"></i> Reduce my carbon footprint</label>
+                        <label><input type="checkbox" name="support_conservation"> <i class="fas fa-heart"></i> Support marine conservation</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="personal_promise"><i class="fas fa-edit"></i> Personal Ocean Promise</label>
+                        <textarea id="personal_promise" name="personal_promise" placeholder="What specific actions will you take to protect our blue planet?"></textarea>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Make My Pledge</button>
+                </form>
+            </div>
+            <div class="tab-content" id="idea">
+                <form class="action-form" id="idea-form" data-submit-url="{% url 'submit_idea' %}">
+                    {% csrf_token %}
+                    <h4><i class="fas fa-lightbulb"></i> Share Your Blue Idea</h4>
+                    <p>Have an innovative concept to help our oceans? The sea needs your creativity!</p>
+                    <div class="form-group">
+                        <label for="idea-name"><i class="fas fa-user"></i> Your Name</label>
+                        <input type="text" id="idea-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idea-email"><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="idea-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idea-title"><i class="fas fa-heading"></i> Idea Title</label>
+                        <input type="text" id="idea-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idea-description"><i class="fas fa-edit"></i> Describe Your Idea</label>
+                        <textarea id="idea-description" name="description" required placeholder="How does your idea help protect or explore our oceans?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="idea-category"><i class="fas fa-tags"></i> Focus Area</label>
+                        <select id="idea-category" name="category">
+                            <option value="">Select focus</option>
+                            <option value="pollution">Pollution Solutions</option>
+                            <option value="research">Marine Research</option>
+                            <option value="education">Ocean Education</option>
+                            <option value="tech">Conservation Tech</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Submit Idea</button>
+                </form>
+            </div>
+            <div class="tab-content" id="opinion">
+                <form class="action-form" id="feedback-form" data-submit-url="{% url 'submit_feedback' %}">
+                    {% csrf_token %}
+                    <h4><i class="fas fa-comment"></i> Share Your Currents</h4>
+                    <p>Your feedback helps us improve Beneath the Blue.</p>
+                    <div class="form-group">
+                        <label for="feedback-name"><i class="fas fa-user"></i> Your Name</label>
+                        <input type="text" id="feedback-name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-email"><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="feedback-email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-type"><i class="fas fa-tag"></i> Feedback About</label>
+                        <select id="feedback-type" name="feedback_type">
+                            <option value="explorer">Depth Explorer</option>
+                            <option value="education">Learning Content</option>
+                            <option value="action">Take Action</option>
+                            <option value="general">General Feedback</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-message"><i class="fas fa-edit"></i> Your Thoughts</label>
+                        <textarea id="feedback-message" name="message" required placeholder="What currents should we follow?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-rating"><i class="fas fa-star"></i> Rating</label>
+                        <select id="feedback-rating" name="rating">
+                            <option value="5">★★★★★ - Deeply impressed</option>
+                            <option value="4">★★★★☆ - Making waves</option>
+                            <option value="3">★★★☆☆ - Floating along</option>
+                            <option value="2">★★☆☆☆ - Needs buoyancy</option>
+                            <option value="1">★☆☆☆☆ - Lost at sea</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Feedback</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section
+    <section class="newsletter">
+        <div class="container">
+            <h3 class="section-title"><i class="fas fa-envelope-open-text"></i> Join Our Tide</h3>
+            <p>Subscribe for monthly updates on ocean discoveries, conservation wins, and ways to dive deeper into action.</p>
+            <form class="newsletter-form" id="newsletter-form" data-submit-url="{% url 'subscribe' %}">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Your email address" required>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </form>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer id="community">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-water"></i> Beneath the Blue</h4>
+                    <p>Exploring and protecting the wonders below the surface through education and innovation.</p>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-compass"></i> Dive Deeper</h4>
+                    <ul>
+                        <li><a href="{% url 'explore_map' %}"><i class="fas fa-map-marked-alt"></i> Ocean Explorer</a></li>
+                        <li><a href="{% url 'threats' %}"><i class="fas fa-exclamation-triangle"></i> Ocean Threats</a></li>
+                        <li><a href="{% url 'endangered_species' %}"><i class="fas fa-fish"></i> Endangered Species</a></li>
+                        <li><a href="{% url 'quiz' %}"><i class="fas fa-question-circle"></i> Ocean Quiz</a></li>
+                        <li><a href="{% url 'community_page' %}"><i class="fas fa-users"></i> Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-address-book"></i> Connect</h4>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:contact@beneaththeblue.org">contact@beneaththeblue.org</a></p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (800) OCE-DEEP</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Address: 456 Abyss Lane, Coastal City</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; {% now "Y" %} Beneath the Blue. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+    </script>
+    
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

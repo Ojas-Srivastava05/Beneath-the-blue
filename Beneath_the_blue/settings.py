@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home',  # Your app name
     'community',  # Community app
     # Add other apps here as needed
+     'ocean',
  
 ]
 

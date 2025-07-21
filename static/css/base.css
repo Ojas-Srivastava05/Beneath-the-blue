@@ -1,6 +1,7 @@
 
 body {
-  font-family: Arial, sans-serif; /* clean font */
+  font-family: "Poppins", sans-serif;
+  font-optical-sizing: auto;
   margin: 0%; 
   overflow: scroll; 
 
@@ -8,6 +9,213 @@ body {
 .modal{
   background-image: url("Beneath_the_blue\static\photo\bg.jpg"); /* relative to CSS file */
 }
+:root {
+  /* Updated Ocean Color Palette */
+  --deep-abyss: #00587a;
+  --ocean-depths: #008891;
+  --marine-teal: #00a8cc;
+  --sea-foam: #a7ecee;
+  --coral: #ff7e67;
+  --golden-sunlight: #ffb347;
+  --pearl: #f8f9fa;
+  --midnight-wave: #0f3057;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: var(--pearl);
+  line-height: 1.7;
+  position: relative;
+  background-color: var(--midnight-wave);
+  padding-top: 80px; /* Space for fixed header */
+}
+
+/* Typography Hierarchy */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  color: var(--sea-foam);
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 2.8rem;
+  color: var(--sea-foam);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.3px;
+}
+
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--marine-teal);
+  margin-bottom: 1.2rem;
+}
+
+h4 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: var(--golden-sunlight);
+  margin-bottom: 1rem;
+}
+
+p {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--pearl);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+/* Brilliant Navbar Design */
+header {
+  background: rgba(0, 88, 122, 0.95);
+  background: linear-gradient(159deg, rgba(0,88,122,0.95) 0%, rgba(0,168,204,0.95) 100%);
+  padding: 15px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(167, 236, 238, 0.2);
+}
+
+header.hide {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: translateX(5px);
+}
+
+.logo img {
+  height: 42px;
+  transition: all 0.3s ease;
+}
+
+.logo:hover img {
+  transform: rotate(-15deg);
+}
+
+.logo h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, var(--sea-foam), white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+nav a {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+  padding: 10px 0;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 8px;
+  left: 0;
+  background-color: var(--sea-foam);
+  transition: all 0.3s ease;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  background-color: var(--sea-foam);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+nav a:hover::after {
+  opacity: 1;
+  bottom: 0;
+}
+
+.btn-nav {
+  background-color: var(--coral);
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(255, 126, 103, 0.3);
+}
+
+.btn-nav:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 126, 103, 0.4);
+  background-color: var(--golden-sunlight);
+}
+
+nav a.active {
+  color: var(--sea-foam);
+}
+
+nav a.active::before {
+  width: 100%;
+}
+
 #bg-video, .background {
         position: fixed;
         top: 0;
@@ -21,9 +229,9 @@ body {
     }
          
 
-        @media (max-width: 768px) {
+        /* @media (max-width: 768px) {
             #bg-video {
                 object-fit: cover; /* Optimize for mobile */
-            }
-        }
+            /* }
+        } */
 
