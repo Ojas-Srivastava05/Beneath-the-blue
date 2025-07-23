@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Explorer | Interactive Marine Discovery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modern Color Scheme */
+        :root {
+            --deep-blue: #005f73;
+            --ocean-teal: #0a9396;
+            --light-teal: #94d2bd;
+            --cream: #e9d8a6;
+            --sunset: #ee9b00;
+            --rust: #ca6702;
+            --dark-rust: #bb3e03;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-gray: #212529;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Modern Header with Gradient */
+        header {
+            background: linear-gradient(135deg, var(--deep-blue), var(--ocean-teal));
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.03);
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+            color: var(--light-teal);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--light-teal), var(--cream));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--light-teal);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        .active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Hero Section with Parallax Effect */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1581093450021-4a7360e9a7b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--light-gray));
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Interactive Ocean Explorer */
+        .ocean-explorer {
+            display: flex;
+            min-height: 600px;
+            margin: 4rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            background: var(--white);
+            transition: transform 0.3s ease;
+        }
+
+        .ocean-explorer:hover {
+            transform: translateY(-5px);
+        }
+
+        .world-map-container {
+            flex: 1;
+            position: relative;
+            background: url('https://www.nationsonline.org/maps/World-Map-with-countries.jpg') center/cover no-repeat;
+        }
+
+        .world-map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 95, 115, 0.3);
+        }
+
+        .ocean-point {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--sunset);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 0 0 0 rgba(238, 155, 0, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        .ocean-point:hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: var(--rust);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(238, 155, 0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(238, 155, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(238, 155, 0, 0);
+            }
+        }
+
+        .ocean-point::after {
+            content: attr(data-ocean);
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ocean-point:hover::after {
+            opacity: 1;
+        }
+
+        .ocean-details {
+            width: 400px;
+            padding: 2.5rem;
+            background: var(--deep-blue);
+            color: var(--white);
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .ocean-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/soft-wallpaper.png');
+            opacity: 0.05;
+        }
+
+        .ocean-details h2 {
+            font-size: 2.2rem;
+            color: var(--light-teal);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .ocean-details h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--sunset);
+        }
+
+        .ocean-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            background: rgba(10, 147, 150, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--light-teal);
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            background: rgba(10, 147, 150, 0.3);
+        }
+
+        .stat i {
+            font-size: 1.3rem;
+            color: var(--cream);
+            margin-bottom: 8px;
+        }
+
+        .stat h4 {
+            font-size: 0.9rem;
+            color: var(--light-teal);
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .marine-life {
+            margin: 2rem 0;
+        }
+
+        .marine-life h3 {
+            font-size: 1.3rem;
+            color: var(--light-teal);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .marine-life h3 i {
+            color: var(--sunset);
+        }
+
+        .species-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .species-tag {
+            background: var(--ocean-teal);
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .species-tag:hover {
+            background: var(--rust);
+            transform: translateY(-3px);
+        }
+
+        .species-tag i {
+            font-size: 0.8rem;
+        }
+
+        /* Ocean Facts Section */
+        .ocean-facts {
+            background: linear-gradient(135deg, var(--deep-blue), var(--ocean-teal));
+            color: white;
+            padding: 4rem 0;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ocean-facts::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/soft-wallpaper.png');
+            opacity: 0.1;
+        }
+
+        .facts-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .facts-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--cream);
+        }
+
+        .fact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .fact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .fact-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .fact-card i {
+            font-size: 2.5rem;
+            color: var(--sunset);
+            margin-bottom: 20px;
+        }
+
+        .fact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--cream);
+        }
+
+        /* Depth Explorer Section */
+        .depth-explorer {
+            height: 600px;
+            position: relative;
+            background: linear-gradient(to bottom, var(--deep-blue), var(--dark-gray));
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 5rem 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .depth-title {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            z-index: 5;
+        }
+
+        .depth-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--light-teal);
+        }
+
+        .depth-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        .depth-visualization {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .depth-layer {
+            width: 100%;
+            padding: 2rem;
+            color: white;
+            opacity: 0;
+            transition: all 0.5s ease;
+            transform: translateY(100%);
+            position: relative;
+            z-index: 2;
+        }
+
+        .depth-layer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            z-index: -1;
+        }
+
+        .depth-layer.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .depth-layer h3 {
+            font-size: 1.8rem;
+            color: var(--light-teal);
+            margin-bottom: 1rem;
+        }
+
+        .depth-layer p {
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        .depth-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 0 30px;
+        }
+
+        .depth-slider-container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        #depth-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, var(--light-teal), var(--sunset));
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        #depth-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--cream);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        #depth-value {
+            display: block;
+            text-align: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark-gray), #000);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--light-teal);
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--sunset);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-column a:hover {
+            color: var(--light-teal);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .social-links a:hover {
+            background: var(--sunset);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .ocean-explorer {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .world-map-container {
+                height: 400px;
+            }
+            
+            .ocean-details {
+                width: 100%;
+            }
+            
+            .hero {
+                height: 60vh;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .hero {
+                height: 50vh;
+                background-attachment: scroll;
+            }
+            
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .ocean-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .depth-explorer {
+                height: 500px;
+            }
+            
+            .depth-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 400px;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .ocean-details h2 {
+                font-size: 1.8rem;
+            }
+            
+            .fact-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        .world-map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ocean-highlight {
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.world-map-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.world-map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 95, 115, 0.1);
+    pointer-events: none;
+}
+
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-water"></i>
+                <h1>Ocean Explorer</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Explore</a></li>
+                    <li><a href="#">Ecosystems</a></li>
+                    <li><a href="#">Conservation</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Discover the Wonders of Our Oceans</h2>
+            <p>Explore Earth's magnificent marine ecosystems through our interactive platform</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Interactive Ocean Explorer -->
+        <section class="ocean-explorer">
+            <div class="world-map-container">
+                <!-- <div class="world-map-overlay"></div> -->
+                <!-- World map with ocean highlights -->
+                <svg class="world-map" viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg">
+                    <!-- World map background (continents) -->
+                    <image href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/World_map_-_low_resolution.svg/1200px-World_map_-_low_resolution.svg.png" width="2000" height="1000"/>
+                    
+                    <!-- Ocean highlight areas (initially hidden) -->
+                    <path id="pacific-highlight" class="ocean-highlight" d="M200,200 L1800,200 L1800,800 L200,800 Z" fill="rgba(62, 146, 204, 0.3)" stroke="var(--ocean-teal)" stroke-width="2" opacity="0"/>
+                    <path id="atlantic-highlight" class="ocean-highlight" d="M600,200 L1200,200 L1200,800 L600,800 Z" fill="rgba(62, 146, 204, 0.3)" stroke="var(--ocean-teal)" stroke-width="2" opacity="0"/>
+                    <path id="indian-highlight" class="ocean-highlight" d="M1200,400 L1800,400 L1800,800 L1200,800 Z" fill="rgba(62, 146, 204, 0.3)" stroke="var(--ocean-teal)" stroke-width="2" opacity="0"/>
+                    <path id="southern-highlight" class="ocean-highlight" d="M200,800 L1800,800 L1800,900 L200,900 Z" fill="rgba(62, 146, 204, 0.3)" stroke="var(--ocean-teal)" stroke-width="2" opacity="0"/>
+                    <path id="arctic-highlight" class="ocean-highlight" d="M200,100 L1800,100 L1800,200 L200,200 Z" fill="rgba(62, 146, 204, 0.3)" stroke="var(--ocean-teal)" stroke-width="2" opacity="0"/>
+                </svg>
+                
+                <!-- Ocean points -->
+                <div class="ocean-point" style="top: 50%; left: 15%;" data-ocean="Pacific"></div>
+                <div class="ocean-point" style="top: 45%; left: 40%;" data-ocean="Atlantic"></div>
+                <div class="ocean-point" style="top: 57%; left: 66%;" data-ocean="Indian"></div>
+                <div class="ocean-point" style="top: 65%; left: 50%;" data-ocean="Southern"></div>
+                <div class="ocean-point" style="top: 25%; left: 50%;" data-ocean="Arctic"></div>
+            </div>
+            
+            <div class="ocean-details">
+                <h2 id="ocean-name">Pacific Ocean</h2>
+                <div class="ocean-stats">
+                    <div class="stat">
+                        <i class="fas fa-ruler-combined"></i>
+                        <h4>Area</h4>
+                        <p id="area">165.2M km²</p>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-tint"></i>
+                        <h4>Avg Depth</h4>
+                        <p id="avg-depth">4,280m</p>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-arrow-down"></i>
+                        <h4>Max Depth</h4>
+                        <p id="max-depth">10,984m</p>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-fish"></i>
+                        <h4>Species</h4>
+                        <p id="species-count">50,000+</p>
+                    </div>
+                </div>
+                <p id="ocean-description">The Pacific Ocean is the largest and deepest of Earth's oceanic divisions. It extends from the Arctic Ocean in the north to the Southern Ocean in the south and is bounded by Asia and Australia in the west and the Americas in the east.</p>
+                <div class="marine-life">
+                    <h3><i class="fas fa-fish"></i> Iconic Species</h3>
+                    <div class="species-list" id="species-container">
+                        <span class="species-tag"><i class="fas fa-fish"></i> Humpback Whale</span>
+                        <span class="species-tag"><i class="fas fa-fish"></i> Great White Shark</span>
+                        <span class="species-tag"><i class="fas fa-fish"></i> Clownfish</span>
+                        <span class="species-tag"><i class="fas fa-fish"></i> Giant Pacific Octopus</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ocean Facts Section -->
+        <section class="ocean-facts">
+            <div class="facts-container">
+                <h2>Amazing Ocean Facts</h2>
+                <div class="fact-cards">
+                    <div class="fact-card">
+                        <i class="fas fa-water"></i>
+                        <h3>Water World</h3>
+                        <p>The oceans hold about 96.5% of all Earth's water. The remaining 3.5% is freshwater found in glaciers, ice caps, and groundwater.</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-mountain"></i>
+                        <h3>Deepest Point</h3>
+                        <p>The Mariana Trench in the Pacific Ocean is the deepest part of the world's oceans, reaching about 11,034 meters (36,200 feet) deep.</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-fish"></i>
+                        <h3>Biodiversity</h3>
+                        <p>Scientists estimate that there may be between 700,000 and 1 million species in the oceans, with about two-thirds still undescribed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Ocean Explorer</h3>
+                    <p>Dedicated to exploring and protecting our planet's oceans through education, research, and conservation efforts.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="#">Oceans</a></li>
+                        <li><a href="#">Marine Life</a></li>
+                        <li><a href="#">Ecosystems</a></li>
+                        <li><a href="#">Conservation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Data</a></li>
+                        <li><a href="#">News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Get Involved</h3>
+                    <ul>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Donate</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Ocean Explorer. All rights reserved. | Made with <i class="fas fa-heart" style="color: var(--sunset);"></i> for our oceans</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Ocean data
+        const oceans = {
+            Pacific: {
+                name: "Pacific Ocean",
+                area: "165.2M km²",
+                avgDepth: "4,280m",
+                maxDepth: "10,984m",
+                speciesCount: "50,000+",
+                description: "The Pacific Ocean is the largest and deepest of Earth's oceanic divisions. It extends from the Arctic Ocean in the north to the Southern Ocean in the south and is bounded by Asia and Australia in the west and the Americas in the east.",
+                species: ["Humpback Whale", "Great White Shark", "Clownfish", "Giant Pacific Octopus"]
+            },
+            Atlantic: {
+                name: "Atlantic Ocean",
+                area: "106.5M km²",
+                avgDepth: "3,646m",
+                maxDepth: "8,376m",
+                speciesCount: "50,000+",
+                description: "The Atlantic Ocean is the second-largest ocean, covering approximately 20% of the Earth's surface. It separates the 'Old World' from the 'New World' and is known for the Gulf Stream current that influences weather patterns.",
+                species: ["Bluefin Tuna", "Atlantic Puffin", "Manatee", "Portuguese Man o' War"]
+            },
+            Indian: {
+                name: "Indian Ocean",
+                area: "70.56M km²",
+                avgDepth: "3,741m",
+                maxDepth: "7,258m",
+                speciesCount: "50,000+",
+                description: "The Indian Ocean is the warmest ocean in the world, bounded by Africa, Asia, Australia, and the Southern Ocean. It's known for monsoon weather patterns and important trade routes since ancient times.",
+                species: ["Dugong", "Manta Ray", "Coconut Crab", "Coelacanth"]
+            },
+            Southern: {
+                name: "Southern Ocean",
+                area: "20.3M km²",
+                avgDepth: "3,270m",
+                maxDepth: "7,236m",
+                speciesCount: "10,000+",
+                description: "The Southern Ocean, also known as the Antarctic Ocean, encircles Antarctica and is the newest recognized ocean. It's characterized by strong currents and extreme weather conditions.",
+                species: ["Emperor Penguin", "Krill", "Leopard Seal", "Colossal Squid"]
+            },
+            Arctic: {
+                name: "Arctic Ocean",
+                area: "14.06M km²",
+                avgDepth: "1,205m",
+                maxDepth: "5,550m",
+                speciesCount: "5,000+",
+                description: "The Arctic Ocean is the smallest and shallowest of the world's oceans, centered around the North Pole. It's mostly covered by sea ice and is home to unique cold-adapted species.",
+                species: ["Polar Bear", "Narwhal", "Beluga Whale", "Arctic Cod"]
+            }
+        };
+
+        // Make ocean points interactive
+        document.querySelectorAll('.ocean-point').forEach(point => {
+            point.addEventListener('click', function() {
+                const oceanName = this.dataset.ocean;
+                updateOceanDisplay(oceanName);
+                
+                // Add visual feedback
+                this.style.transform = 'translate(-50%, -50%) scale(1.8)';
+                this.style.background = 'var(--rust)';
+                setTimeout(() => {
+                    this.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                }, 300);
+            });
+        });
+
+        // Update ocean information display
+       // Update ocean information display
+function updateOceanDisplay(oceanName) {
+    const ocean = oceans[oceanName];
+    
+    // Hide all highlights first
+    document.querySelectorAll('.ocean-highlight').forEach(highlight => {
+        highlight.style.opacity = '0';
+    });
+    
+    // Show the selected ocean highlight
+    const highlight = document.getElementById(`${oceanName.toLowerCase()}-highlight`);
+    if (highlight) {
+        highlight.style.opacity = '1';
+    }
+    
+    // Update the rest of the information
+    document.getElementById('ocean-name').textContent = ocean.name;
+    document.getElementById('area').textContent = ocean.area;
+    document.getElementById('avg-depth').textContent = ocean.avgDepth;
+    document.getElementById('max-depth').textContent = ocean.maxDepth;
+    document.getElementById('species-count').textContent = ocean.speciesCount;
+    document.getElementById('ocean-description').textContent = ocean.description;
+    
+    const speciesContainer = document.getElementById('species-container');
+    speciesContainer.innerHTML = '';
+    ocean.species.forEach(species => {
+        const tag = document.createElement('span');
+        tag.className = 'species-tag';
+        tag.innerHTML = `<i class="fas fa-fish"></i> ${species}`;
+        speciesContainer.appendChild(tag);
+    });
+    
+    // Add animation effect
+    const oceanDetails = document.querySelector('.ocean-details');
+    oceanDetails.style.animation = 'none';
+    void oceanDetails.offsetWidth; // Trigger reflow
+    oceanDetails.style.animation = 'fadeInUp 0.5s ease';
+}
+        updateOceanDisplay('Pacific');
+    </script>
+</body>
+</html>
