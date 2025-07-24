@@ -6,93 +6,170 @@
     <link rel="stylesheet" href="{% static 'css/quiz.css' %}">   
 </head>
 <body>
-    <div class="page-wrapper">
-        <div class="content">
-            <header>
-                <div class="container header-container">
-                    <div class="logo">
-                        <img src="{% static 'image/logo.png' %}" alt="Beneath The Blue Logo" width="48">
-                        <h1>Beneath The Blue</h1>
-                    </div>
-                    <nav>
-                        <ul>
-                            <li><a href="{% url 'home' %}" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-                            <li><a href="{% url 'threats' %}" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Threats & Solutions</a></li>
-                            <li><a href="{% url 'quiz' %}" class="nav-link active"><i class="fas fa-question-circle"></i> Quiz</a></li>
-                            <li><a href="{% url 'sign_in' %}" class="nav-btn sign-in-btn"><i class="fas fa-user"></i> Sign In</a></li>
-                            <li><a href="{% url 'sign_up' %}" class="nav-btn sign-up-btn"><i class="fas fa-user-plus"></i> Sign Up</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-        
-            <section class="hero">
-                <video autoplay muted loop playsinline class="video-background">
-                    <source src= "{% static 'videos/quiz_video.mp4'%}" type="video/mp4">
-                    <img src="{% static 'images/ocean-fallback.jpg'%}" alt="Ocean waves">
-                </video>
-            
-                <div class="video-overlay"></div>
-
-                <div class="quiz-container">
-                    <h2>Ocean & Marine Exploration Quiz</h2>
-                    <form method="POST" id="quizForm">
-                        {% csrf_token %}
-                        <input type="hidden" name="quiz_id" value="{{ quiz_id }}">
-                        <input type="hidden" name="csrf_token" value="YOUR_CSRF_TOKEN_HERE">
-                        <div class="quiz-intro">
-                            <p>Test your knowledge about the ocean and marine life with our quiz!</p>
-                        </div>
-                            {% for questions in questions_data %}
-                                <div class="question">  
-                                <h3>{{questions.id}}. {{questions.question}}</h3>
-                                <label>
-                                    <input type="radio" name="question_2" value="1" required>
-                                    a. {{questions.op1}}
-                                </label>
-                                <label>
-                                    <input type="radio" name="question_2" value="2" required>
-                                    b. {{questions.op2}}
-                                </label>
-                                <label>
-                                    <input type="radio" name="question_2" value="3" required>
-                                    c. {{questions.op3}}
-                                </label>
-                                <label>
-                                    <input type="radio" name="question_2" value="4" required>
-                                    d. {{questions.op4}}
-                            </div>
-                            {% endfor %}
-                        <div class="quiz-instructions">
-                            <p>Choose the correct answer for each question. You can only select one answer per question.</p>    
-                        </div>
-                        <button type="submit" class="submit-btn">Submit Answers</button>
-                        <button class="summary-btn" id="summaryBtn">View Summary</button>
-                    </form>
-                </div>
-            </section>
-        </div>
-
-        <!-- Summary Modal -->
-        <div class="summary-modal" id="summaryModal">
-            <div class="summary-content">
-                <h3>Quiz Summary</h3>
-                <div class="summary-stats">
-                    <p>Total questions: <span id="totalquestions">10</span></p>
-                    <p>Attempted: <span id="questionsAttempted">0</span></p>
-                    <p>Correct Answers: <span id="correctAnswers">0</span></p>
-                    <p>Wrong Answers: <span id="wrongAnswers">0</span></p>
-                    <p>Score: <span id="totalScore">0</span>/10</p>
-                </div>
-                <button class="close-summary" id="closeSummary">Close</button>
+    <div class="quiz-background">
+        <video id="bg-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/quiz_video.mp4'%}" type="video/mp4">
+            <img src="{% static 'images/ocean-fallback.jpg'%}" alt="Ocean waves">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="background-overlay"></div>
+    </div>
+    
+    <div class="content-overlay">
+        <header class="quiz-header">
+            <div class="header-container">
+                <a href="{% url 'home' %}" class="logo">
+                    <h1>Beneath The Blue</h1>
+                </a>
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                        <li><a href="{% url 'threats' %}" class="nav-link">Threats & Solutions</a></li>
+                        <li><a href="{% url 'quiz' %}" class="nav-link active">Quiz</a></li>
+                        <li><a href="{% url 'sign_in' %}" class="nav-btn primary-btn">Sign In</a></li>
+                        <li><a href="{% url 'sign_up' %}" class="nav-btn secondary-btn">Sign Up</a></li>
+                    </ul>
+                    <button class="hamburger" id="hamburger" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </nav>
             </div>
-        </div>
+        </header>
 
-        <footer>
-            <p>&copy; 2025 Web Wonder | Ocean Exploration Team</p>
+        <main class="quiz-main">
+            <div class="quiz-container">
+                <div class="quiz-header-section">
+                    <h2 class="quiz-heading">
+                        Ocean & Marine Exploration Quiz
+                    </h2>
+                    <div class="quiz-progress">
+                        <div class="progress-bar" id="progressBar"></div>
+                        <span class="progress-text" id="progressText">0/{{ questions_data|length }} answered</span>
+                    </div>
+                </div>
+                
+                <div class="quiz-divider"></div>
+                
+                <form method="POST" id="quizForm" class="quiz-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="quiz_id" value="{{ quiz_id }}">
+                    
+                    <div class="quiz-intro">
+                        <p>Test your knowledge about our amazing oceans! Complete all {{ questions_data|length }} questions to see your marine expertise score.</p>
+                    </div>
+                    
+                    <div class="quiz-questions">
+                        {% for questions in questions_data %}
+                        <div class="question-card" id="question-{{ questions.id }}">
+                            <div class="question-header">
+                                <span class="question-number">Question {{ questions.id }}</span>
+                                <span class="question-category">Marine Biology</span>
+                            </div>
+                            <h3 class="question-text">{{ questions.question }}</h3>
+                            
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="question_{{questions.id}}" value="1" required>
+                                    <span class="option-letter">A</span>
+                                    <span class="option-text">{{ questions.op1 }}</span>
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                                <label class="option-card">
+                                    <input type="radio" name="question_{{questions.id}}" value="2" required>
+                                    <span class="option-letter">B</span>
+                                    <span class="option-text">{{ questions.op2 }}</span>
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                                <label class="option-card">
+                                    <input type="radio" name="question_{{questions.id}}" value="3" required>
+                                    <span class="option-letter">C</span>
+                                    <span class="option-text">{{ questions.op3 }}</span>
+                                    <span class="checkmark"></span>
+                                </label>
+                                
+                                <label class="option-card">
+                                    <input type="radio" name="question_{{questions.id}}" value="4" required>
+                                    <span class="option-letter">D</span>
+                                    <span class="option-text">{{ questions.op4 }}</span>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="quiz-footer">
+                        <div class="quiz-instructions">
+                            <div class="instruction-icon">ℹ️</div>
+                            <p>Select one answer per question. You can review and change answers before submitting.</p>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button type="button" class="btn outline-btn" id="resetBtn">Reset Answers</button>
+                            <button type="submit" class="btn primary-btn" id="submitBtn">
+                                <span class="btn-text">Submit Quiz</span>
+                                <span class="btn-icon">→</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+        
+        <footer class="quiz-footer">
+            <p>© 2025 Beneath The Blue | Protecting our oceans for future generations</p>
         </footer>
     </div>
 
-    {% comment %} <script src=""{% static 'js/quiz.js' %}""></script> {% endcomment %}
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Progress tracking
+        const form = document.getElementById('quizForm');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const totalQuestions = {{ questions_data|length }};
+        
+        function updateProgress() {
+            const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+            const percentage = (answered / totalQuestions) * 100;
+                            
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `${answered}/${totalQuestions} answered`;
+            
+            if (answered === totalQuestions) {
+                progressBar.classList.add('complete');
+            } else {
+                progressBar.classList.remove('complete');
+            }
+        }
+        
+        // Update progress when answers are selected
+        form.addEventListener('change', updateProgress);
+        
+        // Initialize progress
+        updateProgress();
+        
+        // Reset button functionality
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to reset all your answers?')) {
+                document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                    radio.checked = false;
+                });
+                updateProgress();
+            }
+        });
+    </script>
 </body>
 {% endblock %}

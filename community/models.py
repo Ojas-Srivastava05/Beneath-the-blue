@@ -1,6 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# loging
+class loging(models.Model):
+    user_id = models.EmailField()
+    password = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.user_id
+
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -26,8 +34,7 @@ class Quiz(models.Model):
     op2 = models.CharField(max_length=200)
     op3 = models.CharField(max_length=200)
     op4 = models.CharField(max_length=200)
-    options = models.IntegerField()
-    score = models.IntegerField()
+    answer = models.IntegerField()
 
     def __str__(self):
         return self.question

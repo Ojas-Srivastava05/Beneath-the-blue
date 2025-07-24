@@ -1,313 +1,153 @@
-{% extends "base.html" %}
+{%  extends "base.html" %}
 {% load static %}
 
-{% block content %}
-<link rel="stylesheet" href="{% static 'css/endangered_species.css' %}">
-<title>Beneath the Blue - Endangered Marine Species</title>
-
-<!-- Background Video -->
-<video autoplay muted loop id="bg-video" playsinline>
-    <source src="{% static 'videos/endangered_species-bg.mp4' %}" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
-<div class="content-overlay">
-    <!-- Improved Header with Logo in Navbar -->
-    <header class="main-header">
-        <div class="container header-container">
-            <!-- Mobile Menu Toggle -->
-            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+{% block  content %}
+    <title>Ocean Guardians - Endangered Marine Species</title>
+    <link rel="stylesheet" href="{% static 'css/Endangered_species.css' %}">
+</head>
+<body>
+   <div class="video-wrapper" style="height: 0px;">
+    <video autoplay muted playsinline loop id="video-background">
+        <source src="{% static 'videos/endangered_species-bg.mp4' %}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    
+     <header class="header">
+        <div class="container header-content header-container">
+            <div class="logo">
+                <a href="{% url 'home' %}" class="logo">
+                    <h1>Beneath The Blue</h1>
+                </a>
             </div>
-            
-            <!-- Navigation with Logo -->
-            <nav class="main-nav" id="main-nav">
-                <div class="nav-logo">
-                    <img src="{% static 'image/logo.png' %}" alt="Beneath the Blue Logo">
-                    <h1>Beneath the Blue</h1>
-                </div>
-                
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="{% url 'home' %}" class="nav-link">
-                            <i class="fas fa-home"></i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'threats' %}" class="nav-link">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <span>Threats</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'community_page' %}" class="nav-link">
-                            <i class="fas fa-users"></i>
-                            <span>Community</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'endangered_species' %}" class="nav-link active">
-                            <i class="fas fa-fish"></i>
-                            <span>Species</span>
-                        </a>
-                    </li>
+            <nav>
+                <ul>
+                     <li><a href="{% url 'home' %}" class="nav-link">~Home</a></li>
+                    <li><a href="{% url 'endangered_species' %}" class="nav-link active">~Endangered Species</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h2>Endangered Marine Species</h2>
-                <p>Discover the incredible creatures that need our protection to survive in our changing oceans.</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">{{ species|length }}</span>
-                        <span class="stat-label">Species Featured</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">1000+</span>
-                        <span class="stat-label">Marine Species Endangered</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Species Section -->
-    <section id="species" class="species-section">
-        <div class="container">
-            <div class="section-header">
-                <h3>Endangered Ocean Animals</h3>
-                <p>These magnificent creatures are facing critical threats. Learn about them and how you can help.</p>
-            </div>
-            
-            <div class="species-grid">
-                {% for specie in species %}
-                <div class="species-card" data-species="{{ specie.heading|lower }}">
-                    <div class="species-image">
-                        <div class="sound-icon" onclick="toggleAudio('{{ forloop.counter0 }}')">
-                            <i class="fas fa-volume-up"></i>
-                        </div>
-                    </div>
-                    <div class="species-info">
-                        <h4>{{ specie.heading|default:'Unknown Species' }}</h4>
-                        <audio id="audio-{{ forloop.counter0 }}" preload="auto"></audio>
-                        <div class="status-button {{ specie.species_type|lower }}">
-                            {{ specie.species_type|default:'Unknown' }}
-                        </div>
-                        <p>{{ specie.text|default:'No information available.' }}</p>
-                        <div class="species-actions">
-                            <button class="btn-learn-more">Learn More</button>
-                            <button class="btn-play-audio" onclick="toggleAudio('{{ forloop.counter0 }}')">
-                                <i class="fas fa-play"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
-    <!-- Conservation Section -->
-    <section class="conservation-section">
-        <div class="container">
-            <div class="conservation-content">
-                <h3>How You Can Help</h3>
-                <div class="conservation-grid">
-                    <div class="conservation-card">
-                        <div class="card-icon">
-                            <i class="fas fa-recycle"></i>
-                        </div>
-                        <h4>Reduce Plastic Use</h4>
-                        <p>Choose reusable items and avoid single-use plastics that harm marine life.</p>
-                    </div>
-                    <div class="conservation-card">
-                        <div class="card-icon">
-                            <i class="fas fa-fish"></i>
-                        </div>
-                        <h4>Sustainable Seafood</h4>
-                        <p>Choose seafood that's caught or farmed in ways that support healthy oceans.</p>
-                    </div>
-                    <div class="conservation-card">
-                        <div class="card-icon">
-                            <i class="fas fa-hand-holding-heart"></i>
-                        </div>
-                        <h4>Support Conservation</h4>
-                        <p>Donate to organizations working to protect marine species and their habitats.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Beneath the Blue</h4>
-                    <p>Protecting marine life through education and conservation.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="{% url 'home' %}">Home</a></li>
-                        <li><a href="{% url 'threats' %}">Ocean Threats</a></li>
-                        <li><a href="{% url 'community_page' %}">Community</a></li>
-                        <li><a href="{% url 'endangered_species' %}">Species</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-envelope"></i> contact@beneaththeblue.org</p>
-                    <p><i class="fas fa-phone"></i> +1 (800) OCE-DEEP</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Beneath the Blue. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-</div>
-
-<!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-<script>
-// Mobile menu toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mainNav = document.getElementById('main-nav');
     
-    mobileMenuToggle.addEventListener('click', function() {
-        mainNav.classList.toggle('active');
-        mobileMenuToggle.classList.toggle('active');
-    });
+    <div class="content-overlay">
+        <div class="container">
+            <section id="species">
+                <h2 style="color: white; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Endangered Ocean Animals</h2>
+                <div class="species-grid">
+                    <!-- <div class="species-card">
+                        <div class="species-image" style="background-image: url('{% static 'image/endangered_species_image/Hawksbill SeaTurtle.jpeg' %}');"></div>
+                        <div class="species-info">
+                            <h3>Hawksbill Sea Turtle
+                            <button onclick="playSound('hawksbill-audio')" style="font-size: 1.2rem; background: none; border: none; cursor: pointer;">🔉</button>
+                            </h3>
+                            <audio id="hawksbill-audio" src="{% static 'voice/hamerhead audio.mp3' %}" preload="auto"></audio>
+                            <span class="status critical">CRITICALLY ENDANGERED</span>
+                            <p>Known for their beautiful shells, hawksbills are critically endangered due to habitat loss, illegal wildlife trade, and bycatch in fishing gear.</p>
+                            
+                            <!Sound Button & Audio -->
+                             
+                        <!-- </div>
+                    </div> --> 
+                    
+                    <div class="species-card">
+                        <div class="species-image" style="background-image: url('{% static 'image/endangered_species_image/Vaquita_Porpoise2.jpg' %}');"></div>
+                        <div class="species-info">
+                            <h3>Vaquita Porpoise
+                            <button onclick="playSound('porpoise-audio')" style="font-size: 1.2rem; background: none; border: none; cursor: pointer;">🔉</button>
+                            </h3>
+                             <audio id="porpoise-audio" src="{% static 'voice/porpoise audio.mp3' %}" preload="auto"></audio>
+                            <span class="status critical">CRITICALLY ENDANGERED</span>
+                            <p>With fewer than 10 individuals remaining, the vaquita is the world's most endangered marine mammal.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="species-card">
+                        <div class="species-image" style="background-image: url('{% static 'image/endangered_species_image/Blue_Whale.jpg' %}');"></div>
+                        <div class="species-info">
+                            <h3>Blue Whale
+                            <button onclick="playSound('whale-audio')" style="font-size: 1.2rem; background: none; border: none; cursor: pointer;">🔉</button>
+                            </h3>
+                            <audio id="whale-audio" src="{% static 'voice/whale audio.mp3' %}" preload="auto"></audio>
+                            <span class="status endangered">ENDANGERED</span>
+                            <p>The largest animal on Earth, blue whales were hunted nearly to extinction and now face threats from ship strikes and ocean noise.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="species-card">
+                        <div class="species-image" style="background-image: url('{% static 'image/endangered_species_image/Sea_Otter.jpeg' %}');"></div>
+                        <div class="species-info">
+                            <h3>Sea Otter
+                            <button onclick="playSound('otter-audio')" style="font-size: 1.2rem; background: none; border: none; cursor: pointer;">🔉</button>
+                            </h3>
+                            <audio id="otter-audio" src="{% static 'voice/otter sound.mp3' %}" preload="auto"></audio>
+                            <span class="status endangered">ENDANGERED</span>
+                            <p>Once hunted for their fur, sea otters play a crucial role in maintaining kelp forest ecosystems by controlling sea urchin populations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="species-card">
+                        <div class="species-image" style="background-image: url('{% static 'image/endangered_species_image/Hammerhead_Shark.jpeg' %}');"></div>
+                        <div class="species-info">
+                            <h3>Hammerhead Shark 🔇 
     
-    // Set species images and audio
-    setSpeciesImages();
-    setupAudio();
-});
-
-function setSpeciesImages() {
-    const speciesImages = {
-        'blue whale': '{% static "image/endangered_species_image/Blue_Whale.jpg" %}',
-        'green sea turtle': '{% static "image/endangered_species_image/Green_Sea_Turtle.jpeg" %}',
-        'hammerhead shark': '{% static "image/endangered_species_image/Hammerhead_Shark.jpeg" %}',
-        'hawksbill sea turtle': '{% static "image/endangered_species_image/Hawksbill_Sea_Turtle.jpeg" %}',
-        'north atlantic right whale': '{% static "image/endangered_species_image/North_Atlantic_Right_Wale.jpeg" %}',
-        'sea otter': '{% static "image/endangered_species_image/Sea_Otter.jpeg" %}',
-        'vaquita porpoise': '{% static "image/endangered_species_image/Vaquita_Porpoise2.jpg" %}'
-    };
-    
-    const speciesAudio = {
-        'blue whale': '{% static "audio/whale_audio.mp3" %}',
-        'green sea turtle': '{% static "audio/green_sea_turtle_audio.mp3" %}',
-        'hammerhead shark': '{% static "audio/hamerhead audio.mp3" %}',
-        'hawksbill sea turtle': '{% static "audio/green_sea_turtle_audio.mp3" %}',
-        'north atlantic right whale': '{% static "audio/right_whale_audio.mp3" %}',
-        'sea otter': '{% static "audio/otter_sound.mp3" %}',
-        'vaquita porpoise': '{% static "audio/porpoise_audio.mp3" %}'
-    };
-    
-    const speciesCards = document.querySelectorAll('.species-card');
-    speciesCards.forEach((card, index) => {
-        const speciesName = card.getAttribute('data-species');
-        const imageDiv = card.querySelector('.species-image');
-        const audioElement = card.querySelector('audio');
+                            </h3>
+                           
+                            <span class="status endangered">ENDANGERED</span>
+                            <p>Several hammerhead species are endangered due to demand for their fins. As apex predators, their decline disrupts entire marine ecosystems.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="species-card">
+                        <div class="species-image" style="background-image: url('{% static 'image/Coral_Reefs.jpeg' %}');"></div>
+                        <div class="species-info">
+                            <h3>Coral Reefs 🔇</h3>
+                            
+                            <span class="status vulnerable">VULNERABLE</span>
+                            <p>While not a single species, coral reef ecosystems are critically threatened by ocean acidification, warming waters, and pollution.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="species-card">
+                        <div class="species-image" style="background-image: url('{% static 'image/endangered_species_image/North_Atlantic_Right_Wale.jpeg' %}');"></div>
+                        <div class="species-info">
+                            <h3>North Atlantic Right Whale
+                            <button onclick="playSound('rwhale-audio')" style="font-size: 1.2rem; background: none; border: none; cursor: pointer;">🔉</button>
+                            </h3>
+                            <audio id="rwhale-audio" src="{% static 'voice/right whale audio.mp3' %}" preload="auto"></audio>
+                            <span class="status critical">CRITICALLY ENDANGERED</span>
+                            <p>With only about 350 remaining, these whales are threatened by ship strikes and entanglement in fishing gear.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="species-card">
+                        <div class="species-image" style="background-image: url('{% static 'image/endangered_species_image/Green_Sea_Turtle.jpeg' %}');"></div>
+                        <div class="species-info">
+                            <h3>Green Sea Turtle
+                            <button onclick="playSound('turtle-audio')" style="font-size: 1.2rem; background: none; border: none; cursor: pointer;">🔉</button>
+                            </h3>
+                            <audio id="turtle-audio" src="{% static 'voice/green sea turtle audio.mp3' %}" preload="auto"></audio>
+                            <span class="status endangered">ENDANGERED</span>
+                            <p>Named for the green color of their fat, these turtles face threats from habitat loss, bycatch, and pollution.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
         
-        // Set image
-        if (speciesName && speciesImages[speciesName]) {
-            imageDiv.style.backgroundImage = `url('${speciesImages[speciesName]}')`;
-        } else {
-            imageDiv.style.backgroundImage = 'url("{% static "image/Blue Whale.jpg" %}")';
-        }
-        
-        // Set audio
-        if (speciesName && speciesAudio[speciesName]) {
-            audioElement.src = speciesAudio[speciesName];
-        }
-    });
-}
-
-function setupAudio() {
-    // Stop all other audio when one starts playing
-    const audioElements = document.querySelectorAll('audio');
-    audioElements.forEach(audio => {
-        audio.addEventListener('play', function() {
-            audioElements.forEach(otherAudio => {
-                if (otherAudio !== audio) {
-                    otherAudio.pause();
-                    otherAudio.currentTime = 0;
-                }
-            });
-            
-            // Reset all icons
-            document.querySelectorAll('.sound-icon i, .btn-play-audio i').forEach(icon => {
-                if (icon.closest('.sound-icon')) {
-                    icon.className = 'fas fa-volume-up';
-                } else {
-                    icon.className = 'fas fa-play';
-                }
-            });
-            
-            // Update current playing icons
-            const idx = audio.id.split('-')[1];
-            const soundIcon = document.querySelector(`[onclick="toggleAudio('${idx}')"] i`);
-            const playButton = document.querySelector(`.btn-play-audio[onclick="toggleAudio('${idx}')"] i`);
-            
-            if (soundIcon) soundIcon.className = 'fas fa-pause';
-            if (playButton) playButton.className = 'fas fa-pause';
-        });
-        
-        audio.addEventListener('ended', function() {
-            // Reset icons when audio ends
-            const idx = audio.id.split('-')[1];
-            const soundIcon = document.querySelector(`[onclick="toggleAudio('${idx}')"] i`);
-            const playButton = document.querySelector(`.btn-play-audio[onclick="toggleAudio('${idx}')"] i`);
-            
-            if (soundIcon) soundIcon.className = 'fas fa-volume-up';
-            if (playButton) playButton.className = 'fas fa-play';
-        });
-    });
-}
-
-function toggleAudio(idx) {
-    const audio = document.getElementById('audio-' + idx);
-    const soundIcon = event.target.closest('.sound-icon');
-    const playButton = event.target.closest('.btn-play-audio');
-    
-    if (audio && audio.src) {
-        if (audio.paused) {
-            audio.play().catch(error => {
-                console.log('Audio play failed:', error);
-            });
-        } else {
-            audio.pause();
+        <footer>
+            <p>&copy; 2023 Ocean Guardians. All rights reserved.</p>
+            <p>Dedicated to protecting marine life for future generations.</p>
+        </footer>
+    </div>
+    </div>
+    <script>
+    function playSound(id) {
+        const audio = document.getElementById(id);
+        if (audio) {
             audio.currentTime = 0;
-            
-            // Reset icons
-            if (soundIcon) {
-                soundIcon.querySelector('i').className = 'fas fa-volume-up';
-            }
-            if (playButton) {
-                playButton.querySelector('i').className = 'fas fa-play';
-            }
+            audio.play();
         }
     }
-}
-</script>
-{% endblock %} 
+    </script>
+
+</body>
+    {% endblock %} 

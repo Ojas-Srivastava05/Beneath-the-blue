@@ -61,10 +61,10 @@ function setupVideoAutoplay() {
 
 // Navbar hide/show on scroll
 function setupNavbarScroll() {
-    let lastScroll = 0;
     const header = document.querySelector('header');
+    let lastScroll = 0;
     const scrollThreshold = 100; // How far to scroll before hiding
-
+    
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset;
         
@@ -87,27 +87,12 @@ function setupNavbarScroll() {
 }
 
 function setupFormHandlers() {
-     document.querySelectorAll('.action-form').forEach(form => {
+    document.querySelectorAll('.action-form').forEach(form => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const url = this.dataset.submitUrl;
             // ... rest of your form handling code
-                    // Form submission handlers
-            setupFormHandler('#pledge-form', '{% url "submit_pledge" %}');
-            setupFormHandler('#idea-form', '{% url "submit_idea" %}');
-            setupFormHandler('#feedback-form', '{% url "submit_feedback" %}');
-            setupFormHandler('#newsletter-form', '{% url "subscribe" %}');
         });
-    });
-}
-
-function setupFormHandler(formSelector, url) {
-    const form = document.querySelector(formSelector);
-    if (!form) return;
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // ... rest of your form handling code ...
     });
 }
 
@@ -116,6 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setupTabs();
     setupSmoothScrolling();
     setupVideoAutoplay();
-    setupNavbarScroll(); // <-- Added here
+    setupNavbarScroll();
     setupFormHandlers();
 });

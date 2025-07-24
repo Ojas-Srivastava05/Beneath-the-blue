@@ -1,36 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Quiz Result</title>
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<title>Quiz Result | Beneath The Blue</title>
+<link rel="stylesheet" href="{% static 'css/quiz.css' %}">
+
 <body>
-
-<header class="ocean-nav">
-    <div class="nav-container">
-        <div class="logo">
-            <img src="/static/image/logo.png" alt="logo">
-            <span>Beneath The Blue</span>
+  <div class="quiz-background">
+    <video id="bg-video" autoplay muted loop playsinline>
+      <source src="{% static 'videos/quiz_video.mp4' %}" type="video/mp4">
+      <img src="{% static 'images/ocean-fallback.jpg' %}" alt="Ocean waves">
+      Your browser does not support HTML5 video.
+    </video>
+    <div class="background-overlay"></div>
+  </div>
+  <div class="content-overlay">
+    <header class="quiz-header">
+        <div class="header-container">
+            <a href="{% url 'home' %}" class="logo">
+                <h1>Beneath The Blue</h1>
+            </a>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                    <li><a href="{% url 'threats' %}" class="nav-link">Threats & Solutions</a></li>
+                    <li><a href="{% url 'quiz' %}" class="nav-link active">Quiz</a></li>
+                    <li><a href="{% url 'sign_in' %}" class="nav-btn primary-btn">Sign In</a></li>
+                    <li><a href="{% url 'sign_up' %}" class="nav-btn secondary-btn">Sign Up</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
         </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/threats-solutions.html">Threats & Solutions</a></li>
-                <li><a href="/quiz/">Quiz</a></li>
-                <li><a href="/summary/">Summary</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<div class="quiz-container">
-    <h2>Your Score: {{ score }} / {{ total }}</h2>
-    <p>Well done! Keep learning about marine life!</p>
-    <a href="/quiz/" class="submit-btn">Try Again</a>
-</div>
-
-<footer>
-    <p>© 2025 Web Wonder | Ocean Exploration Team</p>
-</footer>
+    </header>
+    <main class="quiz-main">
+      <div class="quiz-container result-container">
+        <div class="quiz-header-section">
+          <h2 class="quiz-heading">Your Quiz Result</h2>
+          <div class="quiz-divider"></div>
+        </div>
+        <div class="result-score-section">
+          <div class="score-circle">
+            <span class="score-value">{{ score }}</span>
+            <span class="score-total">/ {{ total }}</span>
+          </div>
+          <div class="score-bar-outer">
+            <div class="score-bar-inner"></div>
+          </div>
+          <div class="result-message">
+            {% if score == total %}
+              <span class="result-congrats">Perfect! 🌟 You're an Ocean Expert!</span>
+            {% elif score >= total|add:'-2' %}
+              <span class="result-congrats">Great job! You know your oceans well!</span>
+            {% else %}
+              <span class="result-congrats">Keep learning and exploring the blue!</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="result-details">
+          <p><strong>Total Questions:</strong> {{ total }}</p>
+          <p><strong>Correct Answers:</strong> {{ correct }}</p>
+          <p><strong>Wrong Answers:</strong> {{ wrong }}</p>
+        </div>
+        <div class="action-buttons">
+          <a href="{% url 'quiz' %}" class="btn primary-btn">Try Again</a>
+        </div>
+      </div>
+    </main>
+    <footer class="quiz-footer">
+      <p>© 2025 Beneath The Blue | Protecting our oceans for future generations</p>
+    </footer>
 </body>
-</html>
+{% endblock %}

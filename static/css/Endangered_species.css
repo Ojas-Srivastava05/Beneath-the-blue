@@ -5,12 +5,6 @@
     --light-blue: #66ccff;
     --sky-blue: #cce5ff;
     --foam-white: #f8f9fa;
-    --marine-teal: #00a8cc;
-    --coral: #ff7e67;
-    --golden-sunlight: #ffb347;
-    --pearl: #f8f9fa;
-    --midnight-wave: #0f3057;
-    --sea-foam: #a7ecee;
 }
 
 * {
@@ -49,7 +43,7 @@ body, h1, h2, h3, h4, p, .btn, .nav-link, .section-header h3, .section-header p,
 }
 
 /* Improved Header with Logo in Navbar */
-.main-header {
+/* .main-header {
     background: rgba(0, 88, 122, 0.95);
     background: linear-gradient(159deg, rgba(0,88,122,0.95) 0%, rgba(0,168,204,0.95) 100%);
     color: white;
@@ -62,16 +56,16 @@ body, h1, h2, h3, h4, p, .btn, .nav-link, .section-header h3, .section-header p,
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
     backdrop-filter: blur(10px);
-}
+} */
 
-.header-container {
+/* .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
+} */
 
 /* Mobile Menu Toggle */
 .mobile-menu-toggle {

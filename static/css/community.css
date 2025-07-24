@@ -73,6 +73,9 @@ body{
       display: inline-block;
       padding-bottom: 5px;
     }
+    .card{
+        color : #CCFFFF;
+    }
     .card_paragraph a{
       text-decoration: none;
       color:  rgb(255 255 255 /65%);
@@ -109,4 +112,7 @@ body{
 
 body, h1, h2, h3, h4, p, .btn, .nav-link, .community_heading, .section h2, .card_paragraph, .intro {
     font-family: 'Playfair Display', 'Raleway', 'Source Sans Pro', 'Roboto Condensed', serif, sans-serif !important;
+}
+.secondary-btn{
+    color: #FFFACD;
 }

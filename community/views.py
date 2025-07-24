@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from .models import Category, Community, Quiz
-# from django.http import HttpResponse
-import random
+from django.shortcuts import render,redirect
+from .models import  *
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -28,17 +28,103 @@ def community_page(request):
 # @login_required
 def quiz(request):
     if request.method == 'POST':
-        selected_answers = request.POST.getlist('answer')
-        correct_answers = 0
-        total_questions = Quiz.objects.count()
+        questions = Quiz.objects.all()
+        score = 0
+        total = questions.count()
 
-        for i, answer in enumerate(selected_answers):
-            question = Quiz.objects.all()[i]
-            if question.answer == answer:
-                correct_answers += 1
+        for question in questions:
+            submitted_answer = request.POST.get(f'question_{question.id}')
+            if submitted_answer:
+                try:
+                    if int(submitted_answer) == question.answer:
+                        score += 1
+                except (ValueError, TypeError):
+                    # Handle cases where submitted_answer is not a valid integer
+                    pass
+        
+        context = {
+            'score': score,
+            'total': total,
+            'correct': score,
+            'wrong': total - score,
+        }
+        return render(request, 'result.html', context)
 
-        score_percentage = (correct_answers / total_questions) * 100
-        return render(request, 'quiz_result.html', {'score': score_percentage})
     questions = list(Quiz.objects.all()) 
     return render(request, 'quiz.html', {'questions_data': questions})
 
+# Create your views here.
+def home(request):
+    return render(request, 'index.html')
+
+
+def explore_map(request):
+    return  render(request, 'explore.html')
+
+def endangered_species(request):
+    return render(request, 'Endangered_species.html')
+
+def threats(request):
+    return render(request, 'threats-solution.html')
+
+def submit_pledge(request):
+    if request.method == 'POST':
+        # Handle pledge submission
+        return JsonResponse({'success': True, 'message': 'Pledge submitted successfully!'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method'})
+
+def submit_idea(request):
+    if request.method == 'POST':
+        # Handle idea submission
+        return JsonResponse({'success': True, 'message': 'Idea submitted successfully!'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method'})
+
+def submit_feedback(request):
+    if request.method == 'POST':
+        # Handle feedback submission
+        return JsonResponse({'success': True, 'message': 'Feedback submitted successfully!'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method'})
+
+def subscribe(request):
+    if request.method == 'POST':
+        # Handle newsletter subscription
+        return JsonResponse({'success': True, 'message': 'Successfully subscribed!'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method'})
+ 
+# sing in function
+def sign_in(request):
+    if request.method=="POST":
+        user_id=request.POST.get('email')
+        password=request.POST.get('password')
+        user=authenticate(request, username=user_id, password=password)
+        if user is not None:
+            auth_login(request, user)
+            return redirect('explore_map')
+        else:
+            return render(request, 'sign_in.html', {'error': 'Invalid credentials. Please try again.'})
+    return render(request,"sign_in.html") 
+
+# logout function not working adding in home page after work on it
+# def logout(request):
+#     # user = loging.objects.first()  # Gets the first user or None
+#     # user.delete()
+#     return  HttpResponse("You have been logged out successfully.")
+
+# sing up function
+def sign_up(request):
+    if request.method=="POST":
+        user_id=request.POST.get('email')
+        password=request.POST.get('password')
+        password2=request.POST.get('password2')
+        if password != password2:
+            return render(request, 'sign_up.html', {'error': 'Passwords do not match. Please try again.'})
+        user = authenticate(request, username=user_id, password=password)
+        
+        # Check if the user already exists
+        if loging.objects.filter(user_id=user_id).exists():
+            return render(request, 'sign_up.html', {'error': 'User already exists. Please sign in.'})
+       
+        # Create a new use
+        register= loging(user_id= user_id,password=password) 
+        register.save()
+    return render(request,"sign_up.html")
