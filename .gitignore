@@ -1,0 +1,29 @@
+# Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django DB file
+db.sqlite3
+
+# Environment folders
+env/
+venv/
+ENV/
+*.env
+
+# Static and media (optional)
+staticfiles/
+media/
+
+# Video files
+*.mp4
+
+# VS Code settings
+.vscode/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
