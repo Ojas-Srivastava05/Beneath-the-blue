@@ -1,3 +1,6 @@
+a{
+  text-decoration: none;
+}
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -44,7 +47,7 @@ body {
 
 .hero p {
     font-size: 1.5rem;
-    color: var(--coral);
+    color: rgba(255, 255, 255, 0.8);
 }
 
  .hero-content {
@@ -73,7 +76,6 @@ body {
 }
 
 .threat-card, .solution-card {
-    background: white;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -96,10 +98,11 @@ body {
     color:var(--coral);
 }
 
-.threat-card p, .solution-card p {
+.threat-card a p, .solution-card p {
     padding: 0 1rem 1rem;
     margin: 0;
     color: rgba( 255 , 255 , 255 ,.8);
+    text-decoration: none;
 }
 
 footer {
@@ -138,5 +141,34 @@ footer {
   
   .nav-container {
     padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .threats-grid, .solutions-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+  }
+  .threat-card, .solution-card {
+    font-size: 0.95em;
+  }
+}
+@media (max-width: 600px) {
+  .threats-grid, .solutions-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+  }
+  .threat-card, .solution-card {
+    font-size: 0.9em;
+    padding: 0.5em;
+  }
+  .threat-card img, .solution-card img {
+    height: 120px;
+  }
+  .hero h1 {
+    font-size: 1.2em;
+  }
+  .hero p {
+    font-size: 1em;
   }
 }

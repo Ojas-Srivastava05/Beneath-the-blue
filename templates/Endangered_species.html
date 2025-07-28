@@ -7,7 +7,7 @@
 </head>
 <body>
    <div class="video-wrapper" style="height: 0px;">
-    <video autoplay muted playsinline loop id="video-background">
+    <video autoplay muted playsinline loop id="bg-video">
         <source src="{% static 'videos/endangered_species-bg.mp4' %}" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
@@ -22,7 +22,7 @@
             <nav>
                 <ul>
                      <li><a href="{% url 'home' %}" class="nav-link">~Home</a></li>
-                    <li><a href="{% url 'endangered_species' %}" class="nav-link active">~Endangered Species</a></li>
+                    <li><a href="{% url 'endangered_species' %}" class="nav-link" style="color: #00c6e6">~Endangered Species</a></li>
                 </ul>
             </nav>
         </div>
@@ -132,7 +132,7 @@
                 </div>
             </section>
         </div>
-        
+       {% endblock %}   
         <footer>
             <p>&copy; 2023 Ocean Guardians. All rights reserved.</p>
             <p>Dedicated to protecting marine life for future generations.</p>
@@ -150,4 +150,4 @@
     </script>
 
 </body>
-    {% endblock %} 
+    {% comment %} {% endblock %}  {% endcomment %}

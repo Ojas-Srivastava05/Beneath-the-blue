@@ -25,7 +25,8 @@
                 <nav>
                     <ul>
                         <li><a href="{% url 'home' %}">~Home</a></li>
-                        <li><a href="{% url 'threats' %}" class="nav-link">~Threats</a></li>`
+                        <li><a href="{% url 'threats' %}" class="nav-link">~Threats</a></li>
+                        <li><a href="{% url 'quiz' %}">~Quizzes</a></li>
                         <li><a href="{% url 'sign_up' %}" class="nav-btn">~Sign Up</a></li>
                     </ul>
                 </nav>
@@ -41,90 +42,31 @@
         <section class="threats">
             <h2>Major Threats to Marine Life</h2>
             <div class="threats-grid">
-                <!-- Threat 1 -->
+                {% comment %} Loop through the threats and display each one {% endcomment %}
+          
+                {% for threat in threats %}
                 <div class="threat-card">
-                    <img src="{% static 'image/polluton.jpg' %}" alt="Plastic Pollution">
-                    <h3>Plastic Pollution</h3>
-                    <p>Over 8 million tons of plastic enter the ocean yearly, harming marine life.</p>
-                </div>
-                <!-- Threat 2 -->
-                <div class="threat-card">
-                    <img src="{% static 'image/overfishing.jpg' %}" alt="Overfishing">
-                    <h3>Overfishing</h3>
-                    <p>90% of global fish stocks are overexploited, leading to ecosystem collapse.</p>
-                </div>
-                <!-- Threat 3 -->
-                <div class="threat-card">
-                    <img src="{% static 'image/coralBleaching.jpg' %}" alt="climate change">
-                    <h3>Coral Bleaching</h3>
-                    <p>corals lose their vibrant colors and turn white due to the expulsion of symbiotic algae called zooxanthellae. </p>
-                </div>
-                <!-- Threat 4 -->
-                <div class="threat-card">
-                    <img src="{% static 'image/climateChange.jpg' %}" alt="Climate Change">
-                    <h3>Climate Change</h3>
-                    <p>Rising ocean temperatures kill coral reefs, affecting 25% of marine species.</p>
-                </div>
-                <!-- Threat 5 -->
-                 <div class="threat-card">
-                    <img src="{% static 'image/OilSpill.jpg' %}" alt="Oil Spill">
-                    <h3>Oil Spill</h3>
-                    <p>Oil can suffocate or poison marine animals, damage their habitat, and disrupt their feeding and breeding patterns. </p>
-                </div>
-                <!-- Threat 6 -->
-                 <div class="threat-card">
-                    <img src="{% static 'image/noisePollution.jpg' %}" alt="Noice Pollution">
-                    <h3>Noise Pollution</h3>
-                    <p>Oil can suffocate or poison marine animals, damage their habitat, and disrupt their feeding and breeding patterns. </p>
-                </div>
-            </div>
+                    <img src="{{ threat.image.url }}" alt="{{ threat.title }}" class="threat-image">
+                    <h3>{{ threat.title }}</h3>
+                   <a href="{{ threat.url }}" class="solution-link"> <p>{{ threat.description }}</p>
+                <p> Learn More</p></a>
+                 </div>
+                {% endfor %}
+           
         </section>
 
         <section class="solutions">
-            <h2>What Can We Do?</h2>
+            <h2>Sustainable Solutions</h2>
             <div class="solutions-grid">
-                <!-- Solution 1 -->
+                {% for threat in threats %}
                 <div class="solution-card">
-                    <img src="{% static 'image/reducePlastic.jpg' %}" alt="Reduce Plastic">
-                    <h3>Reduce Plastic Use</h3>
-                    <p>Switch to reusable bags, bottles, and straws.</p>
+                    <h3>{{ threat.title }} - Solutions</h3>
+                    <p>{{ threat.solution }}</p>
                 </div>
-                <!-- Solution 2 -->
-                <div class="solution-card">
-                    <img src="{% static 'image/seafood.jpg' %}" alt="Sustainable Fishing">
-                    <h3>Support Sustainable Seafood</h3>
-                    <p>Check labels for MSC-certified fish.</p>
-                </div>
-                <!-- Solution 3 -->
-                <div class="solution-card">
-                    <img src="{% static 'image/beachCleanup.jpg' %}" alt="Beach Cleanup">
-                    <h3>Join Beach Cleanups</h3>
-                    <p>Volunteer to remove trash from coastlines.</p>
-                </div>
-                <!-- Solution 4 -->
-                <div class="solution-card">
-                    <img src="{% static 'image/renewable.jpg' %}" alt="Renewable Energy">
-                    <h3>Renewable Energy</h3>
-                    <p>shift towards the energy derived from natural sources that are replenished at a faster rate than they are consumed.</p>
-                </div>
-                <!-- Solution 5 -->
-                <div class="solution-card">
-                    <img src="{% static 'image/globalAgreement.jpg' %}" alt="Global Agreement">
-                    <h3>Global Agreement</h3>
-                    <p>"Promoting global cooperation through international ocean agreements and marine conservation treaties."</p>
-                </div>
-                <!-- Solution 6 -->
-                <div class="solution-card">
-                    <img src="{% static 'image/coralRestoration.jpg' %}" alt="Coral coralRestoration">
-                    <h3>Coral Restoration</h3>
-                    <p>"Reviving ocean life through coral restoration — rebuilding reefs, restoring balance."</p>
-                </div>
+                {% endfor %}
             </div>
-        </section>
-
-        <footer>
-            <p>© 2025 Web Wonder | Ocean Exploration Team</p>
-        </footer>
+        </section> 
     </div>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 {% endblock %}

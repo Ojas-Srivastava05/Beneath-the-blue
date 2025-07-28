@@ -14,27 +14,21 @@
     <div class="background-overlay"></div>
   </div>
   <div class="content-overlay">
-    <header class="quiz-header">
-        <div class="header-container">
-            <a href="{% url 'home' %}" class="logo">
-                <h1>Beneath The Blue</h1>
-            </a>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
-                    <li><a href="{% url 'threats' %}" class="nav-link">Threats & Solutions</a></li>
-                    <li><a href="{% url 'quiz' %}" class="nav-link active">Quiz</a></li>
-                    <li><a href="{% url 'sign_in' %}" class="nav-btn primary-btn">Sign In</a></li>
-                    <li><a href="{% url 'sign_up' %}" class="nav-btn secondary-btn">Sign Up</a></li>
-                </ul>
-                <button class="hamburger" id="hamburger" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-        </div>
-    </header>
+    <header class="header">
+            <div class="container header-container">
+                <div class="logo">
+                    <h1>Beneath the Blue</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'home' %}">~Home</a></li>
+                        <li><a href="{% url 'threats' %}" class="nav-link">~Threats</a></li>
+                        <li><a href="{% url 'quiz' %}">~ More Quizzes</a></li>
+                        {% comment %} <li><a href="{% url 'sign_up' %}" class="nav-btn">~Sign Up</a></li> {% endcomment %}
+                    </ul>
+                </nav>
+            </div>
+        </header>
     <main class="quiz-main">
       <div class="quiz-container result-container">
         <div class="quiz-header-section">
@@ -69,8 +63,5 @@
         </div>
       </div>
     </main>
-    <footer class="quiz-footer">
-      <p>© 2025 Beneath The Blue | Protecting our oceans for future generations</p>
-    </footer>
 </body>
 {% endblock %}

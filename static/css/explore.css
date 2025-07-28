@@ -542,60 +542,9 @@
             font-size: 1.1rem;
         }
 
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--dark-gray), #000);
-            color: white;
-            padding: 4rem 0 2rem;
-            margin-top: 5rem;
-        }
+         
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 3rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--light-teal);
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--sunset);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .footer-column a:hover {
-            color: var(--light-teal);
-            transform: translateX(5px);
-        }
-
-        .social-links {
+        /* .social-links {
             display: flex;
             gap: 15px;
             margin-top: 20px;
@@ -616,15 +565,15 @@
         .social-links a:hover {
             background: var(--sunset);
             transform: translateY(-5px);
-        }
+        } */
 
-        .copyright {
+        /* .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
-        }
+        } */
 
         /* Responsive Design */
         @media (max-width: 1024px) {

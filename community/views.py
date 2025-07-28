@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import  *
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.http import JsonResponse
 # Create your views here.
 
 
@@ -61,35 +60,12 @@ def home(request):
 def explore_map(request):
     return  render(request, 'explore.html')
 
-def endangered_species(request):
-    return render(request, 'Endangered_species.html')
 
 def threats(request):
-    return render(request, 'threats-solution.html')
+    threats = Threat.objects.all()
+    return render(request, 'threats-solution.html', {'threats': threats})
 
-def submit_pledge(request):
-    if request.method == 'POST':
-        # Handle pledge submission
-        return JsonResponse({'success': True, 'message': 'Pledge submitted successfully!'})
-    return JsonResponse({'success': False, 'message': 'Invalid request method'})
 
-def submit_idea(request):
-    if request.method == 'POST':
-        # Handle idea submission
-        return JsonResponse({'success': True, 'message': 'Idea submitted successfully!'})
-    return JsonResponse({'success': False, 'message': 'Invalid request method'})
-
-def submit_feedback(request):
-    if request.method == 'POST':
-        # Handle feedback submission
-        return JsonResponse({'success': True, 'message': 'Feedback submitted successfully!'})
-    return JsonResponse({'success': False, 'message': 'Invalid request method'})
-
-def subscribe(request):
-    if request.method == 'POST':
-        # Handle newsletter subscription
-        return JsonResponse({'success': True, 'message': 'Successfully subscribed!'})
-    return JsonResponse({'success': False, 'message': 'Invalid request method'})
  
 # sing in function
 def sign_in(request):
@@ -103,12 +79,6 @@ def sign_in(request):
         else:
             return render(request, 'sign_in.html', {'error': 'Invalid credentials. Please try again.'})
     return render(request,"sign_in.html") 
-
-# logout function not working adding in home page after work on it
-# def logout(request):
-#     # user = loging.objects.first()  # Gets the first user or None
-#     # user.delete()
-#     return  HttpResponse("You have been logged out successfully.")
 
 # sing up function
 def sign_up(request):
@@ -128,3 +98,15 @@ def sign_up(request):
         register= loging(user_id= user_id,password=password) 
         register.save()
     return render(request,"sign_up.html")
+
+def solutions(request):
+    solutions_data = Solution.objects.all()
+    return render(request, 'solutions.html', {'solutions_data': solutions_data})
+
+def solution_detail(request, solution_id):
+    try:
+        solution = Solution.objects.get(id=solution_id)
+    except Solution.DoesNotExist:
+        return render(request, 'solution_detail.html', {'error': 'Solution not found.'})
+    
+    return render(request, 'solution_detail.html', {'solution': solution})

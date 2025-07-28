@@ -9,7 +9,7 @@ class log(admin.ModelAdmin):
 admin.site.register(loging,log)
 # Register the Community model with the admin site
 
-
+# comminity section
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name','description')
 admin.site.register(Category,CategoryAdmin)
@@ -22,4 +22,13 @@ admin.site.register(Community, CommunityAdmin)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ( 'question', 'op1', 'op2', 'op3', 'op4', 'answer')
 admin.site.register(Quiz, QuestionAdmin)
- 
+
+#  the Threat model  section
+class ThreatAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'image')
+admin.site.register(Threat, ThreatAdmin)
+
+#  endangered species section
+class SolutionAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'detailed_description', 'image', 'wikipedia_link', 'related_threat', 'implementation_steps', 'benefits', 'created_at')
+admin.site.register(Solution, SolutionAdmin)
