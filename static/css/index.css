@@ -22,7 +22,7 @@
 }
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif !important;
     color: var(--pearl);
     line-height: 1.7;
     position: relative;
