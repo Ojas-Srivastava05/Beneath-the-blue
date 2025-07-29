@@ -110,3 +110,8 @@ def solution_detail(request, solution_id):
         return render(request, 'solution_detail.html', {'error': 'Solution not found.'})
     
     return render(request, 'solution_detail.html', {'solution': solution})
+
+
+def post(request):
+    posts = Post.objects.all()
+    return render(request, 'post.html', {'posts': posts})

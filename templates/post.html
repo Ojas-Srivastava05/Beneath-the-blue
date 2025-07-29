@@ -1,0 +1,738 @@
+{%  extends "base.html" %}
+{% load static %}
+
+{% block  content %}
+    <title>Ocean Threats & Solutions | Web Wonder</title>
+    <style>
+        /* Full page video background - UPDATED */
+        body {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            color: white;
+            padding-top: 80px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* New video container for full coverage */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .video-background {
+            position: absolute;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 60, 100, 0.3);
+            z-index: -1;
+        }
+        
+        /* Rest of your original styles */
+        .content-wrapper {
+            /* background-color: rgba(0, 40, 80, 0.7); */
+        }
+        
+        .ocean-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 40, 80, 0.9);
+            backdrop-filter: blur(6px);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .logo img {
+            height:50;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .main-nav ul {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link.active, .nav-link:hover {
+            color: #4fc3f7;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #4fc3f7;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .login-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .signup-btn {
+            background: transparent
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero {
+            height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        section {
+            padding: 60px 20px;
+        }
+        
+        /* Your existing card styles */
+        .threat-card, .solution-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        /* Your existing footer styles */
+        footer {
+            background-color: rgba(0, 40, 80, 0.9);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* All your other existing styles remain unchanged */
+        /* ... */
+    </style>
+</head>
+<body>
+    <!-- Updated Video Background Structure -->
+    <div class="video-container">
+        <video autoplay muted loop playsinline class="video-background">
+            <source src="../static/videos/post.mp4" type="video/mp4">
+            <img src="../static/image/ocean-fallback.jpg" alt="Ocean waves">
+        </video>
+    </div>
+    
+    <!-- Overlay remains the same -->
+    <div class="video-overlay"></div>
+    
+    <!-- All your original content exactly as it was -->
+    <div class="content-wrapper">
+        <header class="ocean-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="../static/image/logo.png" alt="logo">
+                    <span>Beneath The Blue</span>
+                </div>
+                
+                <nav class="main-nav">
+                    <div class="nav-wave"></div>
+                    <ul>
+                        <li><a href="index.html" class="nav-link"><span>Home</span></a></li>
+                        <li><a href="threats-solutions.html"><span>Threats & Solutions</span></a></li>
+                        <li><a href="post.html" class="nav-link active"><span>post</span></a></li>
+                        <li><a href="quiz.html" class="nav-link"><span>Quiz</span></a></li>
+                    </ul>
+                </nav>
+                
+                <div class="nav-actions">
+                    <button class="nav-btn login-btn">Login</button>
+                    <button class="nav-btn signup-btn">Sign Up</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="community-container" id="main-content">
+            <!-- Stories Section -->
+            <section class="stories-section" aria-label="Community stories">
+                <div class="stories-container">
+                    <div class="story add-story" tabindex="0" role="button" aria-label="Add your story">
+                        <div class="story-avatar">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <span>Your Story</span>
+                    </div>
+                    
+                    <div class="story" tabindex="0" role="button" aria-label="View OceanProtector's story">
+                        <div class="story-avatar">
+                            <img src="images/user1.jpg" alt="OceanProtector" loading="lazy">
+                        </div>
+                        <span>OceanProtector</span>
+                    </div>
+                    
+                    <div class="story" tabindex="0" role="button" aria-label="View CoralGuardian's story">
+                        <div class="story-avatar">
+                            <img src="images/user2.jpg" alt="CoralGuardian" loading="lazy">
+                        </div>
+                        <span>CoralGuardian</span>
+                    </div>
+                    
+                    <div class="story" tabindex="0" role="button" aria-label="View TurtleSavior's story">
+                        <div class="story-avatar">
+                            <img src="images/user3.jpg" alt="TurtleSavior" loading="lazy">
+                        </div>
+                        <span>TurtleSavior</span>
+                    </div>
+                    
+                    <div class="story" tabindex="0" role="button" aria-label="View WaveChanger's story">
+                        <div class="story-avatar">
+                            <img src="images/user4.jpg" alt="WaveChanger" loading="lazy">
+                        </div>
+                        <span>WaveChanger</span>
+                    </div>
+                    
+                    <div class="story" tabindex="0" role="button" aria-label="View DeepDiver's story">
+                        <div class="story-avatar">
+                            <img src="images/user5.jpg" alt="DeepDiver" loading="lazy">
+                        </div>
+                        <span>DeepDiver</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Posts Feed -->
+            <section class="posts-feed" aria-label="Community posts">
+                <!-- Create Post Card -->
+                <form class="create-post-card">
+                    <div class="post-author">
+                        <img src="images/user-avatar.jpg" alt="Your Profile" class="avatar" width="40" height="40">
+                        <label for="post-content" class="sr-only">Share your conservation story</label>
+                        <textarea id="post-content" placeholder="Share your conservation story..." rows="1"></textarea>
+                    </div>
+                    <div class="post-actions">
+                        <button type="button" class="action-btn" aria-label="Add photo">
+                            <i class="fas fa-image"></i> <span class="btn-text">Photo</span>
+                        </button>
+                        <button type="button" class="action-btn" aria-label="Add video">
+                            <i class="fas fa-video"></i> <span class="btn-text">Video</span>
+                        </button>
+                        <button type="button" class="action-btn" aria-label="Add location">
+                            <i class="fas fa-map-marker-alt"></i> <span class="btn-text">Location</span>
+                        </button>
+                        <button type="submit" class="post-submit-btn">Post</button>
+                    </div>
+                    <div class="media-preview">
+                        <!-- Media preview will appear here -->
+                    </div>
+                </form>
+                
+                <!-- Sample Post 1 -->
+                <article class="post-card">
+                    <div class="post-header">
+                        <div class="post-author">
+                            <img src="images/user1.jpg" alt="OceanProtector" class="avatar" width="40" height="40">
+                            <div class="author-info">
+                                <h4>OceanProtector</h4>
+                                <span class="post-location"><i class="fas fa-map-marker-alt"></i> Great Barrier Reef</span>
+                                <time datetime="2023-06-10T14:30:00" class="post-time">2 hours ago</time>
+                            </div>
+                        </div>
+                        <button class="post-options-btn" aria-label="Post options">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="post-content">
+                        <p>Just participated in a coral planting initiative today! We planted over 200 coral fragments to help restore this beautiful reef ecosystem. 🌊🐠 #CoralRestoration #SaveOurOceans</p>
+                        <div class="post-media">
+                            <img src="images/coral-planting.jpg" alt="Volunteers planting coral fragments underwater" loading="lazy">
+                        </div>
+                    </div>
+                    
+                    <div class="post-stats">
+                        <span><i class="fas fa-heart"></i> <span class="like-count">142</span> likes</span>
+                        <span><i class="fas fa-comment"></i> <span class="comment-count">23</span> comments</span>
+                        <span><i class="fas fa-share"></i> <span class="share-count">7</span> shares</span>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="like-btn" aria-label="Like this post" aria-pressed="false">
+                            <i class="far fa-heart"></i> <span class="btn-text">Like</span>
+                        </button>
+                        <button class="comment-btn" aria-label="Comment on this post">
+                            <i class="far fa-comment"></i> <span class="btn-text">Comment</span>
+                        </button>
+                        <button class="share-btn" aria-label="Share this post">
+                            <i class="far fa-share-square"></i> <span class="btn-text">Share</span>
+                        </button>
+                    </div>
+                    
+                    <div class="post-comments">
+                        <div class="comment">
+                            <img src="images/user6.jpg" alt="ReefRescuer" class="avatar" width="32" height="32">
+                            <div class="comment-content">
+                                <h5>ReefRescuer</h5>
+                                <p>Amazing work! We need more initiatives like this worldwide.</p>
+                                <div class="comment-actions">
+                                    <button class="like-comment-btn" aria-label="Like this comment">Like</button>
+                                    <span class="comment-time">1 hour ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-comment">
+                            <img src="images/user-avatar.jpg" alt="Your Profile" class="avatar" width="32" height="32">
+                            <input type="text" placeholder="Write a comment...">
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Sample Post 2 -->
+                <article class="post-card">
+                    <div class="post-header">
+                        <div class="post-author">
+                            <img src="images/user2.jpg" alt="CoralGuardian" class="avatar" width="40" height="40">
+                            <div class="author-info">
+                                <h4>CoralGuardian</h4>
+                                <span class="post-location"><i class="fas fa-map-marker-alt"></i> Maldives</span>
+                                <time datetime="2023-06-09T08:45:00" class="post-time">1 day ago</time>
+                            </div>
+                        </div>
+                        <button class="post-options-btn" aria-label="Post options">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="post-content">
+                        <p>Our beach cleanup team collected 85kg of plastic waste this weekend! Every piece removed makes a difference for marine life. 🐢💙 #PlasticFreeOceans #BeachCleanup</p>
+                        <div class="post-media">
+                            <img src="images/beach-cleanup-post.jpg" alt="Beach cleanup volunteers with collected plastic waste" loading="lazy">
+                        </div>
+                    </div>
+                    
+                    <div class="post-stats">
+                        <span><i class="fas fa-heart"></i> <span class="like-count">98</span> likes</span>
+                        <span><i class="fas fa-comment"></i> <span class="comment-count">15</span> comments</span>
+                        <span><i class="fas fa-share"></i> <span class="share-count">3</span> shares</span>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="like-btn" aria-label="Like this post" aria-pressed="false">
+                            <i class="far fa-heart"></i> <span class="btn-text">Like</span>
+                        </button>
+                        <button class="comment-btn" aria-label="Comment on this post">
+                            <i class="far fa-comment"></i> <span class="btn-text">Comment</span>
+                        </button>
+                        <button class="share-btn" aria-label="Share this post">
+                            <i class="far fa-share-square"></i> <span class="btn-text">Share</span>
+                        </button>
+                    </div>
+                </article>
+                
+                <!-- Sample Post 3 (Video) -->
+                <article class="post-card">
+                    <div class="post-header">
+                        <div class="post-author">
+                            <img src="images/user3.jpg" alt="TurtleSavior" class="avatar" width="40" height="40">
+                            <div class="author-info">
+                                <h4>TurtleSavior</h4>
+                                <span class="post-location"><i class="fas fa-map-marker-alt"></i> Costa Rica</span>
+                                <time datetime="2023-06-07T18:20:00" class="post-time">3 days ago</time>
+                            </div>
+                        </div>
+                        <button class="post-options-btn" aria-label="Post options">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="post-content">
+                        <p>Witnessed this beautiful sea turtle nesting last night. Our conservation efforts are helping protect these majestic creatures! 🐢💚 #SeaTurtleConservation #ProtectMarineLife</p>
+                        <div class="post-media">
+                            <video controls preload="metadata" poster="images/turtle-nesting-poster.jpg">
+                                <source src="videos/turtle-nesting.mp4" type="video/mp4">
+                                <track kind="captions" src="videos/captions/turtle-nesting.vtt" srclang="en" label="English">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div class="post-stats">
+                        <span><i class="fas fa-heart"></i> <span class="like-count">215</span> likes</span>
+                        <span><i class="fas fa-comment"></i> <span class="comment-count">42</span> comments</span>
+                        <span><i class="fas fa-share"></i> <span class="share-count">12</span> shares</span>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="like-btn" aria-label="Like this post" aria-pressed="false">
+                            <i class="far fa-heart"></i> <span class="btn-text">Like</span>
+                        </button>
+                        <button class="comment-btn" aria-label="Comment on this post">
+                            <i class="far fa-comment"></i> <span class="btn-text">Comment</span>
+                        </button>
+                        <button class="share-btn" aria-label="Share this post">
+                            <i class="far fa-share-square"></i> <span class="btn-text">Share</span>
+                        </button>
+                    </div>
+                </article>
+                
+                <!-- Load more posts button -->
+                <div class="load-more-container">
+                    <button class="load-more-btn">Load More Posts</button>
+                </div>
+            </section>
+            
+            <!-- Conservation Stats Sidebar -->
+            <aside class="community-sidebar" aria-label="Community information">
+                <!-- Stats Card with animated numbers -->
+                <div class="stats-card">
+                    <h3>Community Impact</h3>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" data-count="1248">0</span>
+                            <span class="stat-label">Conservationists</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" data-count="5327">0</span>
+                            <span class="stat-label">Trash Collected (kg)</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" data-count="3142">0</span>
+                            <span class="stat-label">Corals Planted</span>
+                        </div>
+                    </div>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                        <span>65% to monthly goal</span>
+                    </div>
+                </div>
+                
+                <!-- Events Card with calendar view -->
+                <div class="events-card">
+                    <div class="events-header">
+                        <h3>Upcoming Events</h3>
+                        <button class="calendar-view-btn" aria-label="View calendar">
+                            <i class="far fa-calendar-alt"></i>
+                        </button>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">JUN</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>International Coastal Cleanup</h4>
+                            <span class="event-location"><i class="fas fa-map-marker-alt"></i> Global</span>
+                            <span class="event-time"><i class="far fa-clock"></i> 9:00 AM - 12:00 PM</span>
+                        </div>
+                        <button class="event-rsvp-btn" aria-label="RSVP to this event">Join</button>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">
+                            <span class="day">22</span>
+                            <span class="month">JUN</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Coral Restoration Workshop</h4>
+                            <span class="event-location"><i class="fas fa-video"></i> Online</span>
+                            <span class="event-time"><i class="far fa-clock"></i> 2:00 PM - 4:00 PM</span>
+                        </div>
+                        <button class="event-rsvp-btn" aria-label="RSVP to this event">Join</button>
+                    </div>
+                    <button class="view-all-btn">View All Events</button>
+                </div>
+                
+                <!-- Suggested Users with follow functionality -->
+                <div class="suggested-users">
+                    <div class="suggested-header">
+                        <h3>People to Follow</h3>
+                        <button class="refresh-suggestions" aria-label="Refresh suggestions">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    <div class="user-item">
+                        <img src="images/user5.jpg" alt="OceanWarrior" class="avatar" width="40" height="40">
+                        <div class="user-info">
+                            <h4>OceanWarrior</h4>
+                            <span>Marine Biologist</span>
+                            <span class="mutual-connections">3 mutual connections</span>
+                        </div>
+                        <button class="follow-btn" aria-label="Follow OceanWarrior">Follow</button>
+                    </div>
+                    <div class="user-item">
+                        <img src="images/user6.jpg" alt="PlasticFreeSeas" class="avatar" width="40" height="40">
+                        <div class="user-info">
+                            <h4>PlasticFreeSeas</h4>
+                            <span>Activist</span>
+                            <span class="mutual-connections">1 mutual connection</span>
+                        </div>
+                        <button class="follow-btn" aria-label="Follow PlasticFreeSeas">Follow</button>
+                    </div>
+                    <div class="user-item">
+                        <img src="images/user7.jpg" alt="ReefRescuer" class="avatar" width="40" height="40">
+                        <div class="user-info">
+                            <h4>ReefRescuer</h4>
+                            <span>Conservation Diver</span>
+                            <span class="mutual-connections">5 mutual connections</span>
+                        </div>
+                        <button class="follow-btn" aria-label="Follow ReefRescuer">Follow</button>
+                    </div>
+                    <button class="view-all-btn">View All Suggestions</button>
+                </div>
+                
+                <!-- Quick Links Card -->
+                <div class="quick-links-card">
+                    <h3>Quick Links</h3>
+                    <a href="resources.html" class="quick-link">
+                        <i class="fas fa-book"></i> Conservation Resources
+                    </a>
+                    <a href="volunteer.html" class="quick-link">
+                        <i class="fas fa-hands-helping"></i> Volunteer Opportunities
+                    </a>
+                    <a href="donate.html" class="quick-link">
+                        <i class="fas fa-donate"></i> Donation Centers
+                    </a>
+                    <a href="education.html" class="quick-link">
+                        <i class="fas fa-graduation-cap"></i> Educational Materials
+                    </a>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Footer -->
+        <footer class="community-footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo-white.png" alt="Beneath The Blue Logo" width="120" height="120">
+                    </div>
+                    <p class="footer-tagline">Protecting our oceans, one community at a time.</p>
+                    <div class="footer-app-links">
+                        <p>Download our app:</p>
+                        <div class="app-buttons">
+                            <a href="#" class="app-store-btn" aria-label="Download on the App Store">
+                                <i class="fab fa-apple"></i> App Store
+                            </a>
+                            <a href="#" class="play-store-btn" aria-label="Get it on Google Play">
+                                <i class="fab fa-google-play"></i> Google Play
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-links-container">
+                    <div class="footer-links">
+                        <h4>About</h4>
+                        <a href="about.html">Our Mission</a>
+                        <a href="team.html">Our Team</a>
+                        <a href="partners.html">Partners</a>
+                        <a href="careers.html">Careers</a>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <a href="blog.html">Blog</a>
+                        <a href="research.html">Research</a>
+                        <a href="reports.html">Reports</a>
+                        <a href="tools.html">Tools</a>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Support</h4>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="faq.html">FAQ</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                    </div>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for the latest ocean conservation news.</p>
+                    <form class="newsletter-form">
+                        <label for="newsletter-email" class="sr-only">Email address</label>
+                        <input type="email" id="newsletter-email" placeholder="Your email address" required>
+                        <button type="submit" class="subscribe-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <p>Connect with us:</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-copyright">
+                    <p>© 2023 Beneath The Blue. All rights reserved.</p>
+                    <div class="footer-legal">
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="cookies.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="scripts.js"></script>
+    <script>
+        // Video fallback check
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-background');
+            
+            // If video errors out or doesn't load within 3 seconds
+            video.addEventListener('error', showFallback);
+            
+            setTimeout(function() {
+                if (video.readyState < 3) { // HAVE_FUTURE_DATA
+                    showFallback();
+                }
+            }, 3000);
+            
+            function showFallback() {
+                const fallback = document.createElement('img');
+                fallback.src = '../static/image/ocean-fallback.jpg';
+                fallback.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-3;';
+                document.body.appendChild(fallback);
+            }
+            
+            // Animate stat numbers
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(number => {
+                const target = parseInt(number.textContent.replace(/,/g, ''));
+                let current = 0;
+                const increment = target / 30;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        current = target;
+                    }
+                    number.textContent = Math.floor(current).toLocaleString();
+                }, 30);
+            });
+            
+            // Back to top button
+            window.addEventListener('scroll', function() {
+                const backToTopButton = document.querySelector('.back-to-top');
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.opacity = '1';
+                    backToTopButton.style.visibility = 'visible';
+                } else {
+                    backToTopButton.style.opacity = '0';
+                    backToTopButton.style.visibility = 'hidden';
+                }
+            });
+            
+            document.querySelector('.back-to-top').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+ {% endblock %} 
