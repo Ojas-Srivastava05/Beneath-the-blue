@@ -23,8 +23,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="{% url 'home' %}" class="nav-link">~Home</a></li>
-                    <li><a href="{% url 'explore_map' %}" class="nav-link">~Community</a></li>
+                    
                     <li><form method="get" class="search-bar" style="color : #FFDAB9;">
                   {% csrf_token %}
                   <select id="category_select" onchange="location = this.value;" aria-placeholder="Select a category">
@@ -33,9 +32,9 @@
                       <option value="{% url 'community_page' %}?category={{ category.id }}" {% if category.id == Category_selected.id %}selected{% endif %}>{{ category.name }}</option>
                     {% endfor %}
                   </select>
-                </form></li>
-                        <li><a href="{% url 'sign_up' %}" class="nav-btn secondary-btn">~Sign Up</a></li>
-                    </ul>
+                </form>
+                <li><a href="{% url 'home' %}" class="nav-link">Back</a></li>
+                    
                     {% comment %} <button class="hamburger" id="hamburger" aria-label="Menu">
                         <span></span>
                         <span></span>
