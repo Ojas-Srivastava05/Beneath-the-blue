@@ -12,7 +12,7 @@
     --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 .p{
-    color:  var(--deep-ocean);
+    color:  var(--deep-ocean) ;
 }
 /* Base Styles */
 body {

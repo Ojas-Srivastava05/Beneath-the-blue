@@ -1,9 +1,9 @@
 /* ocean/static/ocean/css/styles.css */
 
 /* Global Styles */
-:root {
+/* :root {
     /* Updated Ocean Color Palette */
-    --deep-abyss: #00587a;
+    /* --deep-abyss: #00587a;
     --ocean-depths: #008891;
     --marine-teal: #00a8cc;
     --sea-foam: #a7ecee;
@@ -11,7 +11,7 @@
     --golden-sunlight: #ffb347;
     --pearl: #f8f9fa;
     --midnight-wave: #0f3057;
-}
+} */ 
 .header{
     margin-top:-10% ;
 }
@@ -75,90 +75,7 @@ p {
     line-height: 1.8;
 }
 
-
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    padding: 10px 0;
-}
-
-.logo:hover {
-    transform: translateX(5px);
-}
-
-
-.logo h1 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1.8rem;
-    letter-spacing: 1px;
-    background: linear-gradient(to right, var(--sea-foam), white);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
-
-/* Navigation Menu */
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-nav li {
-    position: relative;
-}
-
-nav a {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    color: var(--pearl);
-    text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    padding: 12px 0;
-    font-size: 1.05rem;
-    letter-spacing: 0.5px;
-    display: block;
-}
-
-nav a::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 3px;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(90deg, var(--marine-teal), var(--sea-foam));
-    transition: all 0.3s ease;
-    border-radius: 3px 3px 0 0;
-}
-
-nav a:hover {
-    color: var(--sea-foam);
-}
-
-nav a:hover::before {
-    width: 100%;
-}
-
-nav a.active {
-    color: var(--sea-foam);
-    font-weight: 700;
-}
-
-nav a.active::before {
-    width: 100%;
-    background: var(--sea-foam);
-}
+ 
 
 /* Navigation Button */
 .btn-nav {
@@ -174,7 +91,7 @@ nav a.active::before {
     position: relative;
     overflow: hidden;
 }
-
+/* 
 .btn-nav::before {
     content: '';
     position: absolute;
@@ -193,7 +110,7 @@ nav a.active::before {
 
 .btn-nav:hover::before {
     left: 100%;
-}
+} */
 
 /* Mobile Menu Toggle */
 .menu-toggle {
