@@ -1,0 +1,295 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneath the Blue - Community Posts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Playfair+Display:wght@700;900&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'ocean/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'ocean/css/posts.css' %}">
+</head>
+<body>
+    <!-- Full Page Video Background -->
+    <video id="fullpage-video-bg" autoplay muted loop>
+        <source src="{% static 'ocean/videos/ocean-bg.mp4' %}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div id="video-overlay"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="{% url 'home' %}" class="logo">
+                <img src="{% static 'ocean/images/whale-logo.png' %}" alt="Beneath the Blue Logo">
+                <h1>Beneath the Blue</h1>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'explore_map' %}">Explore</a></li>
+                    <li><a href="{% url 'threats' %}">Threats</a></li>
+                    <li><a href="{% url 'endangered_species' %}">Species</a></li>
+                    <li><a href="{% url 'community_page' %}">Community</a></li>
+                    <li><a href="{% url 'quiz' %}">Quiz</a></li>
+                    <li><a href="{% url 'posts' %}" class="active">Posts</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}">Profile</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title"><i class="fas fa-comments"></i> Community Posts</h1>
+            
+            {% if user.is_authenticated %}
+            <div class="create-post card">
+                <h2><i class="fas fa-edit"></i> Create a New Post</h2>
+                <form id="post-form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="content" id="post-content" placeholder="Share your ocean thoughts..." required></textarea>
+                    </div>
+                    <div class="form-group media-upload">
+                        <label for="post-media" class="upload-btn">
+                            <i class="fas fa-camera"></i>
+                            <span>Add Photo/Video</span>
+                            <input type="file" id="post-media" name="media" accept="image/*, video/*">
+                        </label>
+                        <div class="media-preview" id="media-preview"></div>
+                    </div>
+                    <button type="submit" class="btn post-btn"><i class="fas fa-paper-plane"></i> Post to Community</button>
+                </form>
+            </div>
+            {% endif %}
+
+            <div class="posts-container">
+                <!-- Dummy Post 1 -->
+                <div class="post card" data-post-id="1">
+                    <div class="post-header">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #00a8cc;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h3 class="username">MarineBiologist42</h3>
+                                <p class="post-time">2 hours ago</p>
+                            </div>
+                        </div>
+                        <button class="post-options"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                    
+                    <div class="post-content">
+                        <p>Just spotted a rare sea turtle nesting site during my research expedition! 🐢 Remember to keep beaches clean and lights dim during nesting season to protect these beautiful creatures. #SeaTurtleConservation #MarineBiology</p>
+                        <div class="post-media">
+                            <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Sea turtle on beach">
+                        </div>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="like-btn liked" data-post-id="1">
+                            <i class="fas fa-heart"></i>
+                            <span class="like-count">24</span>
+                        </button>
+                        <button class="comment-btn">
+                            <i class="fas fa-comment"></i>
+                            <span>Comment</span>
+                        </button>
+                        <button class="share-btn">
+                            <i class="fas fa-share"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                    
+                    <div class="comments-section">
+                        <div class="comments-list">
+                            <div class="comment">
+                                <div class="comment-user">
+                                    <div class="avatar small" style="background-color: #008891;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <span class="comment-username">OceanLover99</span>
+                                </div>
+                                <p class="comment-text">Amazing sighting! What beach was this at?</p>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-user">
+                                    <div class="avatar small" style="background-color: #00587a;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <span class="comment-username">CoralReefGuardian</span>
+                                </div>
+                                <p class="comment-text">We need to protect these nesting sites! Thanks for sharing.</p>
+                            </div>
+                        </div>
+                        
+                        <form class="comment-form" data-post-id="1">
+                            <input type="text" placeholder="Add a comment..." required>
+                            <button type="submit">Post</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Dummy Post 2 -->
+                <div class="post card" data-post-id="2">
+                    <div class="post-header">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #ff7e67;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h3 class="username">DeepSeaExplorer</h3>
+                                <p class="post-time">1 day ago</p>
+                            </div>
+                        </div>
+                        <button class="post-options"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                    
+                    <div class="post-content">
+                        <p>Check out this incredible bioluminescent plankton we encountered during our night dive! The ocean never ceases to amaze me with its natural wonders. 🌊✨ #Bioluminescence #NightDive</p>
+                        <div class="post-media">
+                            <video controls>
+                                <source src="https://assets.mixkit.co/videos/preview/mixkit-underwater-view-of-the-sea-1178-large.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="like-btn" data-post-id="2">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">56</span>
+                        </button>
+                        <button class="comment-btn">
+                            <i class="far fa-comment"></i>
+                            <span>Comment</span>
+                        </button>
+                        <button class="share-btn">
+                            <i class="fas fa-share"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                    
+                    <div class="comments-section">
+                        <div class="comments-list">
+                            <div class="comment">
+                                <div class="comment-user">
+                                    <div class="avatar small" style="background-color: #ffb347;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <span class="comment-username">DiveMaster</span>
+                                </div>
+                                <p class="comment-text">Where was this? I'd love to experience this!</p>
+                            </div>
+                        </div>
+                        
+                        <button class="view-all-comments">View all 8 comments</button>
+                        
+                        <form class="comment-form" data-post-id="2">
+                            <input type="text" placeholder="Add a comment..." required>
+                            <button type="submit">Post</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Dummy Post 3 -->
+                <div class="post card" data-post-id="3">
+                    <div class="post-header">
+                        <div class="user-info">
+                            <div class="avatar" style="background-color: #a7ecee;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h3 class="username">PlasticFreeOceans</h3>
+                                <p class="post-time">3 days ago</p>
+                            </div>
+                        </div>
+                        <button class="post-options"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                    
+                    <div class="post-content">
+                        <p>Our beach cleanup this weekend removed over 200kg of plastic waste! Huge thanks to all the volunteers who came out. Every piece of trash removed makes a difference for marine life. 🐠 #BeachCleanup #PlasticFreeOceans</p>
+                        <div class="post-media">
+                            <img src="https://images.unsplash.com/photo-1584473457406-6240486418e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Beach cleanup volunteers">
+                        </div>
+                    </div>
+                    
+                    <div class="post-actions">
+                        <button class="like-btn liked" data-post-id="3">
+                            <i class="fas fa-heart"></i>
+                            <span class="like-count">89</span>
+                        </button>
+                        <button class="comment-btn">
+                            <i class="far fa-comment"></i>
+                            <span>Comment</span>
+                        </button>
+                        <button class="share-btn">
+                            <i class="fas fa-share"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                    
+                    <div class="comments-section">
+                        <div class="comments-list">
+                            <div class="comment">
+                                <div class="comment-user">
+                                    <div class="avatar small" style="background-color: #0f3057;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <span class="comment-username">EcoWarrior</span>
+                                </div>
+                                <p class="comment-text">Amazing work! When's your next cleanup? I'd love to join!</p>
+                            </div>
+                            <div class="comment">
+                                <div class="comment-user">
+                                    <div class="avatar small" style="background-color: #495057;">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <span class="comment-username">SustainableLiving</span>
+                                </div>
+                                <p class="comment-text">This is so inspiring! We need more initiatives like this.</p>
+                            </div>
+                        </div>
+                        
+                        <button class="view-all-comments">View all 12 comments</button>
+                        
+                        <form class="comment-form" data-post-id="3">
+                            <input type="text" placeholder="Add a comment..." required>
+                            <button type="submit">Post</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{% static 'ocean/js/posts.js' %}"></script>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav ul').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
