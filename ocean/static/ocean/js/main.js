@@ -104,3 +104,36 @@ document.addEventListener('DOMContentLoaded', function() {
     setupNavbarScroll();
     setupFormHandlers();
 });
+
+// Navbar hide/show on scroll
+let lastScroll = 0;
+const navbar = document.querySelector('header');
+const scrollThreshold = 100;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll <= scrollThreshold) {
+        navbar.classList.remove('hide-nav');
+        return;
+    }
+    
+    if (currentScroll > lastScroll && !navbar.classList.contains('hide-nav')) {
+        // Scroll down - hide navbar
+        navbar.classList.add('hide-nav');
+    } else if (currentScroll < lastScroll && navbar.classList.contains('hide-nav')) {
+        // Scroll up - show navbar
+        navbar.classList.remove('hide-nav');
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// Mobile menu toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav ul');
+
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
