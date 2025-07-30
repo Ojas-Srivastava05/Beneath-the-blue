@@ -21,8 +21,12 @@ a{
 }
 
 /* General Styles */
+* {
+  font-family: inherit !important; /* Nuclear option (use sparingly) */
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif !important;
     margin: 0;
     padding: 0;
     position: relative;
@@ -80,6 +84,10 @@ body {
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s;
+    backdrop-filter: blur(15px);
+    background: rgba(0, 80, 120, 0.2);
+
+
 }
 
 .threat-card:hover, .solution-card:hover {

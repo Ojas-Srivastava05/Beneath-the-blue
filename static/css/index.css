@@ -20,9 +20,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+* {
+  font-family: inherit !important; /* Nuclear option (use sparingly) */
+}
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif !important;
     color: var(--pearl);
     line-height: 1.7;
     position: relative;
@@ -32,7 +35,7 @@ body {
 
 /* Typography Hierarchy */
 h1 {
-    font-family: 'Playfair Display', serif;
+    /* font-family: 'Source Sans Pro', sans-serif; */
     font-weight: 900;
     font-size: 3.5rem;
     color: var(--sea-foam);
@@ -42,7 +45,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     font-weight: 800;
     font-size: 2.8rem;
     color: var(--sea-foam);
@@ -51,7 +54,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'Playfair Display', serif;
+    /* font-family: 'Playfair Display', serif; */
     font-weight: 700;
     font-size: 2.2rem;
     color: var(--marine-teal);
@@ -59,7 +62,7 @@ h3 {
 }
 
 h4 {
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     font-weight: 600;
     font-size: 1.8rem;
     color: var(--golden-sunlight);
@@ -67,7 +70,7 @@ h4 {
 }
 
 p {
-    font-family: 'Source Sans Pro', sans-serif;
+    /* font-family: 'Source Sans Pro', sans-serif; */
     font-weight: 400;
     font-size: 1.1rem;
     color: var(--pearl);
@@ -75,7 +78,94 @@ p {
     line-height: 1.8;
 }
 
+<<<<<<< HEAD
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 10px 0;
+}
+
+.logo:hover {
+    transform: translateX(5px);
+}
+
+
+.logo h1 {
+    /* font-family: 'Playfair Display', serif; */
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, var(--sea-foam), white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Navigation Menu */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    position: relative;
+}
+
+nav a {
+    /* font-family: 'Raleway', sans-serif; */
+    font-weight: 600;
+    color: var(--pearl);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    padding: 12px 0;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    display: block;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, var(--marine-teal), var(--sea-foam));
+    transition: all 0.3s ease;
+    border-radius: 3px 3px 0 0;
+}
+
+nav a:hover {
+    color: var(--sea-foam);
+}
+
+nav a:hover::before {
+    width: 100%;
+}
+
+nav a.active {
+    color: var(--sea-foam);
+    font-weight: 700;
+}
+
+nav a.active::before {
+    width: 100%;
+    background: var(--sea-foam);
+}
+=======
  
+>>>>>>> 227c5191c502e6dc0f4a50acdac610ea552511ac
 
 /* Navigation Button */
 .btn-nav {
@@ -266,7 +356,7 @@ p {
 }
 
 .fact-number {
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     font-weight: 800;
     font-size: 3rem;
     display: block;
@@ -312,14 +402,14 @@ p {
 }
 
 .feature-text h4 {
-    font-family: 'Playfair Display', serif;
+    /* font-family: 'Playfair Display', serif; */
     font-weight: 700;
     margin-bottom: 20px;
     color: var(--sea-foam);
 }
 
 .feature-text p {
-    font-family: 'Source Sans Pro', sans-serif;
+    /* font-family: 'Source Sans Pro', sans-serif; */
     margin-bottom: 25px;
 }
 
@@ -371,7 +461,7 @@ p {
     border: none;
     border-radius: 30px 30px 0 0;
     cursor: pointer;
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     font-weight: 600;
     transition: all 0.3s;
     border: 1px solid rgba(167, 236, 238, 0.2);
@@ -412,7 +502,7 @@ p {
 }
 
 .action-form h4 {
-    font-family: 'Playfair Display', serif;
+    /* font-family: 'Playfair Display', serif; */
     margin-bottom: 25px;
     color: var(--sea-foam);
     text-align: center;

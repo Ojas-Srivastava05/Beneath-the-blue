@@ -19,8 +19,13 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        * {
+            font-family: inherit !important; /* Nuclear option (use sparingly) */
+          }
+
 
         body {
+            font-family: 'Source Sans Pro', sans-serif !important;
             background-color: var(--light-gray);
             color: var(--dark-gray);
             line-height: 1.6;

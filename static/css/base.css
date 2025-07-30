@@ -1,6 +1,6 @@
 
 body {
-  font-family: "Poppins", sans-serif;
+  /* font-family: 'Source Sans Pro', sans-serif; */
   font-optical-sizing: auto;
   margin: 0%; 
   overflow: scroll; 
@@ -38,7 +38,11 @@ p {
 }
 
 .logo {
+<<<<<<< HEAD
     font-family: 'Playfair Display', serif;
+=======
+    font-family: 'playfair display', serif;
+>>>>>>> c0c52c238fbe0f3e7febae96fc165db443194bab
     display: flex;
     align-items: center;
     gap: 12px;
@@ -54,14 +58,16 @@ p {
 
 .logo h1 {
     font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 1.8rem;
+    font-weight: 900; /* Extra bold */
+    font-size: 3rem; /* Larger size */
     letter-spacing: 1px;
     background: linear-gradient(to right, var(--sea-foam), white);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    margin: 0; /* Remove default margins */
+    line-height: 1.2; /* Better line spacing */
 }
 .logo:hover h1 {
   text-shadow: 0 0 .75em rgba(167, 236, 238, 0.5);
@@ -81,17 +87,37 @@ nav li {
 
 nav a {
     font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    color: var(--pearl);
-    text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    padding: 12px 0;
-    font-size: 1.05rem;
+    font-weight: 600; /* Semi-bold */
+    font-size: 1rem; /* Slightly smaller than logo */
     letter-spacing: 0.5px;
-    display: block;
+    text-transform: none; /* Remove if you had uppercase */
+    /* Rest of your existing nav styles */
 }
 
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .logo h1 {
+        font-size: 2rem; /* Slightly smaller on tablets */
+    }
+    nav a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .logo h1 {
+        font-size: 1.8rem; /* Smaller on mobile */
+    }
+    nav a {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .logo h1 {
+        font-size: 1.5rem; /* Smallest size for very small devices */
+    }
+}
 nav a::before {
     content: '';
     position: absolute;
