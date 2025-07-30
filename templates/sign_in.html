@@ -1,12 +1,20 @@
-{% extends "base.html" %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="{% static 'photo/logo.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
-{% block content %}
 <link rel="stylesheet" href="{% static 'css/sing_in_up.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 <title>Beneath the Blue - Sign In</title>
-
+</head>
+<body>
 <!-- Background Video -->
 <video autoplay muted loop id="bg-video" playsinline>
     <source src="{% static 'videos/sign-up-bg.mp4' %}" type="video/mp4">
@@ -104,5 +112,5 @@
 
 <!-- JavaScript for enhanced functionality -->
 <script src="{% static 'js/sign-in.js' %}"></script>
-
-{% endblock %} 
+</body>
+</html>

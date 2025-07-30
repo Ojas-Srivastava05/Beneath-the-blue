@@ -12,58 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    {% comment %} <header class="header">
-        <div class="container header-container">
-            <div class="logo">
-                <h1>Beneath the Blue</h1>
-            </div>
-            <nav>
-                <ul id="navMenu">
-                    {% for link in navbar_links %}
-                        <li><a href="{{ link.url }}">{{ link.text }}</a></li>
-                    {% endfor %}
-                </ul>
-                <div id="hamburger" class="hamburger">
-                    <span></span><span></span><span></span>
-                </div>
-            </nav>
-        </div>
-    </header> {% endcomment %}
     {% block content %}{% endblock %}
-    <footer id="community">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Beneath the Blue</h4>
-                    <p>Exploring and protecting the wonders below the surface through education and innovation.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Dive Deeper</h4>
-                    <ul>
-                        <li><a href="{% url 'explore_map' %}">Depth Explorer</a></li>
-                        <li><a href="{% url 'threats' %}">Ocean Threats</a></li>
-                        <li><a href="#solutions">Hope Spots</a></li>
-                        <li><a href="#take-action">Make Waves</a></li>
-                        <li><a href="#">Educational Resources</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:contact@beneaththeblue.org">contact@beneaththeblue.org</a></p>
-                    <p><i class="fas fa-phone"></i> Phone: +1 (800) OCE-DEEP</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Address: 456 Abyss Lane, Coastal City</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; {% now "Y" %} Beneath the Blue. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
-            </div>
-        </div>
+  <footer class="community" style="margin-top: 1em;" >
+    <div style="text-align: center;">
+          <p>&copy; 2025 Beneath The Blue. All rights reserved.</p>
+          <p>Dedicated to protect marine life for future generations.</p>
+    </div>
     </footer>
     <script>
         // Mobile menu toggle

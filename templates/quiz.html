@@ -22,8 +22,8 @@
             </div>
             <nav>
                 <ul>
-                     <li><a href="{% url 'home' %}" class="nav-link">~Home</a></li>
-                    <li><a href="{% url 'endangered_species' %}" class="nav-link" style="color: #00c6e6">~Endangered Species</a></li>
+                     <li><a href="{% url 'home' %}">Back</a></li>
+                    
                 </ul>
                     <button class="hamburger" id="hamburger" aria-label="Menu">
                         <span></span>
@@ -53,7 +53,7 @@
                     <input type="hidden" name="quiz_id" value="{{ quiz_id }}">
                     
                     <div class="quiz-intro">
-                        <p>Test your knowledge about our amazing oceans! Complete all {{ questions_data|length }} questions to see your marine expertise score.</p>
+                        <p style="color: rgb(0,0,9);">Test your knowledge about our amazing oceans! Complete all {{ questions_data|length }} questions to see your marine expertise score.</p>
                     </div>
                     
                     <div class="quiz-questions">
@@ -115,10 +115,6 @@
                 </form>
             </div>
         </main>
-        
-        <footer class="quiz-footer">
-            <p>© 2025 Beneath The Blue | Protecting our oceans for future generations</p>
-        </footer>
     </div>
 
     <script>

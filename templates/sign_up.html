@@ -1,12 +1,21 @@
-{% extends "base.html" %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="{% static 'photo/logo.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
-{% block content %}
 <link rel="stylesheet" href="{% static 'css/sing_in_up.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <title>Beneath the Blue - Sign Up</title>
-
+</head>
+<body
 <!-- Background Video -->
 <video autoplay muted loop id="bg-video" playsinline>
     <source src="{% static 'videos/sign-up-bg.mp4' %}" type="video/mp4">
@@ -312,192 +321,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
-<style>
-/* Additional styles for enhanced effects */
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
-    pointer-events: none;
-}
-
-@keyframes ripple-animation {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-.signin-link {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-size: 1rem;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-    display: block;
-}
-
-.signin-link:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.signin-link i {
-    margin-right: 8px;
-}
-
-/* Password Strength Indicator */
-.password-strength {
-    margin: 15px 0;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-}
-
-.strength-bar {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 8px;
-}
-
-.strength-fill {
-    height: 100%;
-    width: 0%;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-}
-
-.strength-text {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Terms Checkbox */
-.terms-checkbox {
-    margin: 20px 0;
-}
-
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    cursor: pointer;
-    position: relative;
-    padding-left: 35px;
-}
-
-.checkbox-container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-.checkmark {
-    position: absolute;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.checkbox-container:hover input ~ .checkmark {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.checkbox-container input:checked ~ .checkmark {
-    background: #00d4ff;
-    border-color: #00d4ff;
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.checkbox-container input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.checkbox-container .checkmark:after {
-    left: 6px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.terms-link {
-    color: #00d4ff;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.terms-link:hover {
-    color: #0099cc;
-    text-decoration: underline;
-}
-
-/* Enhanced input focus effects */
-.modal-field input:focus + i {
-    color: #00d4ff;
-    transform: translateY(-50%) scale(1.1);
-}
-
-/* Button loading state */
-.modal-content-btn button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-/* Responsive improvements */
-@media (max-width: 480px) {
-    .modal-content {
-        padding: 25px 15px;
-        margin: 10px;
-    }
-    
-    .logo-section img {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .logo-section h1 {
-        font-size: 1.8rem;
-    }
-    
-    .checkbox-container {
-        font-size: 0.8rem;
-        padding-left: 30px;
-    }
-    
-    .checkmark {
-        height: 18px;
-        width: 18px;
-    }
-}
-</style>
-
-{% endblock %} 
+</body>
+</html>

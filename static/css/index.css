@@ -1,9 +1,9 @@
 /* ocean/static/ocean/css/styles.css */
 
 /* Global Styles */
-:root {
+/* :root {
     /* Updated Ocean Color Palette */
-    --deep-abyss: #00587a;
+    /* --deep-abyss: #00587a;
     --ocean-depths: #008891;
     --marine-teal: #00a8cc;
     --sea-foam: #a7ecee;
@@ -11,7 +11,7 @@
     --golden-sunlight: #ffb347;
     --pearl: #f8f9fa;
     --midnight-wave: #0f3057;
-}
+} */ 
 .header{
     margin-top:-10% ;
 }
@@ -78,6 +78,7 @@ p {
     line-height: 1.8;
 }
 
+<<<<<<< HEAD
 
 
 .logo {
@@ -162,6 +163,9 @@ nav a.active::before {
     width: 100%;
     background: var(--sea-foam);
 }
+=======
+ 
+>>>>>>> 227c5191c502e6dc0f4a50acdac610ea552511ac
 
 /* Navigation Button */
 .btn-nav {
@@ -177,7 +181,7 @@ nav a.active::before {
     position: relative;
     overflow: hidden;
 }
-
+/* 
 .btn-nav::before {
     content: '';
     position: absolute;
@@ -196,7 +200,7 @@ nav a.active::before {
 
 .btn-nav:hover::before {
     left: 100%;
-}
+} */
 
 /* Mobile Menu Toggle */
 .menu-toggle {

@@ -11,7 +11,7 @@
         <source src="{% static 'videos/endangered_species-bg.mp4' %}" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
-    
+     <div class="video-overlay"></div>
      <header class="header">
         <div class="container header-content header-container">
             <div class="logo">
@@ -21,8 +21,8 @@
             </div>
             <nav>
                 <ul>
-                     <li><a href="{% url 'home' %}" class="nav-link">~Home</a></li>
-                    <li><a href="{% url 'endangered_species' %}" class="nav-link" style="color: #00c6e6">~Endangered Species</a></li>
+                     <li><a href="{% url 'home' %}" class="nav-link">Back</a></li>
+                    
                 </ul>
             </nav>
         </div>
@@ -131,23 +131,19 @@
                     </div>
                 </div>
             </section>
-        </div>
-       {% endblock %}   
-        <footer>
-            <p>&copy; 2023 Ocean Guardians. All rights reserved.</p>
-            <p>Dedicated to protecting marine life for future generations.</p>
-        </footer>
-    </div>
+        </div>   
     </div>
     <script>
     function playSound(id) {
         const audio = document.getElementById(id);
         if (audio) {
+            if (!audio.paused) {
+                audio.pause();
+            }
             audio.currentTime = 0;
             audio.play();
         }
     }
     </script>
-
 </body>
-    {% comment %} {% endblock %}  {% endcomment %}
+    {% endblock %} 

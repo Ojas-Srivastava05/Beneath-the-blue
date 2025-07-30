@@ -32,3 +32,11 @@ admin.site.register(Threat, ThreatAdmin)
 class SolutionAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'detailed_description', 'image', 'wikipedia_link', 'related_threat', 'implementation_steps', 'benefits', 'created_at')
 admin.site.register(Solution, SolutionAdmin)
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'content', 'file', 'author', 'created_at', 'updated_at','like_count')
+admin.site.register(Post, PostAdmin)
+
+class commnetAdmin(admin.ModelAdmin):
+    list_display = ('post', 'author', 'content', 'created_at')
+admin.site.register(Comment, commnetAdmin)
