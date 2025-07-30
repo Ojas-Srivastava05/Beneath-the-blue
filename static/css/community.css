@@ -110,8 +110,13 @@ body{
     text-decoration: underline;
 }
 
+ * {
+    font-family: inherit !important; /* Nuclear option (use sparingly) */
+   }
+
+
 body, h1, h2, h3, h4, p, .btn, .nav-link, .community_heading, .section h2, .card_paragraph, .intro {
-    font-family: 'Playfair Display', 'Raleway', 'Source Sans Pro', 'Roboto Condensed', serif, sans-serif !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
 }
 .secondary-btn{
     color: #FFFACD;

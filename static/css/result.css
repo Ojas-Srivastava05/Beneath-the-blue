@@ -1,5 +1,15 @@
 /* Result Page Styles */
-
+* {
+  font-family: inherit !important; /* Nuclear option (use sparingly) */
+}
+body {
+    font-family: 'Source Sans Pro', sans-serif !important;
+    margin: 0;
+    padding: 0;
+    color: #2d3748;
+    /* line-height: 1.6; */
+    overflow-x: hidden;
+}
 .p{
     color: #005f73;
 }
