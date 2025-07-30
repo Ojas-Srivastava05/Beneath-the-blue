@@ -38,7 +38,11 @@ p {
 }
 
 .logo {
+<<<<<<< HEAD
+    font-family: 'Playfair Display', serif;
+=======
     font-family: 'playfair display', serif;
+>>>>>>> c0c52c238fbe0f3e7febae96fc165db443194bab
     display: flex;
     align-items: center;
     gap: 12px;
