@@ -25,4 +25,10 @@ urlpatterns = [
     path('submit-idea/', views.submit_idea, name='submit_idea'),
     path('submit-feedback/', views.submit_feedback, name='submit_feedback'),
     path('subscribe/', views.subscribe, name='subscribe'),
+    path('posts/', views.posts, name='posts'),
+      path('explore-map/', views.explore_map, name='explore_map'),
+       path('threats/', views.threats_view, name='threats'), 
+       path('community/', views.community_page, name='community_page'), 
+       path('quiz/', views.quiz_view, name='quiz'),
+path('endangered-species/', views.endangered_species, name='endangered_species'),
 ]

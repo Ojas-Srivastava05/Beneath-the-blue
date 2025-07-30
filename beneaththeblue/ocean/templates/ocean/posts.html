@@ -33,13 +33,13 @@
                     <li><a href="{% url 'community_page' %}">Community</a></li>
                     <li><a href="{% url 'quiz' %}">Quiz</a></li>
                     <li><a href="{% url 'posts' %}" class="active">Posts</a></li>
-                    {% if user.is_authenticated %}
+                    {% comment %} {% if user.is_authenticated %}
                         <li><a href="{% url 'profile' %}">Profile</a></li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
                         <li><a href="{% url 'login' %}">Login</a></li>
                         <li><a href="{% url 'register' %}">Register</a></li>
-                    {% endif %}
+                    {% endif %} {% endcomment %}
                 </ul>
             </nav>
             <div class="menu-toggle">

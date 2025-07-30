@@ -53,3 +53,22 @@ def subscribe(request):
             return JsonResponse({'success': True, 'message': 'Thank you for subscribing!'})
         return JsonResponse({'success': False, 'errors': form.errors}, status=400)
     return JsonResponse({'success': False, 'message': 'Invalid request'}, status=400)
+
+
+
+# ocean/views.py
+def posts(request):
+    return render(request, 'ocean/posts.html')  # or whatever template you want
+
+# ocean/views.py
+def explore_map(request):
+    return render(request, 'ocean/explore_map.html')  # or your template name
+
+def threats_view(request):
+    return render(request, 'ocean/threats.html')  # Create this template\
+def endangered_species(request):
+    return render(request, 'ocean/endangered_species.html')
+def community_page(request):  # Note the name matches the URL
+    return render(request, 'ocean/community.html')
+def quiz_view(request):
+    return render(request, 'ocean/quiz.html')
