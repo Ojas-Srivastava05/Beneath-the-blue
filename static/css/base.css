@@ -1,10 +1,6 @@
- * {
-    font-family: inherit !important; /* Nuclear option (use sparingly) */
- }
-
 
 body {
-  font-family: 'Source Sans Pro', sans-serif !important;
+  /* font-family: 'Source Sans Pro', sans-serif; */
   font-optical-sizing: auto;
   margin: 0%; 
   overflow: scroll; 
@@ -42,7 +38,7 @@ p {
 }
 
 .logo {
-    font-family: playfair display, serif;
+    font-family: 'playfair display', serif;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -59,7 +55,7 @@ p {
 .logo h1 {
     font-family: 'Playfair Display', serif;
     font-weight: 900; /* Extra bold */
-    font-size: 2.5rem; /* Larger size */
+    font-size: 3rem; /* Larger size */
     letter-spacing: 1px;
     background: linear-gradient(to right, var(--sea-foam), white);
     -webkit-background-clip: text;
