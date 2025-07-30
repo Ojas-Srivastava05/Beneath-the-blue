@@ -42,6 +42,7 @@ p {
 }
 
 .logo {
+    font-family: playfair display, serif;
     display: flex;
     align-items: center;
     gap: 12px;
