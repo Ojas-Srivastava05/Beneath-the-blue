@@ -24,38 +24,38 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="{% url 'explore_map' %}">Explore</a></li>
-                    <li><a href="{% url 'threats' %}">Threats</a></li>
-                    {% comment %} <li><a href="{% url 'endangered_species' %}">Species</a></li>
-                    <li><a href="{% url 'community_page' %}">Community</a></li>
-                    <li><a href="{% url 'quiz'%}">Quiz</a></li> {% endcomment %}
-                    <li>
-                        <div class="main_box">
-                            <input type="checkbox" id="check" />
-                            <div class="btn_one">
-                                <label for="check">
-                                    <i class="fa-solid fa-bars"></i>
-                                </label>
-                            </div>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'posts' %}">Posts</a></li>
+                    <li><div class="main_box" style="margin-left: -4em;">
+      <input type="checkbox" id="check" />
+      <div class="btn_one">
+        <label for="check">
+          <i class="fa-solid fa-bars"></i>
+        </label>
+      </div>
 
-                            <div class="sidebar_menu">
-                                <div class="btn_two">
-                                    <label for="check">
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </label>
-                                </div>
+      <div class="sidebar_menu">
+        <div class="btn_two">
+          <label for="check" >
+            <i class="fa-solid fa-xmark"></i>
+          </label>
+        </div>
 
-                                <div class="menu">
-                                    <ul style="display: flex; flex-direction: column; gap: 1em;">
-                                        <li><a href="{% url 'explore_map' %}">Explore</a></li>
-                                        <li><a href="{% url 'threats' %}">Threats</a></li>
-                                        <li><a href="{% url 'endangered_species' %}">Species</a></li>
-                                        <li><a href="{% url 'community_page' %}">Community</a></li>
-                                        <li><a href="{% url 'quiz' %}">Quiz</a></li>
-                                    </ul>
-                                    </li>
+        <div class="menu">
+            <ul style="display: flex; flex-direction: column; gap: 1em;">
+                <li><a href="{% url 'explore_map' %}">Explore</a></li>
+                <li><a href="{% url 'threats' %}">Threats</a></li>
+                <li><a href="{% url 'endangered_species' %}">Species</a></li>
+                <li><a href="{% url 'community_page' %}">Community</a></li>
+                <li><a href="{% url 'quiz' %}">Quiz</a></li>
+            </li></ul>
+        </div>
+        </div>
+                </li>
+                    <li></li>
                 </ul>
-            </nav>
+            </nav>      
+    </div>
         </div>
     </header>
 
