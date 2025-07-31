@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> a68e616 (Navbar Hamburgur style added)
 body {
   font-optical-sizing: auto;
   margin: 0%; 
@@ -17,6 +21,7 @@ a{
   transition: color 0.3s ease;
 }
 h1, .logo, .main-title {
+<<<<<<< HEAD
  font-family: 'Bungee', cursive; font-size: 2em
 }
 
@@ -24,6 +29,13 @@ h1, .logo, .main-title {
    font-family: 'Bungee', cursive; font-size: 1.5em;
  }
 
+=======
+  font-family: 'Playfair Display', serif;
+}
+ h2, h3, .section-heading, .sub-title {
+  font-family: 'Spectral SC', serif;
+ }
+>>>>>>> a68e616 (Navbar Hamburgur style added)
 :root {
     /* Updated Ocean Color Palette */
     --deep-abyss: #00587a;
@@ -48,7 +60,11 @@ h1, .logo, .main-title {
     z-index: 1000;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     border-radius: 3em;
+<<<<<<< HEAD
     margin: 2% 10% auto;
+=======
+    margin: 3% 10% auto;
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(167, 236, 238, 0.1);
@@ -110,7 +126,44 @@ h1, .logo, .main-title {
     width: 30px;
     height: 30px;
 }
+<<<<<<< HEAD
 /*   */
+=======
+
+.hamburger-box {
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 24px;
+}
+
+.hamburger-inner {
+    display: block;
+    top: 50%;
+    margin-top: -2px;
+}
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 30px;
+    height: 2px;
+    background-color: var(--sea-foam);
+    position: absolute;
+    transition: transform 0.15s ease;
+}
+
+.hamburger-inner::before, .hamburger-inner::after {
+    content: '';
+    display: block;
+}
+
+.hamburger-inner::before {
+    top: -8px;
+}
+
+.hamburger-inner::after {
+    bottom: -8px;
+}
+>>>>>>> a68e616 (Navbar Hamburgur style added)
 
 /* Mobile Navigation */
 @media (max-width: 768px) {
@@ -268,7 +321,11 @@ nav a::before {
     border-radius: 3px 3px 0 0;
 }
 
+<<<<<<< HEAD
 /* nav a::after {
+=======
+nav a::after {
+>>>>>>> a68e616 (Navbar Hamburgur style added)
   content: '';
   position: absolute;
   width: 8px;
@@ -279,6 +336,7 @@ nav a::before {
   background-color: var(--sea-foam);
   opacity: 0;
   transition: all 0.3s ease;
+<<<<<<< HEAD
 } */
 /* nav a:hover {
     color: var(--sea-foam);
@@ -289,6 +347,18 @@ nav a:hover::before {
 } */
 
 /* nav a.active {
+=======
+}
+nav a:hover {
+    color: var(--sea-foam);
+}
+
+nav a:hover::before {
+    width: 100%;
+}
+
+nav a.active {
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     color: var(--sea-foam);
     font-weight: 700;
 }
@@ -300,7 +370,11 @@ nav a.active::before {
 }
 nav a:hover::after {
   opacity: 0; /* Removing the diamond shape */
+<<<<<<< HEAD
 
+=======
+}
+>>>>>>> a68e616 (Navbar Hamburgur style added)
 /* Responsive and animation styles from quiz.css */
 @media (max-width: 768px) {
     .quiz-container {
@@ -376,7 +450,11 @@ html {
 h1 {
   font-weight: 900;
   font-size: 3.5em;
+<<<<<<< HEAD
   /* color: var(--sea-foam); */
+=======
+  color: var(--sea-foam);
+>>>>>>> a68e616 (Navbar Hamburgur style added)
   line-height: 1.2;
   letter-spacing: 0.1em;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
@@ -385,7 +463,11 @@ h1 {
 h2 {
   font-weight: 800;
   font-size: 2.8rem;
+<<<<<<< HEAD
   /* color: var(--sea-foam); */
+=======
+  color: var(--sea-foam);
+>>>>>>> a68e616 (Navbar Hamburgur style added)
   margin-bottom: 1.5rem;
   letter-spacing: 0.3px;
 }
@@ -426,25 +508,63 @@ header.hide {
 /* --- Responsive Navbar & Layout --- */
 @media (max-width: 900px) {
   .header {
+<<<<<<< HEAD
     width:80%;
+=======
+    width: 96%;
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     margin: 2% auto;
     border-radius: 2em;
     padding: 10px 0;
   }
+<<<<<<< HEAD
+=======
+  .header-container {
+    flex-direction: column;
+    height: auto;
+    padding: 0 1rem;
+  }
+>>>>>>> a68e616 (Navbar Hamburgur style added)
   nav ul {
     gap: 1.2em;
   }
 }
 @media (max-width: 700px) {
   .header {
+<<<<<<< HEAD
     width: 80%;
     border-radius: 2em;
+=======
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     padding: 8px 0;
   }
   .header-container {
     padding: 0 0.5rem;
     height: auto;
   }
+<<<<<<< HEAD
+=======
+  nav ul {
+    flex-direction: column;
+    gap: 1em;
+    background: #0a2239;
+    position: absolute;
+    top: 3.75rem;
+    right: 0;
+    width: 70vw;
+    min-width: 120px;
+    box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.15);
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 1rem 0.5rem;
+    display: none;
+  }
+  nav ul.active {
+    display: flex;
+  }
+>>>>>>> a68e616 (Navbar Hamburgur style added)
   .hamburger {
     display: block;
     cursor: pointer;
@@ -457,9 +577,12 @@ header.hide {
 @media (max-width: 500px) {
   .header {
     padding: 4px 0;
+<<<<<<< HEAD
     width: 100%;
     margin: 0;
     border-radius: 0;
+=======
+>>>>>>> a68e616 (Navbar Hamburgur style added)
   }
   .logo h1 {
     font-size: 0.95rem;
@@ -501,7 +624,11 @@ footer::before {
     left: 0;
     width: 100%;
     height: 10px;
+<<<<<<< HEAD
     background: linear-gradient(to right, var(--sea-foam),var(--ocean-depths));
+=======
+    background: linear-gradient(to right, #ffb347, #ff7e67);
+>>>>>>> a68e616 (Navbar Hamburgur style added)
 }
 
 .footer-content {
@@ -512,6 +639,10 @@ footer::before {
 }
 
 .footer-section h4 {
+<<<<<<< HEAD
+=======
+    font-family: 'Playfair Display', serif;
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     font-weight: 700;
     margin-bottom: 25px;
     color: white;
@@ -616,17 +747,29 @@ footer::before {
 }
 
 #check:checked ~ .menu-icon {
+<<<<<<< HEAD
     background:  var(--card_bg);
+=======
+    background: rgba(255, 255, 255, 0.2);
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     color: white;
 }
 
 /* Animation for menu items */
+<<<<<<< HEAD
 /* .menu li {
+=======
+.menu li {
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     opacity: 0;
     transform: translateX(-20px);
     transition: all 0.3s ease;
     transition-delay: calc(0.1s * var(--i));
+<<<<<<< HEAD
 } */
+=======
+}
+>>>>>>> a68e616 (Navbar Hamburgur style added)
 
 #check:checked ~ .sidebar_menu .menu li {
     opacity: 1;
@@ -692,8 +835,12 @@ footer::before {
     position: absolute;
     top: calc(100% + 0.5rem);
     right: 0;
+<<<<<<< HEAD
     background:linear-gradient(159deg, rgba(0,88,122,0.9) 0%, rgba(0,168,204,0.9) 100%);
     backdrop-filter:invert(80%) ;
+=======
+    background: rgba(0, 88, 122, 0.15);
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     visibility: hidden;
@@ -745,22 +892,40 @@ footer::before {
     color: rgba(255, 255, 255, 0.85);
     font-size: 0.95rem;
     font-weight: 500;
+<<<<<<< HEAD
     padding: 0.4rem 1.2rem;
     display: block;
     transition: all 0.25s ease;
     /* border-radius: 6px;
     background: rgba(255, 255, 255, 0.03); */
     letter-spacing: 0.3px;
+=======
+    padding: 0.8rem 1.2rem;
+    display: block;
+    transition: all 0.25s ease;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    letter-spacing: 0.3px;
+    font-family: 'Sansita', sans-serif;
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     margin: 0.2rem 0;
     border: 1px solid transparent;
 }
 
+<<<<<<< HEAD
 /* .menu li a:hover {
+=======
+.menu li a:hover {
+>>>>>>> a68e616 (Navbar Hamburgur style added)
     background: rgba(255, 255, 255, 0.07);
     color: var(--sea-foam);
     transform: translateX(4px);
     border-color: rgba(167, 236, 238, 0.1);
+<<<<<<< HEAD
 } */
+=======
+}
+>>>>>>> a68e616 (Navbar Hamburgur style added)
 
 .menu-header {
     display: flex;
@@ -827,6 +992,7 @@ footer::before {
 #check:checked~ .btn_one{
     opacity: 0;
 }
+<<<<<<< HEAD
 
 .image-bg-wrapper {
     position: fixed;
@@ -855,3 +1021,5 @@ footer::before {
     position: relative;
     z-index: 1;
 }
+=======
+>>>>>>> a68e616 (Navbar Hamburgur style added)
