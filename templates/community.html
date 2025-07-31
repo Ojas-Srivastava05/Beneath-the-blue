@@ -5,12 +5,9 @@
     <link rel="stylesheet" href="{% static 'css/community.css' %}">
     <title>Beneath The Blue Community</title>
     <style>
-        
-    
-
-
         .image-bg-wrapper {
             background-image: url('combg.jpg');
+            background-size: 100% 100%; /* Stretches to fill screen (may distort) */
             background-size: cover;    /* Ensures full coverage without stretching */
             background-position: center; /* Centers the image */
             background-repeat: no-repeat;
@@ -25,10 +22,11 @@
             overflow: hidden;
         }
         .image-bg-wrapper img {
-            width: 100%;
+            {% comment %} width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 1;
+            opacity: 1; {% endcomment %}
+            display:none;
         }
         .image-overlay {
             {% comment %} position: absolute;
