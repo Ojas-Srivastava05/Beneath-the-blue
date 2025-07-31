@@ -189,7 +189,15 @@ nav ul li {
     border-radius: 0.5rem;
     transition: all 0.3s ease;
     background-color: rgba(0, 30, 60, 0.7);
-}
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass blur */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-radius: 12px; /* Rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for depth */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    transition: all 0.3s ease; }
+
+
 
 .card-container:hover {
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
