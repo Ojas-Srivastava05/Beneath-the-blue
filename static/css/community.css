@@ -1,8 +1,4 @@
 
-body{
-    margin-top: -3rem;
-    padding: 0rem;
-}
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -95,8 +91,6 @@ body{
 
 
 .card-container:hover {
-     /* background-color: linear-gradient(135deg, #96a6ea 0%,  #210eee 50%,blue 100% );
-     border-block-color: rgb(170 50 220 / 0.6); */
       box-shadow: 0 4px 8px rgba(256, 256, 256, 0.25);
 }
 
@@ -110,14 +104,6 @@ body{
     text-decoration: underline;
 }
 
- * {
-    font-family: inherit !important; /* Nuclear option (use sparingly) */
-   }
-
-
-body, h1, h2, h3, h4, p, .btn, .nav-link, .community_heading, .section h2, .card_paragraph, .intro {
-    font-family: 'Source Sans Pro', sans-serif !important;
-}
 .secondary-btn{
     color: #FFFACD;
 }

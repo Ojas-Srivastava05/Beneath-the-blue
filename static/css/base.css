@@ -1,10 +1,9 @@
 
 body {
-  /* font-family: 'Source Sans Pro', sans-serif; */
   font-optical-sizing: auto;
   margin: 0%; 
   overflow: scroll; 
-
+  font-family: 'Sansita', sans-serif;
 }
 .modal{
   background-image: url("Beneath_the_blue\static\photo\bg.jpg"); /* relative to CSS file */
@@ -13,7 +12,17 @@ body {
 p {
   color: rgba(256, 256, 256, 0.8);
 }
-
+a{
+  color: var(--sea-foam);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+h1, .logo, .main-title {
+  font-family: 'Playfair Display', serif;
+}
+ h2, h3, .section-heading, .sub-title {
+  font-family: 'Spectral SC', serif;
+ }
 :root {
     /* Updated Ocean Color Palette */
     --deep-abyss: #00587a;
@@ -38,7 +47,7 @@ p {
 }
 
 .logo {
-    font-family: 'Playfair Display', serif;
+
     display: flex;
     align-items: center;
     gap: 12px;
@@ -53,7 +62,6 @@ p {
 
 
 .logo h1 {
-    font-family: 'Playfair Display', serif;
     font-weight: 900; /* Extra bold */
     font-size: 3rem; /* Larger size */
     letter-spacing: 1px;
@@ -82,7 +90,8 @@ nav li {
 }
 
 nav a {
-    font-family: 'Raleway', sans-serif;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
     font-weight: 600; /* Semi-bold */
     font-size: 1rem; /* Slightly smaller than logo */
     letter-spacing: 0.5px;
@@ -232,7 +241,6 @@ html {
 
 /* Typography Hierarchy */
 h1 {
-  font-family: 'Playfair Display', serif;
   font-weight: 900;
   font-size: 3.5em;
   color: var(--sea-foam);
@@ -242,7 +250,6 @@ h1 {
 }
 
 h2 {
-  font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 2.8rem;
   color: var(--sea-foam);
@@ -251,7 +258,6 @@ h2 {
 }
 
 h3 {
-  font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: 2em;
   color: var(--coral);
@@ -259,7 +265,6 @@ h3 {
 }
 
 h4 {
-  font-family: 'Raleway', sans-serif;
   font-weight: 600;
   font-size: 1em;
   color: var(--golden-sunlight);
@@ -271,25 +276,6 @@ header.hide {
   transform: translateY(-100%);
   opacity: 0;
 }
-
-
-
-
-/* .nav-btn{
-  background-color: var(--coral);
-  color:inherit;
-  border: none;
-  font-size: 1em;
-  border-radius: 3em;
-  padding: 0.5em 1.5em;
-  background: linear-gradient(159deg, rgba(0,88,122,0.3) 0%, rgba(0,168,204,0.3) 100%);
-}
-
- .nav-btn:hover {
-  background: linear-gradient(159deg, rgba(0,88,122,0.5) 0%, rgba(0,168,204,0.5) 100%);
-  background-color: var(--golden-sunlight);
-  transform: translateY(-2px);
-} */
 
 #bg-video, .background {
         position: fixed;
@@ -434,7 +420,6 @@ footer::before {
 
 .footer-section p {
     margin-bottom: 20px;
-    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .footer-section ul {
@@ -458,7 +443,6 @@ footer::before {
     color: white;
     text-decoration: none;
     transition: all 0.3s;
-    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .footer-section a:hover {
@@ -495,7 +479,6 @@ footer::before {
     text-align: center;
     padding-top: 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-family: 'Source Sans Pro', sans-serif;
     font-size: 0.9rem;
 }
 
@@ -508,4 +491,118 @@ footer::before {
 .footer-bottom a:hover {
     color: var(--golden-sunlight);
     text-decoration: underline;
+}
+
+
+/* option button */
+/* .main_box{ */
+    /* position: relative; */
+    /* background-color: rgba(225, 225, 225,.1);
+    display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    
+/* } */
+#check{
+    display: none;
+}
+.btn_one i{
+    color: #fff;
+    position: absolute;
+    left: 10px;
+    size:50px;
+    font-weight: 700;
+    line-height: 60px;
+    cursor: pointer;
+}
+.sidebar_menu{
+  margin-top: 2em;
+    position: absolute;
+    background-color:  rgba(225, 225, 225,.1);
+    /* opacity: 0.1; */
+    right:-100em;
+    height: 80vh;
+    width: 20em;
+    box-shadow: 0 0 6px rgba(225, 225, 225,.5);
+    transition: 1s;
+}
+.sidebar_menu .logo{
+    position: absolute;
+    width: 100%;
+    line-height: 60px;
+    box-shadow: 4px 2px 6px rgba(225, 225, 225,.5);
+    height: 3em;
+}
+.sidebar_menu .logo a{
+    position: absolute;
+    /* left: 50px; */
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    color:white;
+}
+.sidebar_menu .btn_two i{
+    position: absolute;
+    left:90%;
+    font-size: 1.2em;
+    color:gray;
+    margin-top: .8em;
+    cursor: pointer;
+}
+.menu{
+    position: absolute;
+    margin-top: 4em;
+    color:#fff;
+}
+.menu li{
+    margin: 1em 2em 2em 2em;
+    
+}
+.menu li a{
+    text-decoration: none;
+    color: white;
+    margin-left:1em ;
+}
+.social_media {
+    position: absolute;
+    left: 10%;
+    color: #fff;
+    
+    bottom: 10%;
+}
+.social_media i{
+    opacity: .5;
+}
+.social_media ul a{
+    font-size:1.5em;
+    color :#fff;
+    margin: 4px;
+}
+.menu li:hover{
+    box-shadow: 4px 2px 6px rgba(225, 225, 225,1);
+    height: 2em;
+    width: 100%;
+}
+.main_box .btn_one i:hover{
+    font-size:1.6em;
+    font-weight: 700;
+    transition: 1s;
+}
+.btn_two i:hover{
+    font-size:1.6em;
+    transition: 1s;
+}
+.sidebar_menu .social_media i:hover{
+    opacity: 1.5;
+    color: #fff;
+    transform: scale(1.1);
+}
+#check:checked ~ .sidebar_menu{
+  position: absolute;
+    right: 0;
+    transition: 1s;
+
+}
+#check:checked~ .btn_one{
+    opacity: 0;
 }

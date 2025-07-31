@@ -99,18 +99,6 @@ def sign_up(request):
         register.save()
     return render(request,"sign_up.html")
 
-def solutions(request):
-    solutions_data = Solution.objects.all()
-    return render(request, 'solutions.html', {'solutions_data': solutions_data})
-
-def solution_detail(request, solution_id):
-    try:
-        solution = Solution.objects.get(id=solution_id)
-    except Solution.DoesNotExist:
-        return render(request, 'solution_detail.html', {'error': 'Solution not found.'})
-    
-    return render(request, 'solution_detail.html', {'solution': solution})
-
 
 def post(request):
     posts = Post.objects.all()
