@@ -205,28 +205,38 @@ nav ul li {
 }
 
 .card {
-    color: #ff7e67
+    color: #333;
     margin-bottom: 1rem;
+}
+
+.card h3, 
+.card h4{
+    color:#ff7e67;
+}
+
+.card_paragraph {
+    color: rgba(0, 0, 0, 0.8); /* Dark color for paragraphs */
 }
 
 .card_paragraph a {
     text-decoration: none;
-    color: var(--text-light);
+    color: #ff7e67;
     transition: color 0.3s ease;
 }
 
 .card_paragraph a:hover {
-    color: #ff7e67;
+    color: #ff7347;
 }
 
 .card a {
     text-decoration: none;
-    color: white;
+    color: #ff7e67; 
     font-weight: bold;
 }
 
 .card a:hover {
     text-decoration: underline;
+    color: #ff6347; 
 }
 /* Image background styles (replace the video styles) */
 .image-bg-wrapper {
