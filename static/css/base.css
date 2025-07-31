@@ -315,7 +315,6 @@ header.hide {
     padding: 8px 0;
   }
   .header-container {
-    flex-direction: column;
     padding: 0 0.5rem;
     height: auto;
   }
@@ -494,44 +493,41 @@ footer::before {
 }
 
 
-/* option button */
-/* .main_box{ */
-    /* position: relative; */
-    /* background-color: rgba(225, 225, 225,.1);
-    display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    
-/* } */
 #check{
     display: none;
 }
-.btn_one i{
+/* .btn_one i{
     color: #fff;
     position: absolute;
-    left: 10px;
-    size:50px;
+    /* left: 10px; */
+    /* size:50px;
     font-weight: 700;
     line-height: 60px;
+    cursor: pointer; */
+/* } */ 
+.btn_one {
+    position: absolute;
+    left: .09em;
+    top: -.7em;
+    z-index: 1000;
     cursor: pointer;
+    color: #fff;
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
 }
 .sidebar_menu{
   margin-top: 2em;
     position: absolute;
-    background-color:  rgba(225, 225, 225,.1);
+    background-color: rgba(0, 168, 204, .5);
+
+    backdrop-filter: blur(10px);
     /* opacity: 0.1; */
-    right:-100em;
-    height: 80vh;
-    width: 20em;
+    visibility: hidden;
+    height: 85vh;
+    margin-top:2.3em ;
+    width: 16em;
     box-shadow: 0 0 6px rgba(225, 225, 225,.5);
     transition: 1s;
-}
-.sidebar_menu .logo{
-    position: absolute;
-    width: 100%;
-    line-height: 60px;
-    box-shadow: 4px 2px 6px rgba(225, 225, 225,.5);
-    height: 3em;
 }
 .sidebar_menu .logo a{
     position: absolute;
@@ -543,10 +539,9 @@ footer::before {
 }
 .sidebar_menu .btn_two i{
     position: absolute;
-    left:90%;
+    /* left:90%; */
     font-size: 1.2em;
     color:gray;
-    margin-top: .8em;
     cursor: pointer;
 }
 .menu{
@@ -583,11 +578,11 @@ footer::before {
     height: 2em;
     width: 100%;
 }
-.main_box .btn_one i:hover{
+/* .main_box:hover{
     font-size:1.6em;
     font-weight: 700;
     transition: 1s;
-}
+} */
 .btn_two i:hover{
     font-size:1.6em;
     transition: 1s;
@@ -599,8 +594,9 @@ footer::before {
 }
 #check:checked ~ .sidebar_menu{
   position: absolute;
-    right: 0;
-    transition: 1s;
+    visibility: visible;
+    /* left: 0;
+    transition: 1s; */
 
 }
 #check:checked~ .btn_one{

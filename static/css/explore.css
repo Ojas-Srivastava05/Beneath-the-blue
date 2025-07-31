@@ -681,7 +681,7 @@ nav a:hover::before {
             display: flex;
             text-align: center;
             color: var(--white);
-            margin: 3em 0em;
+            margin: 3% 0em;
             position: relative;
         }
 
