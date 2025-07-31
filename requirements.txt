@@ -1,8 +1,3 @@
-# Build Tools
-pip>=25.2
-setuptools>=70.0
-wheel>=0.42
-
 # Core Requirements
 Django==4.2.7
 django-crispy-forms==2.1
@@ -19,7 +14,7 @@ django-sass-processor==1.2  # SASS support
 # Authentication & Security
 django-allauth==0.58.2  # Social authentication
 django-cors-headers==4.2.0  # For API requests
-# argon2-cffi==23.1.0  # Secure password hashing (commented out to prevent build error)
+argon2-cffi==23.1.0  # Secure password hashing
 
 # API Development (if needed)
 djangorestframework==3.14.0
