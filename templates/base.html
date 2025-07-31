@@ -9,87 +9,113 @@
     <link rel="icon" type="image/png" href="{% static 'photo/logo.png' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Optimized Google Fonts import -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Spectral+SC:wght@400;600;700&family=Sansita:wght@400;700&display=swap" rel="stylesheet">
-    <title>Beneath the Blue</title>
 </head>
 <body>
-    <!-- Header -->
+     <!-- Header -->
     <header class="header">
-        <div class="header-container">
+        <div class="container header-container">
             <div class="logo">
                 <h1>Beneath the Blue</h1>
             </div>
-            
-            <!-- Desktop Navigation -->
-            <nav class="desktop-nav">
-                <ul>
+            <nav>
+                <ul class="main-nav">
                     <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'explore_map' %}">Explore</a></li>
-                    <li><a href="{% url 'threats' %}">Threats</a></li>
-                    <li><a href="{% url 'endangered_species' %}">Species</a></li>
-                    <li><a href="{% url 'community_page' %}">Community</a></li>
+                    <li class="menu-container">
+                        <div class="main_box">
+                            <input type="checkbox" id="check" />
+                            <label class="menu-icon" for="check">
+                                <i class="fa-solid fa-bars"></i>
+                            </label>
+
+                            <div class="sidebar_menu">
+                                <div class="menu-header">
+                                    <label class="close-icon" for="check">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </label>
+                                </div>
+
+                                <div class="menu">
+                                    <ul>
+                                        <li><a href="{% url 'posts' %}">Posts</a></li>
+                                        <li><a href="{% url 'explore_map' %}">Explore</a></li>
+                                        <li><a href="{% url 'threats' %}">Threats</a></li>
+                                        <li><a href="{% url 'endangered_species' %}">Species</a></li>
+                                        <li><a href="{% url 'community_page' %}">Community</a></li>
+                                        <li><a href="{% url 'quiz' %}">Quiz</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </nav>
-            
-            <!-- Mobile Hamburger Button -->
-            <div class="hamburger">
-                <input type="checkbox" id="menu-toggle">
-                <label for="menu-toggle" class="hamburger-icon">
-                    <i class="fas fa-bars"></i>
-                </label>
-                
-                <!-- Mobile Navigation -->
-                <nav class="mobile-nav">
-                    <ul>
-                        <li><a href="{% url 'home' %}">Home</a></li>
-                        <li><a href="{% url 'explore_map' %}">Explore</a></li>
-                        <li><a href="{% url 'threats' %}">Threats</a></li>
-                        <li><a href="{% url 'endangered_species' %}">Species</a></li>
-                        <li><a href="{% url 'community_page' %}">Community</a></li>
-                        <li><a href="{% url 'quiz' %}">Quiz</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="{% url 'posts' %}">Posts</a></li>
-                    </ul>
-                </nav>
-            </div>
         </div>
     </header>
-    
     {% block content %}{% endblock %}
     
-    <footer class="footer">
-        <div class="footer-content">
+    <footer class="community" style="margin-top: 1em;">
+        <div style="text-align: center;">
             <p>&copy; 2025 Beneath The Blue. All rights reserved.</p>
             <p>Dedicated to protect marine life for future generations.</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileNav = document.querySelector('.mobile-nav');
-            
-            menuToggle.addEventListener('change', function() {
-                if(this.checked) {
-                    mobileNav.style.transform = 'translateX(0)';
-                    mobileNav.style.opacity = '1';
-                    mobileNav.style.visibility = 'visible';
-                } else {
-                    mobileNav.style.transform = 'translateX(-100%)';
-                    mobileNav.style.opacity = '0';
-                    mobileNav.style.visibility = 'hidden';
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Toggle menu
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+
+            // Close menu when clicking a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
                 }
             });
+
+            // Handle scroll
+            let lastScroll = 0;
+            const header = document.querySelector('.header');
             
-            // Close mobile menu when clicking on a link
-            document.querySelectorAll('.mobile-nav a').forEach(link => {
-                link.addEventListener('click', () => {
-                    menuToggle.checked = false;
-                    mobileNav.style.transform = 'translateX(-100%)';
-                    mobileNav.style.opacity = '0';
-                    mobileNav.style.visibility = 'hidden';
-                });
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll <= 0) {
+                    header.classList.remove('scroll-up');
+                    return;
+                }
+                
+                if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+                    // Scrolling down
+                    header.classList.remove('scroll-up');
+                    header.classList.add('scroll-down');
+                } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+                    // Scrolling up
+                    header.classList.remove('scroll-down');
+                    header.classList.add('scroll-up');
+                }
+                lastScroll = currentScroll;
             });
         });
     </script>
