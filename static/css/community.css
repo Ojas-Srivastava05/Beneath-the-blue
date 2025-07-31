@@ -23,7 +23,7 @@
 /* Main body styles */
 body {
     font-family: 'Sansita', sans-serif;
-    color: var(--text-color);
+    color: #ff6347; 
     background-color: #000814;;
     line-height: 1.6;
     margin: 0;
