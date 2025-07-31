@@ -4,58 +4,60 @@
 {% block  content %}
     <link rel="stylesheet" href="{% static 'css/community.css' %}">
     <title>Beneath The Blue Community</title>
+    <style>
+        .image-bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .image-bg-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 10, 30, 0.7); /* Deep blue transparency */
+        }
+    </style>
 </head>
 <body >
-  <div class="video-wrapper" style="height: 0px;">
-  <video autoplay muted loop id="bg-video">
-    <source src="{% static 'videos/sign-in-bg.mp4' %}" type="video/mp4">
-  </video>
-  <div class="video-overlay"></div>
+       <div class="image-bg-wrapper">
+        <img src="{% static 'images/combg.jpg' %}" alt="Community Background">
+        <div class="image-overlay"></div>
     </div>
-    <div>
-      <div class="content-overlay">
-        <header class="header">
-        <div class="container header-content header-container">
-            <div class="logo">
-                <a href="{% url 'home' %}" class="logo">
-                    <h1>Beneath The Blue</h1>
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    
-                    <li><form method="get" class="search-bar" style="color : #FFDAB9;">
-                  {% csrf_token %}
-                  <select id="category_select" onchange="location = this.value;" aria-placeholder="Select a category">
-                    <option value="{% url 'community_page' %}">Select a Category</option>
-                    {% for category in Category_data %}
-                      <option value="{% url 'community_page' %}?category={{ category.id }}" {% if category.id == Category_selected.id %}selected{% endif %}>{{ category.name }}</option>
-                    {% endfor %}
-                  </select>
-                </form>
-                <li><a href="{% url 'home' %}" class="nav-link">Back</a></li>
-                    
-                    {% comment %} <button class="hamburger" id="hamburger" aria-label="Menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button> {% endcomment %}
-                </nav>
-            </div>
-        </header>
-
+    <div class="content-overlay">
         <div class="intro">
-          <div class="section">
-            <h2>{{Category_selected.name}}</h2>
-            <p style="color : #E6F7FF;">{{Category_selected.description}}</p>
-          </div>
-          {% for community in Community_data %}
-            <div class="card-container">
-              <div class="card"><a href= "{{community.link}}" target="_blank" style="color : #CCFFFF;">{{community.title}}</a></div>
-              <div class="card_paragraph"><a href="{{community.link}}" target="_blank" style="color : #87CEEB;">{{community.description}}</a></div>
+            <div class="section">
+                <h2>
+                    <form method="get" class="search-bar" style="color : #FFDAB9;">
+                        {% csrf_token %}
+                        <select id="category_select" onchange="location = this.value;" aria-placeholder="Select a category">
+                            <option value="{% url 'community_page' %}">Select a Category</option>
+                            {% for category in Category_data %}
+                                <option value="{% url 'community_page' %}?category={{ category.id }}" {% if category.id == Category_selected.id %}selected{% endif %}>{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>{{Category_selected.name}}
+                </h2>
+                <p style="color : #E6F7FF;">{{Category_selected.description}}</p>
             </div>
-          {% endfor %}
+            {% for community in Community_data %}
+                <div class="card-container">
+                    <div class="card"><a href="{{community.link}}" target="_blank" style="color : #CCFFFF;">{{community.title}}</a></div>
+                    <div class="card_paragraph"><a href="{{community.link}}" target="_blank" style="color : #87CEEB;">{{community.description}}</a></div>
+                </div>
+            {% endfor %}
         </div>
-  </div> 
+    </div> 
 </body>
         {% endblock %} 

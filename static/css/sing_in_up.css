@@ -13,13 +13,9 @@ html, body {
     padding: 0;
     box-sizing: border-box;
 }
- * {
-    font-family: inherit !important; /* Nuclear option (use sparingly) */
-   }
 
 
 body {
-    font-family: 'Source Sans Pro', sans-serif !important;
     position: relative;
 
 }
@@ -468,9 +464,9 @@ body::before {
     text-decoration: underline;
 }
 
-body, h1, h2, h3, h4, p, .btn, .nav-link, .modal-content, .modal-header, .modal-field, .signup-link {
+/* body, h1, h2, h3, h4, p, .btn, .nav-link, .modal-content, .modal-header, .modal-field, .signup-link {
     font-family: 'Playfair Display', 'Raleway', 'Source Sans Pro', 'Roboto Condensed', serif, sans-serif !important;
-}
+} */
 /* Password Strength Indicator */
 .password-strength {
     margin: 15px 0;

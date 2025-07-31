@@ -10,7 +10,7 @@
     <video autoplay muted loop id="bg-video">
     <source src="{% static 'videos/explore.mp4' %}" type="video/mp4">
   </video>
-    <header class="header">
+    {% comment %} <header class="header">
         <div class="container header-content header-container">
             <div class="logo">
                 <a href="{% url 'home' %}" class="logo">
@@ -24,7 +24,7 @@
                 </ul>
             </nav>
         </div>
-    </header>
+    </header> {% endcomment %}
 
     <section class="hero">
         <div class="hero-content">

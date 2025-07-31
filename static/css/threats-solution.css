@@ -20,13 +20,8 @@ a{
   transition: all 0.3s ease;
 }
 
-/* General Styles */
-* {
-  font-family: inherit !important; /* Nuclear option (use sparingly) */
-}
 
 body {
-    font-family: 'Source Sans Pro', sans-serif !important;
     margin: 0;
     padding: 0;
     position: relative;

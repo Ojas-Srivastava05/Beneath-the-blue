@@ -14,7 +14,7 @@
     <div class="background-overlay"></div>
   </div>
   <div class="content-overlay">
-    <header class="header">
+    {% comment %} <header class="header">
             <div class="container header-container">
                 <div class="logo">
                     <h1>Beneath the Blue</h1>
@@ -25,10 +25,10 @@
                         <li><a href="{% url 'threats' %}" class="nav-link">~Threats</a></li>
                         <li><a href="{% url 'quiz' %}">~ More Quizzes</a></li>
                         {% comment %} <li><a href="{% url 'sign_up' %}" class="nav-btn">~Sign Up</a></li> {% endcomment %}
-                    </ul>
+                    {% comment %} </ul>
                 </nav>
             </div>
-        </header>
+        </header> {% endcomment %}
     <main class="quiz-main">
       <div class="quiz-container result-container">
         <div class="quiz-header-section">

@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Spectral+SC:wght@400;600;700&family=Sansita:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Base font styles with fallbacks */
-        body {
+        {% comment %} body {
             font-family: 'Sansita', 'Segoe UI', sans-serif;
             font-weight: 400;
             line-height: 1.6;
@@ -76,10 +76,62 @@
         footer p {
             font-size: 1rem;
             margin: 0.5em 0;
-        }
+        } {% endcomment %}
     </style>
 </head>
 <body>
+     <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Beneath the Blue</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'explore_map' %}">Explore</a></li>
+                    <li><a href="{% url 'threats' %}">Threats</a></li>
+                    {% comment %} <li><a href="{% url 'endangered_species' %}">Species</a></li>
+                    <li><a href="{% url 'community_page' %}">Community</a></li>
+                    <li><a href="{% url 'quiz'%}">Quiz</a></li> {% endcomment %}
+    <li><div class="main_box" style="margin-left: -4em;">
+      <input type="checkbox" id="check" />
+      <div class="btn_one">
+        <label for="check">
+          <i class="fa-solid fa-bars"></i>
+        </label>
+      </div>
+
+      <div class="sidebar_menu">
+        <div class="btn_two">
+          <label for="check" >
+            <i class="fa-solid fa-xmark"></i>
+          </label>
+        </div>
+
+        <div class="menu">
+            <ul style="display: flex; flex-direction: column; gap: 1em;">
+                <li><a href="{% url 'explore_map' %}">Explore</a></li>
+                <li><a href="{% url 'threats' %}">Threats</a></li>
+                <li><a href="{% url 'endangered_species' %}">Species</a></li>
+                <li><a href="{% url 'community_page' %}">Community</a></li>
+                <li><a href="{% url 'quiz' %}">Quiz</a></li>
+            </li></ul>
+        </div>
+
+        {% comment %} <div class="social_media">
+          <ul>
+            <a href="#"><i class="fa-brands fa-facebook"></i></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </ul>
+        </div> {% endcomment %}
+      </div>
+    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
     {% block content %}{% endblock %}
     
     <footer class="community" style="margin-top: 1em;">
