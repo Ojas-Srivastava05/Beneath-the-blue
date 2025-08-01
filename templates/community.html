@@ -5,7 +5,11 @@
     <link rel="stylesheet" href="{% static 'css/community.css' %}">
     <title>Beneath The Blue Community</title>
     <style>
+<<<<<<< HEAD
+        .image-bg-wrapper {
+=======
       image-bg-wrapper {
+>>>>>>> c619a0aee484c0478ae3833d57ddd0dacc4c72a2
             background-image: url('combg.jpg');
 
             background-size: cover;    /* Ensures full coverage without stretching */
@@ -36,6 +40,13 @@
             {% comment %} background-color: rgba(0, 10, 30, 0.7); /* Deep blue transparency */ {% endcomment %}
             display:none;
         }
+<<<<<<< HEAD
+    </style>
+</head>
+<body >
+       <div class="image-bg-wrapper">
+        <img src="{% static 'image/combg.jpg' %}" alt="Community Background">
+=======
         /* Image background styles (replace the video styles) */
 .image-bg-wrapper {
     position: fixed;
@@ -67,6 +78,7 @@
 <body >
        <div class="image-bg-wrapper">
         <img src="{% static 'image/community.jpg' %}" alt="Community Background">
+>>>>>>> c619a0aee484c0478ae3833d57ddd0dacc4c72a2
         <div class="image-overlay"></div>
     </div>
     <div class="content-overlay">
@@ -87,8 +99,13 @@
             </div>
             {% for community in Community_data %}
                 <div class="card-container">
+<<<<<<< HEAD
+                    <div class="card"><a href="{{community.link}}" target="_blank" style="color : #CCFFFF;">{{community.title}}</a></div>
+                    <div class="card_paragraph"><a href="{{community.link}}" target="_blank" style="color : #87CEEB;">{{community.description}}</a></div>
+=======
                     <div class="card"><a href="{{community.link}}" target="_blank" style="color : var(--coral);">{{community.title}}</a></div>
                     <div class="card_paragraph"><a href="{{community.link}}" target="_blank" style="color : #f0f0f0 ;">{{community.description}}</a></div>
+>>>>>>> c619a0aee484c0478ae3833d57ddd0dacc4c72a2
                 </div>
             {% endfor %}
         </div>
