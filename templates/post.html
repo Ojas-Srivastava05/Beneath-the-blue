@@ -1,135 +1,1036 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beneath the Blue - Community Posts</title>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="{% static 'css/posts.css' %}">
+    <title>Ocean Conservation Community | Share Your Story</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #006994;
+            --secondary-color: #00a8cc;
+            --accent-color: #ff6b6b;
+            --light-color: #f0f8ff;
+            --dark-color: #003366;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* User Profile */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            padding: 10px 0;
+            display: none;
+            z-index: 100;
+        }
+        
+        .dropdown-menu.active {
+            display: block;
+        }
+        
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 40px 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #777;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Post Form */
+        .post-form {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--secondary-color);
+        }
+        
+        .file-upload i {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .preview-item {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .preview-item img, .preview-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--dark-color);
+        }
+        
+        /* Posts Feed */
+        .posts-feed {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .post-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .post-media {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .post-media img, .post-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .post-card:hover .post-media img,
+        .post-card:hover .post-media video {
+            transform: scale(1.05);
+        }
+        
+        .post-content {
+            padding: 20px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-author {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .post-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .post-info p {
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .post-text {
+            margin-bottom: 15px;
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .tag {
+            background-color: #e0f7fa;
+            color: var(--secondary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            color: #777;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .action-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .action-btn i {
+            margin-right: 5px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .empty-state p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            .user-profile {
+                margin-top: 20px;
+            }
+            
+            .post-media {
+                height: 200px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+            
+            .tab.active {
+                border-bottom: none;
+                border-left: 3px solid var(--primary-color);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    {% comment %} <header class="header">
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}" class="active">Home</a></li>
-                <li><a href="{% url 'posts' %}">Community</a></li>
-                {% comment %} <li><a href="{% url 'about' %}">About</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Register</a></li>
-                {% endif %} {% endcomment %}
-            {% comment %} </ul>
-        </nav>
-    </header> {% endcomment %}
-
-    <main class="main-content">
-        <div class="container">
-            <h1 class="page-title">Community Posts</h1>
-            
-            {% if user.is_authenticated %}
-            <div class="create-post card">
-                <h2>Create a New Post</h2>
-                <form id="post-form" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <textarea name="content" id="post-content" placeholder="Share your ocean thoughts..." required></textarea>
-                    </div>
-                    <div class="form-group media-upload">
-                        <label for="post-media" class="upload-btn">
-                            <i class="upload-icon"></i>
-                            <span>Add Photo/Video</span>
-                            <input type="file" id="post-media" name="media" accept="image/, video/">
-                        </label>
-                        <div class="media-preview" id="media-preview"></div>
-                    </div>
-                    <button type="submit" class="btn post-btn">Post to Community</button>
-                </form>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-water"></i>
+                <span>Ocean Guardians</span>
             </div>
-            {% endif %}
+            <nav>
+                <ul>
+                    <li><a href="index.html">Explore</a></li>
+                    <li><a href="threats.html">Threats</a></li>
+                    <li><a href="solutions.html">Solutions</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile" id="userProfile">
+                <span>John Doe</span>
+                <div class="profile-icon">J</div>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                    <a href="#" id="myPostsLink"><i class="fas fa-list"></i> My Posts</a>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
 
-            <div class="posts-container">
-                {% for post in posts %}
-                <div class="post card" data-post-id="{{ post.id }}">
-                    <div class="post-header">
-                        <div class="user-info">
-                            <div class="avatar" style="background-color: {{ post.user.profile.color|default:'var(--marine-teal)' }};">
-                                {{ post.user.username|first|upper }}
+    <main>
+        <div class="container">
+            <h1 class="page-title">Ocean Conservation Community</h1>
+            
+            <!-- Tabs Navigation -->
+            <div class="tabs">
+                <div class="tab active" data-tab="create-post">Create Post</div>
+                <div class="tab" data-tab="community-posts">Community Posts</div>
+                <div class="tab" data-tab="my-posts">My Posts</div>
+            </div>
+            
+            <!-- Create Post Tab -->
+            <div class="tab-content active" id="create-post">
+                <div class="post-form">
+                    <form id="createPostForm">
+                        <div class="form-group">
+                            <label for="postTitle">Title of Your Conservation Effort</label>
+                            <input type="text" id="postTitle" placeholder="E.g., Beach Cleanup at Malibu" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="postContent">Share Your Story</label>
+                            <textarea id="postContent" placeholder="Describe what you did to help ocean conservation, the challenges you faced, and the impact you made..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="postLocation">Location</label>
+                            <input type="text" id="postLocation" placeholder="Where did this take place?">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="postTags">Tags (separate with commas)</label>
+                            <input type="text" id="postTags" placeholder="cleanup, plastic, volunteering, education">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Add Photos/Videos</label>
+                            <div class="file-upload" id="mediaUpload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Click to upload or drag and drop</span>
+                                <input type="file" id="postMedia" multiple accept="image/*,video/*">
                             </div>
-                            <div>
-                                <h3 class="username">{{ post.user.username }}</h3>
-                                <p class="post-time">{{ post.created_at|timesince }} ago</p>
+                            <div class="preview-container" id="mediaPreview"></div>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Share Your Story</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Community Posts Tab -->
+            <div class="tab-content" id="community-posts">
+                <h2 class="page-title">Recent Community Conservation Stories</h2>
+                
+                <div class="posts-feed" id="communityFeed">
+                    <div class="post-card">
+                        <div class="post-media">
+                            <img src="https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Beach cleanup">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-header">
+                                <div class="post-author">S</div>
+                                <div class="post-info">
+                                    <h3>Community Beach Cleanup Initiative</h3>
+                                    <p>Posted by Sarah Johnson • 2 days ago</p>
+                                </div>
+                            </div>
+                            <div class="post-text">
+                                <p>Organized a beach cleanup with 50 volunteers at Santa Monica Beach. We collected over 200kg of trash, mostly plastic bottles and fishing nets. The local marine conservation center helped us sort and properly dispose of the waste.</p>
+                            </div>
+                            <div class="post-tags">
+                                <span class="tag">cleanup</span>
+                                <span class="tag">plastic</span>
+                                <span class="tag">community</span>
+                            </div>
+                            <div class="post-actions">
+                                <div class="action-btn"><i class="far fa-thumbs-up"></i> Like (24)</div>
+                                <div class="action-btn"><i class="far fa-comment"></i> Comment (8)</div>
+                                <div class="action-btn"><i class="fas fa-share"></i> Share</div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="post-content">
-                        <p>{{ post.content }}</p>
-                        {% if post.media %}
+                    <div class="post-card">
                         <div class="post-media">
-                            {% if post.media.url|lower|slice:'-4:' == '.mp4' %}
                             <video controls>
-                                <source src="{{ post.media.url }}" type="video/mp4">
+                                <source src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            {% else %}
-                            <img src="{{ post.media.url }}" alt="Post image">
-                            {% endif %}
                         </div>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="post-actions">
-                        <button class="like-btn {% if request.user in post.likes.all %}liked{% endif %}" data-post-id="{{ post.id }}">
-                            <span class="like-icon"></span>
-                            <span class="like-count">{{ post.likes.count }}</span>
-                        </button>
-                        <button class="comment-btn">
-                            <span class="comment-icon"></span>
-                            <span>Comment</span>
-                        </button>
-                    </div>
-                    
-                    <div class="comments-section">
-                        <div class="comments-list">
-                            {% for comment in post.comments.all|slice:":3" %}
-                            <div class="comment">
-                                <div class="comment-user">
-                                    <div class="avatar small" style="background-color: {{ comment.user.profile.color|default:'var(--ocean-depths)' }};">
-                                        {{ comment.user.username|first|upper }}
-                                    </div>
-                                    <span class="comment-username">{{ comment.user.username }}</span>
+                        <div class="post-content">
+                            <div class="post-header">
+                                <div class="post-author">M</div>
+                                <div class="post-info">
+                                    <h3>Coral Restoration Project</h3>
+                                    <p>Posted by Michael Chen • 1 week ago</p>
                                 </div>
-                                <p class="comment-text">{{ comment.text }}</p>
                             </div>
-                            {% endfor %}
+                            <div class="post-text">
+                                <p>Documenting our 6-month coral restoration project in the Florida Keys. We've successfully transplanted over 500 coral fragments and are seeing promising growth rates. The video shows our team working underwater and the progress we've made.</p>
+                            </div>
+                            <div class="post-tags">
+                                <span class="tag">coral</span>
+                                <span class="tag">restoration</span>
+                                <span class="tag">research</span>
+                            </div>
+                            <div class="post-actions">
+                                <div class="action-btn"><i class="far fa-thumbs-up"></i> Like (42)</div>
+                                <div class="action-btn"><i class="far fa-comment"></i> Comment (15)</div>
+                                <div class="action-btn"><i class="fas fa-share"></i> Share</div>
+                            </div>
                         </div>
-                        
-                        {% if post.comments.count > 3 %}
-                        <button class="view-all-comments">View all {{ post.comments.count }} comments</button>
-                        {% endif %}
-                        
-                        {% if user.is_authenticated %}
-                        <form class="comment-form" data-post-id="{{ post.id }}">
-                            <input type="text" placeholder="Add a comment..." required>
-                            <button type="submit">Post</button>
-                        </form>
-                        {% endif %}
+                    </div>
+                    
+                    <div class="post-card">
+                        <div class="post-media">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Educational workshop">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-header">
+                                <div class="post-author">A</div>
+                                <div class="post-info">
+                                    <h3>Marine Life Education for Kids</h3>
+                                    <p>Posted by Amanda Rodriguez • 2 weeks ago</p>
+                                </div>
+                            </div>
+                            <div class="post-text">
+                                <p>Conducted a series of educational workshops for elementary school children about marine life conservation. We used interactive games and activities to teach them about plastic pollution and how they can help protect our oceans. The kids created wonderful art projects showing what they learned!</p>
+                            </div>
+                            <div class="post-tags">
+                                <span class="tag">education</span>
+                                <span class="tag">children</span>
+                                <span class="tag">awareness</span>
+                            </div>
+                            <div class="post-actions">
+                                <div class="action-btn"><i class="far fa-thumbs-up"></i> Like (37)</div>
+                                <div class="action-btn"><i class="far fa-comment"></i> Comment (12)</div>
+                                <div class="action-btn"><i class="fas fa-share"></i> Share</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {% empty %}
-                <div class="no-posts card">
-                    <p>No posts yet. Be the first to share!</p>
+            </div>
+            
+            <!-- My Posts Tab -->
+            <div class="tab-content" id="my-posts">
+                <div class="posts-header">
+                    <h2 class="page-title">My Conservation Stories</h2>
+                    <button class="btn" id="createNewPostBtn">Create New Post</button>
                 </div>
-                {% endfor %}
+                
+                <div class="posts-feed" id="myPostsFeed">
+                    <div class="post-card">
+                        <div class="post-media">
+                            <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="My cleanup">
+                        </div>
+                        <div class="post-content">
+                            <div class="post-header">
+                                <div class="post-author">J</div>
+                                <div class="post-info">
+                                    <h3>My First Beach Cleanup</h3>
+                                    <p>Posted by John Doe • 3 days ago</p>
+                                </div>
+                            </div>
+                            <div class="post-text">
+                                <p>Joined a local beach cleanup event and was shocked by how much microplastic we found. Spent 4 hours with a group of 20 people and filled 10 large bags with trash. The organizer said this was actually less than usual, which is both good and sad.</p>
+                            </div>
+                            <div class="post-tags">
+                                <span class="tag">cleanup</span>
+                                <span class="tag">plastic</span>
+                                <span class="tag">first-time</span>
+                            </div>
+                            <div class="post-actions">
+                                <div class="action-btn"><i class="far fa-thumbs-up"></i> Like (12)</div>
+                                <div class="action-btn"><i class="far fa-comment"></i> Comment (4)</div>
+                                <div class="action-btn"><i class="fas fa-edit"></i> Edit</div>
+                                <div class="action-btn"><i class="fas fa-trash"></i> Delete</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="empty-state" id="noPostsMessage" style="display: none;">
+                        <i class="fas fa-water"></i>
+                        <h3>No Posts Yet</h3>
+                        <p>You haven't shared any conservation stories yet. Start by creating your first post!</p>
+                        <button class="btn" id="createFirstPostBtn">Create Your First Post</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <script src="{% static 'js/posts.js' %}"></script>
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Ocean Guardians</h3>
+                    <p>Dedicated to exploring, educating, and conserving our precious marine ecosystems for future generations.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="explore.html">Explore Oceans</a></li>
+                        <li><a href="threats.html">Ocean Threats</a></li>
+                        <li><a href="solutions.html">Conservation Solutions</a></li>
+                        <li><a href="community.html">Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="data.html">Ocean Data</a></li>
+                        <li><a href="get-involved.html">Get Involved</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> contact@oceanguardians.org</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Ocean Ave, Marine City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Ocean Guardians. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // User profile dropdown
+        const userProfile = document.getElementById('userProfile');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        
+        userProfile.addEventListener('click', function() {
+            dropdownMenu.classList.toggle('active');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!userProfile.contains(event.target)) {
+                dropdownMenu.classList.remove('active');
+            }
+        });
+        
+        // Media upload preview
+        const mediaUpload = document.getElementById('mediaUpload');
+        const mediaInput = document.getElementById('postMedia');
+        const mediaPreview = document.getElementById('mediaPreview');
+        
+        mediaUpload.addEventListener('click', function() {
+            mediaInput.click();
+        });
+        
+        mediaUpload.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = 'var(--secondary-color)';
+        });
+        
+        mediaUpload.addEventListener('dragleave', function() {
+            this.style.borderColor = '#ddd';
+        });
+        
+        mediaUpload.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = '#ddd';
+            if (e.dataTransfer.files.length > 0) {
+                mediaInput.files = e.dataTransfer.files;
+                previewMedia();
+            }
+        });
+        
+        mediaInput.addEventListener('change', previewMedia);
+        
+        function previewMedia() {
+            mediaPreview.innerHTML = '';
+            const files = mediaInput.files;
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    
+                    if (file.type.startsWith('image/')) {
+                        previewItem.innerHTML = `
+                            <img src="${e.target.result}" alt="Preview">
+                            <div class="remove-btn" data-index="${i}">&times;</div>
+                        `;
+                    } else if (file.type.startsWith('video/')) {
+                        previewItem.innerHTML = `
+                            <video controls>
+                                <source src="${e.target.result}" type="${file.type}">
+                            </video>
+                            <div class="remove-btn" data-index="${i}">&times;</div>
+                        `;
+                    }
+                    
+                    mediaPreview.appendChild(previewItem);
+                    
+                    // Add remove functionality
+                    const removeBtn = previewItem.querySelector('.remove-btn');
+                    removeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        removeFile(parseInt(this.getAttribute('data-index')));
+                    });
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function removeFile(index) {
+            const dt = new DataTransfer();
+            const files = mediaInput.files;
+            
+            for (let i = 0; i < files.length; i++) {
+                if (i !== index) {
+                    dt.items.add(files[i]);
+                }
+            }
+            
+            mediaInput.files = dt.files;
+            previewMedia();
+        }
+        
+        // Form submission
+        const createPostForm = document.getElementById('createPostForm');
+        
+        createPostForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            // For demonstration, we'll just show an alert and add to "My Posts"
+            alert('Thank you for sharing your conservation story! Your post has been published.');
+            
+            // Add to "My Posts" feed
+            addToMyPosts();
+            
+            // Reset form
+            this.reset();
+            mediaPreview.innerHTML = '';
+            
+            // Switch to "My Posts" tab
+            switchTab('my-posts');
+        });
+        
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                switchTab(tabId);
+            });
+        });
+        
+        function switchTab(tabId) {
+            // Update active tab
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('data-tab') === tabId) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Update active content
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === tabId) {
+                    content.classList.add('active');
+                }
+            });
+        }
+        
+        // My Posts functionality
+        const myPostsLink = document.getElementById('myPostsLink');
+        const createNewPostBtn = document.getElementById('createNewPostBtn');
+        const createFirstPostBtn = document.getElementById('createFirstPostBtn');
+        
+        myPostsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            switchTab('my-posts');
+        });
+        
+        createNewPostBtn.addEventListener('click', function() {
+            switchTab('create-post');
+        });
+        
+        createFirstPostBtn.addEventListener('click', function() {
+            switchTab('create-post');
+        });
+        
+        // Function to add a new post to "My Posts" (simulated)
+        function addToMyPosts() {
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+            const location = document.getElementById('postLocation').value;
+            const tags = document.getElementById('postTags').value;
+            
+            // Create new post element
+            const newPost = document.createElement('div');
+            newPost.className = 'post-card';
+            newPost.innerHTML = `
+                <div class="post-media">
+                    ${mediaPreview.innerHTML.includes('img') ? 
+                      mediaPreview.querySelector('img').outerHTML : 
+                      mediaPreview.querySelector('video').outerHTML}
+                </div>
+                <div class="post-content">
+                    <div class="post-header">
+                        <div class="post-author">J</div>
+                        <div class="post-info">
+                            <h3>${title || 'New Post'}</h3>
+                            <p>Posted by John Doe • Just now</p>
+                        </div>
+                    </div>
+                    <div class="post-text">
+                        <p>${content || 'No content provided.'}</p>
+                    </div>
+                    <div class="post-tags">
+                        ${tags.split(',').map(tag => `<span class="tag">${tag.trim()}</span>`).join('')}
+                    </div>
+                    <div class="post-actions">
+                        <div class="action-btn"><i class="far fa-thumbs-up"></i> Like (0)</div>
+                        <div class="action-btn"><i class="far fa-comment"></i> Comment (0)</div>
+                        <div class="action-btn"><i class="fas fa-edit"></i> Edit</div>
+                        <div class="action-btn"><i class="fas fa-trash"></i> Delete</div>
+                    </div>
+                </div>
+            `;
+            
+            // Add to the top of "My Posts" feed
+            const myPostsFeed = document.getElementById('myPostsFeed');
+            myPostsFeed.insertBefore(newPost, myPostsFeed.firstChild);
+            
+            // Hide "no posts" message if it exists
+            document.getElementById('noPostsMessage').style.display = 'none';
+        }
+        
+        // Simulate having no posts (for demonstration)
+        // document.getElementById('noPostsMessage').style.display = 'block';
+        // document.querySelector('#myPostsFeed .post-card').style.display = 'none';
+    </script>
 </body>
 </html>
