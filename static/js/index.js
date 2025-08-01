@@ -86,29 +86,47 @@ function setupNavbarScroll() {
     });
 }
 
-function setupFormHandlers() {
-     document.querySelectorAll('.action-form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const url = this.dataset.submitUrl;
-            // ... rest of your form handling code
-                    // Form submission handlers
-            setupFormHandler('#pledge-form', '{% url "submit_pledge" %}');
-            setupFormHandler('#idea-form', '{% url "submit_idea" %}');
-            setupFormHandler('#feedback-form', '{% url "submit_feedback" %}');
-            setupFormHandler('#newsletter-form', '{% url "subscribe" %}');
+function setupFormHandler(formSelector, url) {
+    const form = document.querySelector(formSelector);
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                form.reset();
+            } else {
+                console.error(data.errors);
+                alert("Error: " + JSON.stringify(data.errors));
+            }
+        })
+        .catch(error => {
+            console.error("Error submitting form:", error);
+            alert("Something went wrong.");
         });
     });
 }
 
-function setupFormHandler(formSelector, url) {
-    const form = document.querySelector(formSelector);
-    if (!form) return;
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // ... rest of your form handling code ...
-    });
+
+function setupFormHandlers() {
+    setupFormHandler('#pledge-form', document.querySelector('#pledge-form').dataset.submitUrl);
+    setupFormHandler('#idea-form', document.querySelector('#idea-form').dataset.submitUrl);
+    setupFormHandler('#feedback-form', document.querySelector('#feedback-form').dataset.submitUrl);
+    const newsletter = document.querySelector('#newsletter-form');
+    if (newsletter) {
+        setupFormHandler('#newsletter-form', newsletter.dataset.submitUrl);
+    }
 }
 
 // Initialize all functionality

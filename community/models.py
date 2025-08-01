@@ -27,16 +27,21 @@ class Community(models.Model):
         return self.title
     
 
-class Quiz(models.Model):
-    question = models.CharField(max_length=255)
-    op1 = models.CharField(max_length=200)
-    op2 = models.CharField(max_length=200)
-    op3 = models.CharField(max_length=200)
-    op4 = models.CharField(max_length=200)
-    answer = models.IntegerField()
+# from django.db import models
 
+class Question(models.Model):
+    text = models.CharField(max_length=200)
+    
     def __str__(self):
-        return self.question
+        return self.text
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    text = models.CharField(max_length=200)
+    is_correct = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.text
 
 class Threat(models.Model):
     image = models.ImageField(upload_to='threats/', blank=True, null=True)

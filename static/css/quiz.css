@@ -1,6 +1,6 @@
-:root {
+/* :root { */
     /* Modern Ocean Color Palette */
-     --deep-ocean: #005f73;
+     /* --deep-ocean: #005f73;
     --marine-blue: #0a9396;
     --aqua: #94d2bd;
     --seafoam: #e9d8a6;
@@ -10,9 +10,9 @@
     --white: #ffffff;
     --light-bg: rgba(255, 255, 255, 0.92);
     --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-} p{
-    color:  var(--deep-ocean) ;
-}
+} p{ */
+    /* color:  var(--deep-ocean) ;
+} */
 
 body {
     margin: 0;
@@ -71,7 +71,7 @@ body {
     max-width: 800px;
     width: 90%;
     margin: 2rem auto;
-    background: var(--light-bg);
+    background: linear-gradient(159deg, rgba(0,88,122,0.8) 0%, rgba(0,168,204,0.8) 100%);;
     border-radius: 16px;
     padding: 2.5rem;
     box-shadow: var(--card-shadow);
@@ -86,7 +86,7 @@ body {
 .quiz-heading {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--deep-ocean);
+    color: var(--coral);
     margin: 0 0 0.5rem 0;
     display: flex;
     align-items: center;
@@ -103,7 +103,7 @@ body {
     margin: 1.5rem 0;
 }
 
-.quiz-progress {
+/* .quiz-progress {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -136,7 +136,7 @@ body {
     font-size: 0.9rem;
     color: var(--marine-blue);
     font-weight: 500;
-}
+} */
 
 /* Question Cards */
 .quiz-questions {
@@ -184,7 +184,7 @@ body {
 .question-text {
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--deep-ocean);
+    color: #fff;
     margin: 0 0 1.5rem 0;
     line-height: 1.5;
 }
@@ -307,6 +307,7 @@ body {
     justify-content: center;
     gap: 0.5rem;
     border: none;
+    background: linear-gradient(135deg, #00d4ff, #0099cc);;
 }
 
 .btn:hover {
@@ -437,3 +438,128 @@ body {
 .question-card:nth-child(3) { animation-delay: 0.3s; }
 .question-card:nth-child(4) { animation-delay: 0.4s; }
 .question-card:nth-child(5) { animation-delay: 0.5s; }
+
+
+/* Quiz Form Styling */
+.quiz-form {
+    margin-top: 2rem;
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.question-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quiz-options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.option-item {
+    position: relative;
+}
+
+.option-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.option-label:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.option-item input[type="radio"]:checked + .option-label {
+    background: rgba(0, 168, 204, 0.5);
+    border-color: #00a8cc;
+    box-shadow: 0 4px 12px rgba(0, 168, 204, 0.3);
+}
+
+.option-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+}
+
+.option-item input[type="radio"]:checked + .option-label::before {
+    background-color: #00a8cc;
+    border-color: #00a8cc;
+    box-shadow: inset 0 0 0 3px white;
+}
+
+.quiz-progress {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.quiz-submit-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #00d4ff, #0099cc);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1.5rem;
+}
+
+.quiz-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 168, 204, 0.4);
+}
+
+.quiz-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .option-label {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    
+    .question-text {
+        font-size: 1.1rem;
+    }
+    
+    .quiz-submit-btn {
+        padding: 0.9rem;
+        font-size: 0.95rem;
+    }
+}

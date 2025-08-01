@@ -25,8 +25,7 @@
             <nav>
                 <ul>
                     <li><a href="{% url 'home' %}">Home</a></li>
-                
-                    <li><div class="main_box" style="margin-left: -4em;">
+                    <li><div class="main_box">
       <input type="checkbox" id="check" />
       <div class="btn_one">
         <label for="check">
@@ -49,8 +48,6 @@
                 <li><a href="{% url 'endangered_species' %}">Species</a></li>
                 <li><a href="{% url 'community_page' %}">Community</a></li>
                 <li><a href="{% url 'quiz' %}">Quiz</a></li>
-                
-                
             </li></ul>
         </div>
         </div>
@@ -185,7 +182,7 @@
                         <textarea id="personal_promise" name="personal_promise" placeholder="What specific actions will you take to protect our blue planet?"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn">Make My Pledge</button>
+                    <button type="submit" class="btn" name="form_type" value="submit_pledge">Make My Pledge</button>
                 </form>
             </div>
             
@@ -226,7 +223,12 @@
                         </select>
                     </div>
                     
-                    <button type="submit" class="btn">Submit Idea</button>
+                   <div class="modal-content-btn">
+                    <button type="submit" id="submitBtn">
+                        <span class="btn-text">SUBMIT IDEA</span>
+                        <div class="loading" style="display: none;"></div>
+                    </button>
+                </div>
                 </form>
             </div>
             
@@ -271,8 +273,7 @@
                             <option value="1">★☆☆☆☆ - Lost at sea</option>
                         </select>
                     </div>
-                    
-                    <button type="submit" class="btn">Send Feedback</button>
+                    <button type="submit" class="btn" name="form_type" value="submit_feedback">Send Feedback</button>
                 </form>
             </div>
         </div>

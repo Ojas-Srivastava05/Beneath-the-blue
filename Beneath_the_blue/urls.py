@@ -16,12 +16,14 @@ urlpatterns = [
     ,path('community/',community_page, name="community_page"),
     path('explore_map/',explore_map, name="explore_map"),
     path('quiz/', quiz, name='quiz'),
+    path('next/', next_question, name='next_question'),
+
     path('threats/', threats, name='threats'),
     path('endangered_species/', endangered_species, name='endangered_species'),
     path('submit-pledge/', submit_pledge, name='submit_pledge'),
     path('submit-idea/', submit_idea, name='submit_idea'),
     path('submit-feedback/', submit_feedback, name='submit_feedback'),
-    path('subscribe/', subscribe, name='subscribe'),
+    # path('subscribe/', Subscriber, name='subscribe'),
     path('posts/' ,post, name='posts'),
     ]
 if settings.DEBUG:

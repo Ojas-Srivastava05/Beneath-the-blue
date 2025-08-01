@@ -19,9 +19,10 @@ class CommunityAdmin(admin.ModelAdmin):
 admin.site.register(Community, CommunityAdmin)
 
 # Register the Question, Option, and QuizResult models with the admin site
-class QuestionAdmin(admin.ModelAdmin):
-    list_display = ( 'question', 'op1', 'op2', 'op3', 'op4', 'answer')
-admin.site.register(Quiz, QuestionAdmin)
+# 
+
+admin.site.register(Question)
+admin.site.register(Answer)
 
 #  the Threat model  section
 class ThreatAdmin(admin.ModelAdmin):

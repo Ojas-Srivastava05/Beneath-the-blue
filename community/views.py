@@ -1,6 +1,10 @@
 from django.shortcuts import render,redirect
 from .models import  *
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.http import JsonResponse
+import random
+from django.views.decorators.csrf import csrf_exempt
+import json
 # Create your views here.
 
 
@@ -24,33 +28,48 @@ def community_page(request):
     return render(request, 'community.html', data)
 
 
-# @login_required
+# from django.shortcuts import render
+# from .models import Question
+# import random
+
 def quiz(request):
+    # Get all questions and shuffle them
+    all_questions = list(Question.objects.all())
+    random.shuffle(all_questions)
+    
+    # Store shuffled questions in session
+    request.session['shuffled_questions'] = [q.id for q in all_questions]
+    request.session['current_question_index'] = 0
+    request.session['score'] = 0
+    
+    return render(request, 'quiz.html', {
+        'question': all_questions[0]
+    })
+
+def next_question(request):
     if request.method == 'POST':
-        questions = Quiz.objects.all()
-        score = 0
-        total = questions.count()
-
-        for question in questions:
-            submitted_answer = request.POST.get(f'question_{question.id}')
-            if submitted_answer:
-                try:
-                    if int(submitted_answer) == question.answer:
-                        score += 1
-                except (ValueError, TypeError):
-                    # Handle cases where submitted_answer is not a valid integer
-                    pass
+        # Process answer if submitted
+        # You'll need to add this logic
         
-        context = {
-            'score': score,
-            'total': total,
-            'correct': score,
-            'wrong': total - score,
-        }
-        return render(request, 'result.html', context)
-
-    questions = list(Quiz.objects.all()) 
-    return render(request, 'quiz.html', {'questions_data': questions})
+        # Get next question
+        current_index = request.session.get('current_question_index', 0)
+        question_ids = request.session.get('shuffled_questions', [])
+        
+        if current_index + 1 < len(question_ids):
+            next_question = Question.objects.get(id=question_ids[current_index + 1])
+            request.session['current_question_index'] = current_index + 1
+            return render(request, 'quiz.html', {
+                'question': next_question
+            })
+        else:
+            # Quiz completed
+            score = request.session.get('score', 0)
+            return render(request, 'result.html', {
+                'score': score,
+                'total': len(question_ids)
+            })
+    
+    return redirect('quiz')
 
 # Create your views here.
 def home(request):
