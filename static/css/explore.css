@@ -7,90 +7,9 @@
             --ocean-teal: #0a9396;
             --light-teal: #94d2bd;
             --cream: #e9d8a6;
-            --sunset: #ee9b00;
-            --rust: #ca6702;
-            --dark-rust: #bb3e03;
             --white: #ffffff;
             --light-gray: #f8f9fa;
             --dark-gray: #212529;
-        }
-
-        /* Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-        body {
-            background-color: var(--light-gray);
-            color: var(--dark-gray);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.03);
-        }
-
-        .logo i {
-            font-size: 2.2rem;
-            color: var(--light-teal);
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(to right, var(--light-teal), var(--cream));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        nav a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--light-teal);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::before {
-            width: 100%;
         }
 
         .active {
@@ -130,8 +49,7 @@
             font-size: 1.3rem;
             max-width: 700px;
             margin: 0 auto;
-            color: var(--croall);
-            text-shadow: 1px 1px 4px var(--sunset);
+            color: var(--croal);
             animation: fadeInUp 1.2s ease;
         }
 
@@ -181,26 +99,26 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background: var(--sunset);
+            background: var(--deep-abyss);
             border-radius: 50%;
             border: 3px solid var(--white);
             cursor: pointer;
             transform: translate(-50%, -50%);
             transition: all 0.3s ease;
             z-index: 10;
-            box-shadow: 0 0 0 0 rgba(238, 155, 0, 0.7);
+            box-shadow: 0 0 0 0 rgba(0, 163, 238, 0.7);
             animation: pulse 2s infinite;
         }
 
         .ocean-point:hover {
             transform: translate(-50%, -50%) scale(1.5);
-            background: var(--rust);
+            background: var(--deep-abyss);
             animation: none;
         }
 
         @keyframes pulse {
             0% {
-                box-shadow: 0 0 0 0 rgba(238, 155, 0, 0.7);
+                box-shadow: 0 0 0 0 rgba(0, 163, 238, 0.7);
             }
             70% {
                 box-shadow: 0 0 0 15px rgba(238, 155, 0, 0);
@@ -252,7 +170,7 @@
 
         .ocean-details h2 {
             font-size: 2.2rem;
-            color: var(--light-teal);
+            color: var(--heading-p);
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
@@ -265,7 +183,7 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: var(--sunset);
+            background: #fff;
         }
 
         .ocean-stats {
@@ -279,7 +197,7 @@
             background: rgba(10, 147, 150, 0.2);
             padding: 15px;
             border-radius: 10px;
-            border-left: 4px solid var(--light-teal);
+            border-left: 4px solid var(--light-p);
             transition: transform 0.3s ease;
         }
 
@@ -319,7 +237,7 @@
         }
 
         .marine-life h3 i {
-            color: var(--sunset);
+            color: var(--deep-blue);
         }
 
         .species-list {
@@ -342,7 +260,7 @@
         }
 
         .species-tag:hover {
-            background: var(--rust);
+            background: var(--marine-teal);
             transform: translateY(-3px);
         }
 
@@ -382,7 +300,7 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            color: var(--cream);
+            color: #fff;
         }
 
         .fact-cards {
@@ -392,7 +310,7 @@
         }
 
         .fact-card {
-            background: rgba(255, 255, 255, 0.1);
+            background:var(--card_bg);
             backdrop-filter: blur(5px);
             padding: 30px;
             border-radius: 15px;
@@ -408,18 +326,18 @@
 
         .fact-card i {
             font-size: 2.5rem;
-            color: var(--sunset);
+            color: var();
             margin-bottom: 20px;
         }
 
         .fact-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--cream);
+            color: var( --deep-blue);
         }
 
         /* Depth Explorer Section */
-        .depth-explorer {
+        /* .depth-explorer {
             height: 600px;
             position: relative;
             background: linear-gradient(to bottom, var(--deep-blue), var(--dark-gray));
@@ -543,7 +461,7 @@
             color: var(--white);
             font-weight: 600;
             font-size: 1.1rem;
-        }
+        } */
 
         /* Responsive Design */
         @media (max-width: 1024px) {

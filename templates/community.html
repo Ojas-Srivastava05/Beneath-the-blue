@@ -4,88 +4,17 @@
 {% block  content %}
     <link rel="stylesheet" href="{% static 'css/community.css' %}">
     <title>Beneath The Blue Community</title>
-    <style>
-<<<<<<< HEAD
-        .image-bg-wrapper {
-=======
-      image-bg-wrapper {
->>>>>>> c619a0aee484c0478ae3833d57ddd0dacc4c72a2
-            background-image: url('combg.jpg');
-
-            background-size: cover;    /* Ensures full coverage without stretching */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-            object-position: center;  
-            z-index: -1;
-            overflow: hidden;
-        }
-        .image-bg-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 1;
-        }
-        .image-overlay {
-            {% comment %} position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%; {% endcomment %}
-            {% comment %} background-color: rgba(0, 10, 30, 0.7); /* Deep blue transparency */ {% endcomment %}
-            display:none;
-        }
-<<<<<<< HEAD
-    </style>
-</head>
-<body >
-       <div class="image-bg-wrapper">
-        <img src="{% static 'image/combg.jpg' %}" alt="Community Background">
-=======
-        /* Image background styles (replace the video styles) */
-.image-bg-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.image-bg-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
-}
-
-.image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 10, 30, 0.7);
-}
-      </style>
 </head>
 <body >
        <div class="image-bg-wrapper">
         <img src="{% static 'image/community.jpg' %}" alt="Community Background">
->>>>>>> c619a0aee484c0478ae3833d57ddd0dacc4c72a2
         <div class="image-overlay"></div>
     </div>
     <div class="content-overlay">
         <div class="intro">
             <div class="section">
                 <h2>
-                    <form method="get" class="search-bar" style="color : #FFDAB9;">
+                    <form method="get" class="search-bar">
                         {% csrf_token %}
                         <select id="category_select" onchange="location = this.value;" aria-placeholder="Select a category">
                             <option value="{% url 'community_page' %}">Select a Category</option>
@@ -95,17 +24,12 @@
                         </select>
                     </form>{{Category_selected.name}}
                 </h2>
-                <p style="color : #E6F7FF;">{{Category_selected.description}}</p>
+                <p>{{Category_selected.description}}</p>
             </div>
             {% for community in Community_data %}
                 <div class="card-container">
-<<<<<<< HEAD
-                    <div class="card"><a href="{{community.link}}" target="_blank" style="color : #CCFFFF;">{{community.title}}</a></div>
-                    <div class="card_paragraph"><a href="{{community.link}}" target="_blank" style="color : #87CEEB;">{{community.description}}</a></div>
-=======
-                    <div class="card"><a href="{{community.link}}" target="_blank" style="color : var(--coral);">{{community.title}}</a></div>
-                    <div class="card_paragraph"><a href="{{community.link}}" target="_blank" style="color : #f0f0f0 ;">{{community.description}}</a></div>
->>>>>>> c619a0aee484c0478ae3833d57ddd0dacc4c72a2
+                    <div class="card"><a href="{{community.link}}" target="_blank" >{{community.title}}</a></div>
+                    <div class="card_paragraph"><a href="{{community.link}}" target="_blank">{{community.description}}</a></div>
                 </div>
             {% endfor %}
         </div>

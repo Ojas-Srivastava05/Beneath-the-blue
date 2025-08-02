@@ -9,56 +9,47 @@
 </video>
 <div id="video-overlay"></div>
 <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Raleway:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<!-- Font Awesome (for icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<div class="content-wrapper" style="margin-top: 90px;">
+{% comment %} <div class="content-wrapper" style="margin-top: 90px;"> {% endcomment %}
     <!-- Header -->
-    <header class="header">
+ <header class="header">
         <div class="container header-container">
             <div class="logo">
-                <h1>Beneath the Blue</h1>
+                <h1><a href="{% url 'home' %}">Beneath the Blue</a></h1>
             </div>
             <nav>
-                <ul>
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><div class="main_box">
-      <input type="checkbox" id="check" />
-      <div class="btn_one">
-        <label for="check">
-          <i class="fa-solid fa-bars"></i>
-        </label>
-      </div>
+                <ul class="main-nav">
+                    <li class="menu-container">
+                        <div class="main_box">
+                            <input type="checkbox" id="check" />
+                            <label class="menu-icon" for="check">
+                                <i class="fa-solid fa-bars"></i>
+                            </label>
 
-      <div class="sidebar_menu">
-        <div class="btn_two">
-          <label for="check" >
-            <i class="fa-solid fa-xmark"></i>
-          </label>
-        </div>
+                            <div class="sidebar_menu">
+                                <div class="menu-header">
+                                    <label class="close-icon" for="check">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </label>
+                                </div>
 
-        <div class="menu">
-            <ul style="display: flex; flex-direction: column; gap: 1em;">
-                <li><a href="{% url 'posts' %}">Posts</a></li>
-                <li><a href="{% url 'explore_map' %}">Explore</a></li>
-                <li><a href="{% url 'threats' %}">Threats</a></li>
-                <li><a href="{% url 'endangered_species' %}">Species</a></li>
-                <li><a href="{% url 'community_page' %}">Community</a></li>
-                <li><a href="{% url 'quiz' %}">Quiz</a></li>
-            </li></ul>
-        </div>
-        </div>
-                </li>
-                    <li></li>
+                                <div class="menu">
+                                    <ul>
+                                        <li><a href="{% url 'community_posts' %}">Posts</a></li>
+                                        <li><a href="{% url 'explore_map' %}">Explore</a></li>
+                                        <li><a href="{% url 'threats' %}">Threats</a></li>
+                                        <li><a href="{% url 'endangered_species' %}">Species</a></li>
+                                        <li><a href="{% url 'community_page' %}">Community</a></li>
+                                        <li><a href="{% url 'quiz' %}">Quiz</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
-            </nav>      
-    </div>
+            </nav>
         </div>
     </header>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">

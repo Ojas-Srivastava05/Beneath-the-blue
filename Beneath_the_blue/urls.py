@@ -12,7 +12,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home, name="home")
     ,path('sign_in/',sign_in, name="sign_in")
-    ,path('sign_up/',sign_up, name="sign_up")
+    ,path('sign_up/',sign_up, name="sign_up"),
+    path('logout/',user_logout, name='logout')
     ,path('community/',community_page, name="community_page"),
     path('explore_map/',explore_map, name="explore_map"),
     path('quiz/', quiz, name='quiz'),
@@ -24,7 +25,15 @@ urlpatterns = [
     path('submit-idea/', submit_idea, name='submit_idea'),
     path('submit-feedback/', submit_feedback, name='submit_feedback'),
     # path('subscribe/', Subscriber, name='subscribe'),
-    path('posts/' ,post, name='posts'),
+    path('CommunityPost/', community_posts, name='community_posts'),
+    # path('community/',community_posts, name='community_posts'),
+    path('create-post/', create_post, name='create_post'),
+    path('my-posts/', my_posts, name='my_posts'),
+    path('posts/<int:post_id>/edit/', edit_post, name='edit_post'),
+    path('posts/<int:post_id>/delete/', delete_post, name='delete_post'),
+    path('posts/<int:post_id>/like/', like_post, name='like_post'),
+    path('media/<int:media_id>/delete/', delete_media, name='delete_media'),
+    path('add_comment/<int:post_id>/', add_comment, name='add_comment'),
     ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

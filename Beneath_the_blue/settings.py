@@ -25,9 +25,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'community',  # Community app
-     'ocean',
-     'species',  # Species app
+    'ocean',
+    'species',  # Species app
  
 ]
 
