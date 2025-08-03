@@ -6,26 +6,10 @@
      <link rel="stylesheet" href="{% static 'css/explore.css' %}"
 </head>
 <body>
-    <div class="video-wrapper" style="height: 0px;">
-    <video autoplay muted loop id="bg-video">
-    <source src="{% static 'videos/explore.mp4' %}" type="video/mp4">
-  </video>
-    {% comment %} <header class="header">
-        <div class="container header-content header-container">
-            <div class="logo">
-                <a href="{% url 'home' %}" class="logo">
-                    <h1>Beneath The Blue</h1>
-                </a>
-            </div>
-            <nav>
-                <ul>
-                     <li><a href="{% url 'home' %}" class="nav-link">Back</a></li>
-                    
-                </ul>
-            </nav>
-        </div>
-    </header> {% endcomment %}
-
+    <div class="image-bg-wrapper">
+        <img src="{% static 'image/explore_bg.jpg' %}" alt="Community Background">
+        <div class="image-overlay"></div>
+    </div>
     <section class="hero">
         <div class="hero-content" style="margin: 3% 0em;">
             <h2>Discover the Wonders of Our Oceans</h2>
@@ -118,7 +102,7 @@
                 </div>
             </div>
         </section>
-    </div>
+    {% comment %} </div> {% endcomment %}
 
     {% comment %} <footer>
         <div class="container">

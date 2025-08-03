@@ -14,31 +14,14 @@
         Your browser does not support the video tag.
     </video>
     <div class="video-overlay"></div>
-
     <!-- Content wrapper for all page content -->
     <div class="content-wrapper">
-        {% comment %} <header class="header">
-            <div class="container header-container">
-                <div class="logo">
-                    <h1>Beneath the Blue</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="{% url 'home' %}">Back</a></li>
-                        {% comment %} <li><a href="{% url 'threats' %}" class="nav-link">Threats</a></li>
-                        <li><a href="{% url 'quiz' %}">Quizzes</a></li> {% endcomment %}
-                        {% comment %} <li><a href="{% url 'sign_up' %}" class="nav-btn">Sign Up</a></li> {% endcomment %}
-                    {% comment %} </ul>
-                </nav>
-            </div>
-        </header> {% endcomment %} 
         <section class="hero">
             <div class="hero-content">
                 <h1>SAVING OUR OCEANS</h1>
                 <p>Threats & Sustainable Solutions</p>
             </div>
         </section>
-
         <section class="threats">
             <h2>Major Threats to Marine Life</h2>
             <div class="threats-grid">
@@ -55,7 +38,7 @@
            
         </section>
 
-        <section class="solutions">
+        {% comment %} <section class="solutions">
             <h2>Sustainable Solutions</h2>
             <div class="solutions-grid">
                 {% for threat in threats %}
@@ -65,7 +48,7 @@
                 </div>
                 {% endfor %}
             </div>
-        </section> 
+        </section>  {% endcomment %}
     </div>
     <script src="{% static 'js/main.js' %}"></script>
 </body>

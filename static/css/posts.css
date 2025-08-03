@@ -13,7 +13,7 @@
         
         .page-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin:  1em 0em;
             color: var(--coral);
         }
         
@@ -316,24 +316,9 @@
             background-color: var(--dark-color);
         }
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-            }
-            
-            nav ul {
-                margin-top: 20px;
-            }
-            
-            .user-profile {
-                margin-top: 20px;
-            }
             
             .post-media {
                 height: 200px;
-            }
-            
-            .tabs {
-                flex-direction: column;
             }
             
             .tab {

@@ -21,8 +21,6 @@
             </div>
             
             <div class="tab-content active">
-                <h2 class="page-title">Recent Community Conservation Stories</h2>
-                
                 <div class="posts-feed">
                     {% for post in posts %}
                     <div class="post-card">
@@ -72,14 +70,14 @@
                                 <div class="action-btn comment-btn">
                                     <i class="far fa-comment"></i> Comment
                                 </div>
-                                {% if post.author == request.user %}
+                                {% comment %} {% if post.author == request.user %}
                                 <div class="action-btn">
                                     <a href="{% url 'edit_post' post.id %}"><i class="fas fa-edit"></i> Edit</a>
                                 </div>
                                 <div class="action-btn">
                                     <a href="{% url 'delete_post' post.id %}" class="delete-post"><i class="fas fa-trash"></i> Delete</a>
-                                </div>
-                                {% endif %}
+                                </div> {% endcomment %}
+                                {% comment %} {% endif %} {% endcomment %}
                             </div>
                             
                             <!-- Comments Section -->
