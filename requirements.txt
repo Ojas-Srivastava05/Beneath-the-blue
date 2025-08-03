@@ -1,32 +1,26 @@
 # Core Requirements
 Django==4.2.7
 django-crispy-forms==2.1
-Pillow==10.4.0  # For image processing
-python-dotenv==1.0.0  # For environment variables
+Pillow==10.4.0
 
 # Database
-psycopg2-binary==2.9.9  # PostgreSQL adapter (remove if using SQLite)
+psycopg2-binary==2.9.9
 
 # Frontend Enhancements
-django-compressor==4.4  # CSS/JS compression
-django-sass-processor==1.2.2  # SASS support
+django-compressor==4.4
+django-sass-processor==1.2.2
 
 # Authentication & Security
-django-allauth==0.57.0  # Social authentication
-django-cors-headers==4.3.1  # For API requests
-argon2-cffi==23.1.0  # Secure password hashing
+django-allauth==0.57.0
+django-cors-headers==4.3.1
+argon2-cffi==23.1.0
 
-# API Development (if needed)
+# API Development
 djangorestframework==3.14.0
-drf-yasg==1.21.7  # API documentation
+drf-yasg==1.21.7
 
 # Deployment
 gunicorn==21.2.0
-whitenoise==6.6.0  # Static files serving
-django-storages==1.14.2  # For S3/cloud storage
-boto3==1.34.34  # AWS integration
-
-# Development Tools
-# django-debug-toolbar==4.2.0
-# django-extensions==3.2.3
-# ipython==8.18.1
+whitenoise==6.6.0
+django-storages==1.14.2
+boto3==1.34.34
