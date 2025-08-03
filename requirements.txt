@@ -1,14 +1,13 @@
+# Build Tools
+pip>=25.2
+setuptools>=70.0
+wheel>=0.42
+
 # Core Requirements
 Django==4.2.7
 django-crispy-forms==2.1
 Pillow==10.0.1  # For image processing
 python-dotenv==1.0.0  # For environment variables
-
-
-#more reuirements
-pip>=25.2
-setuptools>=70.0
-wheel>=0.42
 
 # Database
 psycopg2-binary==2.9.7  # PostgreSQL adapter (remove if using SQLite)
@@ -20,7 +19,7 @@ django-sass-processor==1.2  # SASS support
 # Authentication & Security
 django-allauth==0.58.2  # Social authentication
 django-cors-headers==4.2.0  # For API requests
-argon2-cffi==23.1.0  # Secure password hashing
+# argon2-cffi==23.1.0  # Secure password hashing (commented out to prevent build error)
 
 # API Development (if needed)
 djangorestframework==3.14.0
@@ -35,5 +34,4 @@ boto3==1.28.57  # AWS integration
 # Development Tools
 django-debug-toolbar==4.1.0
 django-extensions==3.2.3
-
 ipython==8.15.0
