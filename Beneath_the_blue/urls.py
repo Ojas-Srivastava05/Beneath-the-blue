@@ -18,7 +18,7 @@ urlpatterns = [
     path('explore_map/',explore_map, name="explore_map"),
     path('quiz/', quiz, name='quiz'),
     path('next/', next_question, name='next_question'),
-
+    
     path('threats/', threats, name='threats'),
     path('endangered_species/', endangered_species, name='endangered_species'),
     path('submit-pledge/', submit_pledge, name='submit_pledge'),
