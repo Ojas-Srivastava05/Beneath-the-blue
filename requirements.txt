@@ -4,6 +4,12 @@ django-crispy-forms==2.1
 Pillow==10.0.1  # For image processing
 python-dotenv==1.0.0  # For environment variables
 
+
+#more reuirements
+pip>=25.2
+setuptools>=70.0
+wheel>=0.42
+
 # Database
 psycopg2-binary==2.9.7  # PostgreSQL adapter (remove if using SQLite)
 
@@ -29,4 +35,5 @@ boto3==1.28.57  # AWS integration
 # Development Tools
 django-debug-toolbar==4.1.0
 django-extensions==3.2.3
+
 ipython==8.15.0
