@@ -8,12 +8,9 @@ services:
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: Beneath_the_blue.settings
-      - key: PYTHON_VERSION
-        value: 3.11.9
       - key: SECRET_KEY
         fromSecret: SECRET_KEY
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: "*"
-      # Add DATABASE_URL if using a database
+        value: "*.onrender.com"
